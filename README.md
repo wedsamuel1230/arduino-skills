@@ -206,6 +206,14 @@ uv run arduino-project-builder/scripts/scaffold_project.py --interactive
 ### Pattern Relationships
 
 ```mermaid
+%%{init: {
+  "theme": "neutral",
+  "themeVariables": {
+    "primaryColor": "#df9696ff",
+    "primaryTextColor": "#0f8cf3ff",
+    "lineColor": "#4A77B5"
+  }
+}}%%
 mindmap
   root((Arduino Patterns))
     Hardware

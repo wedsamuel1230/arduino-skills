@@ -7,7 +7,6 @@
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v0.9.0:** Marketplace configuration for all 11 skills, dual-platform support (Claude Code + Gemini CLI), skill-porter integration for universal conversions.
 
 ## 📋 Table of Contents
 

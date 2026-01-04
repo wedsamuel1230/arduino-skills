@@ -363,5 +363,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-**Last Updated:** 2026-01-04  
-**Current Version:** 0.7.0
+**Last Updated:** 2026-01-05  
+**Current Version:** 0.8.0

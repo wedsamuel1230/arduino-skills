@@ -1,10 +1,12 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/skills-18%20complete-brightgreen)
+![Status](https://img.shields.io/badge/version-0.8.0-blue)
+![Skills](https://img.shields.io/badge/skills-18%20complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-> Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.
+> Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
+> **v0.8.0:** Community guidelines, security policy, development guide, and GitHub automation (CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, DEVELOPMENT.md, PR/issue templates).
 
 ## 📋 Table of Contents
 
@@ -32,6 +34,7 @@
     - [Directory Structure](#directory-structure)
     - [Design Principles](#design-principles)
   - [🤝 Contributing](#-contributing)
+    - [Quick Submission Checklist](#quick-submission-checklist)
   - [📖 Documentation](#-documentation)
   - [📄 License](#-license)
   - [📋 Changelog](#-changelog)

@@ -1,12 +1,13 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-0.8.0-blue)
-![Skills](https://img.shields.io/badge/skills-18%20complete-brightgreen)
+![Status](https://img.shields.io/badge/version-0.10.0-blue)
+![Skills](https://img.shields.io/badge/skills-20%20complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v0.8.0:** Community guidelines, security policy, development guide, and GitHub automation (CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, DEVELOPMENT.md, PR/issue templates).
+> **v0.9.0:** Marketplace configuration for all 11 skills, dual-platform support (Claude Code + Gemini CLI), skill-porter integration for universal conversions.
 
 ## 📋 Table of Contents
 
@@ -15,9 +16,10 @@
   - [🔍 Overview](#-overview)
   - [🤖 How Skills Work](#-how-skills-work)
   - [📦 Installation](#-installation)
+    - [📍 Marketplace Configuration](#-marketplace-configuration)
     - [Claude Code](#claude-code)
-    - [VS Code Copilot](#vs-code-copilot)
     - [Google Gemini CLI](#google-gemini-cli)
+    - [VS Code Copilot](#vs-code-copilot)
   - [🚀 Quick Start](#-quick-start)
     - [Generate Code Snippets](#generate-code-snippets)
     - [Scaffold Complete Projects](#scaffold-complete-projects)
@@ -32,6 +34,7 @@
     - [Board-Specific Optimization](#board-specific-optimization)
   - [🏛️ Architecture](#️-architecture)
     - [Directory Structure](#directory-structure)
+    - [Marketplace Configuration](#marketplace-configuration)
     - [Design Principles](#design-principles)
   - [🤝 Contributing](#-contributing)
     - [Quick Submission Checklist](#quick-submission-checklist)
@@ -43,10 +46,10 @@
 
 ## 🔍 Overview
 
-This collection provides **18 production-ready skills** for Arduino and maker projects:
+This collection provides **20 production-ready skills** for Arduino and maker projects:
 
-- **9 Arduino Core Skills** - Hardware patterns, timing, communication, data logging
-- **9 Maker Tools** - Debugging, BOM generation, power planning, documentation
+- **11 Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS
+- **9 Maker Tools** - Debugging, BOM generation, power planning, documentation, diagrams
 - **2 Project Builders** - Code generation and project scaffolding with automation scripts
 
 All skills follow a consistent structure with:
@@ -71,25 +74,65 @@ All skills follow a consistent structure with:
 
 ## 📦 Installation
 
-| Agent | Setup | Docs |
-|-------|-------|------|
-| **Claude Code** | `/plugin marketplace add arduino-skills` | [Docs](https://code.claude.com/docs/en/skills) |
-| **VS Code Copilot** | Copy to `.github/skills/` folder | [Docs](https://code.visualstudio.com/docs/copilot/customization/agent-skills) |
-| **OpenAI Codex** | Copy to `.codex/skills/` folder | [Docs](https://developers.openai.com/docs/guides/agents) |
-| **Google Gemini CLI** | `gemini extensions install` | [Docs](https://geminicli.com/docs/) |
+| Agent | Setup | Marketplace | Docs |
+|-------|-------|-------------|------|
+| **Claude Code** | `/plugin marketplace add arduino-skills` | ✅ Configured (v0.9.0) | [Docs](https://code.claude.com/docs/en/skills) |
+| **Google Gemini CLI** | `gemini extensions install` | ✅ Converted (11 extensions) | [Docs](https://geminicli.com/docs/) |
+| **VS Code Copilot** | Copy to `.github/skills/` folder | ⚠️ Manual setup | [Docs](https://code.visualstudio.com/docs/copilot/customization/agent-skills) |
+
+### 📍 Marketplace Configuration
+
+All 11 skills include marketplace metadata for discovery and installation:
+- **Claude Code:** `.claude-plugin/marketplace.json` — Enables `/plugin marketplace search` discovery
+- **Gemini CLI:** `gemini-extension.json` — Auto-generated from skill-porter conversion (see `d:/projects/gemini-extensions/`)
+
+Each marketplace file includes:
+- ✅ Skill name and description (50+ characters)
+- ✅ Version (0.9.0), license (MIT), and category tags
+- ✅ Plugin metadata for discovery
+- ✅ Compatible with skill-porter universal conversion tool
 
 ### Claude Code
+
+**Requirements:** `marketplace.json` present in each skill's `.claude-plugin/` directory
 
 ```bash
 # Register marketplace
 /plugin marketplace add arduino-skills
 
-# Install a skill
+# Install a skill (auto-discovers all 11)
 /plugin install arduino-code-generator@arduino-skills
 
-# View all skills
-/plugin search arduino-skills
+# Search available skills
+/plugin search arduino
 ```
+
+**What's configured:**
+- ✅ All 11 skills have marketplace metadata
+- ✅ Descriptions, tags, license, and version included
+- ✅ Ready for official marketplace publication
+
+### Google Gemini CLI
+
+**Requirements:** Gemini extensions generated via skill-porter conversion (at `d:/projects/gemini-extensions/`)
+
+```bash
+# Install from local directory
+gemini extensions install ./gemini-extensions/arduino-code-generator --consent
+
+# Install from GitHub
+gemini extensions install https://github.com/yourusername/arduino-skills/tree/main/gemini-extensions/arduino-code-generator --consent
+
+# List installed extensions
+gemini extensions list
+```
+
+**What's included:**
+- ✅ 11 Gemini CLI extensions (auto-generated from skill-porter)
+- ✅ Universal `gemini-extension.json` manifest format
+- ✅ Full compatibility with Gemini's extension system
+
+**Note on Multi-Platform Support:** This repository uses [skill-porter](https://github.com/jduncan-rva/skill-porter) to automatically convert between Claude SKILL.md and Gemini extension.json formats. Both versions are kept in sync.
 
 ### VS Code Copilot
 
@@ -104,16 +147,6 @@ cp -r arduino-code-generator .github/skills/arduino-code-generator
 VS Code supports two locations:
 - **Recommended:** `~/.github/skills/` (shared location)
 - **Legacy:** `~/.claude/skills/` (backward compatible)
-
-### Google Gemini CLI
-
-```bash
-# Local installation
-gemini extensions install . --consent
-
-# From GitHub URL
-gemini extensions install https://github.com/yourusername/arduino-skills.git --consent
-```
 
 ---
 
@@ -161,6 +194,8 @@ uv run arduino-project-builder/scripts/scaffold_project.py --interactive
 | Non-blocking Scheduler | `arduino-non-blocking-scheduler/` | millis()-based timing, priority task scheduling |
 | Hardware Compatibility | `arduino-hardware-compatibility/` | Auto-detect boards, sensors, adaptive configuration |
 | Data Logging | `arduino-data-logging/` | EEPROM with CRC, SD card CSV, wear leveling |
+| **FreeRTOS Patterns** | `freertos-patterns/` | ESP32 multitasking, queues, mutexes, task notifications |
+| **Code Generator** | `arduino-code-generator/` | Pattern-based snippet generation with Python automation |
 
 ### Pattern Relationships
 
@@ -209,6 +244,7 @@ mindmap
 | README Generator | `readme-generator/` | Professional GitHub documentation |
 | Code Review | `code-review-facilitator/` | 8-category review, code smell detection |
 | Datasheet Interpreter | `datasheet-interpreter/` | PDF spec extraction from URLs |
+| **Mermaid Generator** | `mermaid-diagram-generator/` | Visual documentation: state machines, timing, FreeRTOS |
 
 ### Tool Scripts
 
@@ -305,29 +341,75 @@ flowchart TD
 
 ```
 skills/
-├── arduino-code-generator/        # Code snippet generation
+├── arduino-code-generator/           # Code snippet generation
 │   ├── SKILL.md
-│   ├── references/                # 9 pattern files
+│   ├── .claude-plugin/
+│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   ├── references/                   # 9 pattern files
 │   └── scripts/generate_snippet.py
 │
-├── arduino-project-builder/       # Project scaffolding
+├── arduino-project-builder/          # Project scaffolding
 │   ├── SKILL.md
-│   ├── references/                # 3 project templates
+│   ├── .claude-plugin/
+│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   ├── references/                   # 3 project templates
 │   └── scripts/scaffold_project.py
 │
-├── [arduino-*]/                   # Core skills (9 folders)
+├── [arduino-*]/                      # Core skills (9 folders)
+│   └── .claude-plugin/
+│       └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
 │
-├── [maker-tools]/                 # Maker tools (9 folders)
-│   └── scripts/*.py               # Automation scripts
+├── [maker-tools]/                    # Maker tools (9 folders)
+│   ├── .claude-plugin/
+│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   └── scripts/*.py                  # Automation scripts
+│
+├── gemini-extensions/                # Gemini CLI extensions (NEW v0.9.0)
+│   └── [skill-name]/
+│       ├── gemini-extension.json
+│       └── GEMINI.md
 │
 ├── docs/
-│   └── diagrams/                  # Mermaid diagram sources
+│   └── diagrams/                     # Mermaid diagram sources
 │
-└── memory-bank/                   # Project tracking
+└── memory-bank/                      # Project tracking
     ├── projectbrief.md
     ├── activeContext.md
     └── SESSION.md
 ```
+
+### Marketplace Configuration
+
+**v0.9.0 Feature:** All 11 skills now include marketplace metadata for discovery on Claude Code and Gemini CLI.
+
+Each skill's `.claude-plugin/marketplace.json` includes:
+```json
+{
+  "name": "skill-name",
+  "metadata": {
+    "description": "Full skill description (50+ characters)",
+    "version": "0.9.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["arduino", "embedded-systems", "..."],
+    "category": "embedded-systems | maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "skill-name",
+      "description": "Brief one-liner for discovery",
+      "enabled": true
+    }
+  ]
+}
+```
+
+**Multi-Platform Conversion:** Gemini extensions are auto-generated from these marketplace files using [skill-porter](https://github.com/jduncan-rva/skill-porter), which transforms:
+- Claude `SKILL.md` → Gemini `gemini-extension.json`
+- `allowed-tools` (whitelist) → `excludeTools` (blacklist)
+- YAML metadata → JSON manifest
+
+Both versions are validated and kept in sync via CI/CD.
 
 ### Design Principles
 

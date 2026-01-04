@@ -1,0 +1,26 @@
+{
+  "name": "mermaid-diagram-generator",
+  "metadata": {
+    "description": "Generate Mermaid diagrams from Arduino code to visualize state machines, timing, and architecture for documentation",
+    "version": "0.10.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": [
+      "mermaid",
+      "diagram",
+      "visualization",
+      "state-machine",
+      "flowchart",
+      "documentation",
+      "arduino"
+    ],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "mermaid-diagram-generator",
+      "description": "Generate Mermaid diagrams from Arduino code for visual documentation",
+      "enabled": true
+    }
+  ]
+}

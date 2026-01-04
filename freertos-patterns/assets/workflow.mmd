@@ -1,0 +1,47 @@
+```mermaid
+%%{init: {
+  "theme": "neutral",
+  "themeVariables": {
+    "primaryColor": "#4A90E2",
+    "primaryTextColor": "#fff",
+    "primaryBorderColor": "#2E5C8A",
+    "lineColor": "#4A77B5",
+    "secondaryColor": "#82B366",
+    "tertiaryColor": "#D79B00"
+  }
+}}%%
+flowchart TD
+    A["🚀 User Request: ESP32 Multitasking"] --> B{"Pattern Type?"}
+    
+    B -->|Task Creation| C1["patterns-task-creation.md"]
+    B -->|Communication| C2["patterns-queues.md"]
+    B -->|Synchronization| C3["patterns-synchronization.md"]
+    B -->|Memory| C4["patterns-memory.md"]
+    B -->|Advanced| C5["patterns-advanced.md"]
+    
+    C1 --> D1["xTaskCreate<br/>Priority & Stack"]
+    C2 --> D2["Queues<br/>Producer-Consumer"]
+    C3 --> D3["Mutex/Semaphore<br/>Shared Resources"]
+    C4 --> D4["Heap/Stack Monitor<br/>Memory Pools"]
+    C5 --> D5["Task Notifications<br/>Event Groups"]
+    
+    D1 & D2 & D3 & D4 & D5 --> E["Pattern Assembly"]
+    
+    E --> F{"Verification?"}
+    
+    F -->|Stack Check| G1["uxTaskGetStackHighWaterMark"]
+    F -->|Heap Check| G2["ESP.getFreeHeap"]
+    F -->|Task List| G3["vTaskList"]
+    F -->|Runtime Stats| G4["vTaskGetRunTimeStats"]
+    
+    G1 & G2 & G3 & G4 --> H["✅ Working ESP32 Code"]
+    
+    style A fill:#4A90E2,stroke:#2E5C8A,color:#fff
+    style H fill:#82B366,stroke:#5A8C4A,color:#fff
+    style E fill:#D79B00,stroke:#9C7200,color:#fff
+    style C1 fill:#E8F4F8,stroke:#4A90E2
+    style C2 fill:#E8F4F8,stroke:#4A90E2
+    style C3 fill:#E8F4F8,stroke:#4A90E2
+    style C4 fill:#E8F4F8,stroke:#4A90E2
+    style C5 fill:#E8F4F8,stroke:#4A90E2
+```

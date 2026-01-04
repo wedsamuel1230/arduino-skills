@@ -1,0 +1,28 @@
+{
+  "name": "freertos-patterns",
+  "metadata": {
+    "description": "Comprehensive FreeRTOS task management, synchronization, and memory optimization patterns for ESP32 multitasking",
+    "version": "0.10.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": [
+      "freertos",
+      "esp32",
+      "rtos",
+      "multitasking",
+      "task-synchronization",
+      "queues",
+      "semaphores",
+      "embedded-systems",
+      "real-time"
+    ],
+    "category": "embedded-systems"
+  },
+  "plugins": [
+    {
+      "name": "freertos-patterns",
+      "description": "FreeRTOS patterns for ESP32 task management and synchronization",
+      "enabled": true
+    }
+  ]
+}

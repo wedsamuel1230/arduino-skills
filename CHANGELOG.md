@@ -4,6 +4,57 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+# Changelog
+
+All notable changes to the **arduino-skills** project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.10.1] - 2026-01-04
+
+### Added
+- **freertos-patterns** — RP2040 dual-core support with mutex synchronization
+  - Pattern 6: Complete RP2040 dual-core example using setup1()/loop1()
+  - Pico SDK mutex API (mutex_init, mutex_enter_blocking, mutex_exit)
+  - Pitfall 6: RP2040 mutex initialization timing documentation
+  - Engineering Rationale: ESP32 vs RP2040 comparison tables
+  - Platform-specific integration notes
+  - 4 RP2040 references (Pico SDK, datasheet, Arduino-Pico, examples)
+
+### Changed
+- **freertos-patterns** SKILL.md: 1002 → 1212 lines (+210 lines)
+- YAML frontmatter: Added `rp2040` to platforms array
+- Title updated to include RP2040 multicore support
+
+---
+
+## [0.10.0] - 2026-01-04
+
+### Added
+- **freertos-patterns** skill — ESP32 multitasking with FreeRTOS (850 lines)
+  - Task creation, queues, mutexes, synchronization patterns
+  - 5 reference patterns: task-creation, queues, synchronization, memory, advanced
+  - Memory monitoring, stack overflow detection, PSRAM support
+  - Validated Mermaid workflow diagram
+  - Marketplace configuration for Claude Code
+  
+- **mermaid-diagram-generator** skill — Visual documentation automation (650 lines)
+  - Python script for state machine extraction from Arduino code
+  - Flowchart generation from control flow logic
+  - Timing/sequence diagrams for I2C, SPI protocols
+  - FreeRTOS task architecture visualization
+  - Interactive and CLI modes with PEP 723 dependencies
+  - Diagram templates reference with 5 Mermaid examples
+  - Marketplace configuration for Claude Code
+
+### Changed
+- Repository structure: 18 → 20 skills
+- Arduino core skills: 9 → 11 (added freertos-patterns, arduino-code-generator reclassified)
+- Maker tools: 9 → 10 (added mermaid-diagram-generator)
+- README badges updated: v0.9.0 → v0.10.0, 18 → 20 skills
+
+---
+
 ## [Unreleased]
 
 ### Planned

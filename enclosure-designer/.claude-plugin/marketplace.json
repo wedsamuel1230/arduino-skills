@@ -1,0 +1,18 @@
+{
+  "name": "enclosure-designer",
+  "metadata": {
+    "description": "Generate parametric 3D enclosure designs in OpenSCAD for Arduino/ESP32/RP2040 projects. Use when user needs a project box, wants to design a case, or asks for help creating an enclosure. Generates customizable designs with mounting holes, ventilation, and cable management.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["3d-design", "enclosure", "cad", "maker", "prototyping"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "enclosure-designer",
+      "description": "Generate parametric 3D enclosures in OpenSCAD with mounting holes and customization options",
+      "enabled": true
+    }
+  ]
+}

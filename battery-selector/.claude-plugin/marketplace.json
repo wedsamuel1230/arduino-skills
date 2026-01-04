@@ -1,0 +1,18 @@
+{
+  "name": "battery-selector",
+  "metadata": {
+    "description": "Helps choose the right battery type and charging solution for Arduino/ESP32/RP2040 projects. Use when user asks about battery options, charging circuits, power source selection, or says \"what battery should I use\". Covers chemistry selection, safety, voltage regulation, and charging circuits.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["battery-selection", "power-management", "embedded-systems", "maker", "electronics"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "battery-selector",
+      "description": "Guide for selecting the right battery type and charging solution for embedded projects",
+      "enabled": true
+    }
+  ]
+}

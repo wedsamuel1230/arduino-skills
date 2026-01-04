@@ -1,0 +1,18 @@
+{
+  "name": "arduino-project-builder",
+  "metadata": {
+    "description": "Scaffold complete Arduino/ESP32/RP2040 projects with folder structure, CMakeLists.txt, platformio.ini, and starter code. Use when user wants to start a new project, needs project organization, or asks for help setting up a project directory. Creates production-ready project layouts with build system configuration.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["arduino", "embedded-systems", "project-scaffolding", "iot", "maker"],
+    "category": "embedded-systems"
+  },
+  "plugins": [
+    {
+      "name": "arduino-project-builder",
+      "description": "Scaffold complete Arduino projects with proper folder structure and build configuration",
+      "enabled": true
+    }
+  ]
+}

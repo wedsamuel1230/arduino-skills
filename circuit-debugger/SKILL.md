@@ -1,6 +1,7 @@
 ---
 name: circuit-debugger
-description: Systematic hardware debugging guide for Arduino/ESP32/RP2040 circuits. Use when user reports: circuit not working, components getting hot, no power, intermittent failures, unexpected behavior, sensor not responding, LED not lighting, motor not spinning. Guides through power checks, continuity testing, signal tracing, and component isolation using multimeter techniques.
+description: |
+  Systematic hardware debugging guide for Arduino/ESP32/RP2040 circuits. Use when user reports: circuit not working, components getting hot, no power, intermittent failures, unexpected behavior, sensor not responding, LED not lighting, motor not spinning. Guides through power checks, continuity testing, signal tracing, and component isolation using multimeter techniques.
 ---
 
 # Circuit Debugger

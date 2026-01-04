@@ -1,0 +1,18 @@
+{
+  "name": "arduino-code-generator",
+  "metadata": {
+    "description": "Generate Arduino/embedded C++ code snippets and patterns on demand for UNO/ESP32/RP2040. Use when users request Arduino code for sensors, actuators, communication protocols, state machines, non-blocking timers, data logging, or hardware abstraction. Generates production-ready code with proper memory management, timing patterns, and board-specific optimization.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["arduino", "embedded-systems", "code-generation", "iot", "maker"],
+    "category": "embedded-systems"
+  },
+  "plugins": [
+    {
+      "name": "arduino-code-generator",
+      "description": "Generate production-quality Arduino code snippets for sensors, actuators, communication, and embedded patterns",
+      "enabled": true
+    }
+  ]
+}

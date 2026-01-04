@@ -1,0 +1,18 @@
+{
+  "name": "bom-generator",
+  "metadata": {
+    "description": "Generates Bill of Materials (BOM) from project descriptions for Arduino/ESP32/RP2040 projects. Use when user needs component lists, parts shopping lists, cost estimates, or asks \"what parts do I need\". Outputs formatted BOMs with part numbers, quantities, suppliers (DigiKey, Mouser, Amazon, AliExpress), and compatibility warnings.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["bom-generation", "project-planning", "electronics", "maker", "procurement"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "bom-generator",
+      "description": "Generate Bill of Materials with part numbers, suppliers, and cost estimates",
+      "enabled": true
+    }
+  ]
+}

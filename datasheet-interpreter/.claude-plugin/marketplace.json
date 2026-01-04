@@ -1,0 +1,18 @@
+{
+  "name": "datasheet-interpreter",
+  "metadata": {
+    "description": "Interprets datasheets and extracts key specifications for sensors, microcontrollers, and components. Use when user has a datasheet, needs to understand pinouts, wants to find electrical specifications, or needs wiring diagrams. Extracts voltage ranges, pin functions, communication protocols, and integration examples.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["datasheet-interpretation", "electronics", "components", "maker", "reference"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "datasheet-interpreter",
+      "description": "Extract specifications, pinouts, and integration examples from component datasheets",
+      "enabled": true
+    }
+  ]
+}

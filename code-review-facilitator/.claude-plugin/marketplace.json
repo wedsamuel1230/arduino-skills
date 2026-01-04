@@ -1,0 +1,18 @@
+{
+  "name": "code-review-facilitator",
+  "metadata": {
+    "description": "Automated code review for Arduino/ESP32/RP2040 projects focusing on best practices, memory safety, and common pitfalls. Use when user wants code feedback, says \"review my code\", needs help improving code quality, or before finalizing a project. Generates actionable checklists and specific improvement suggestions.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["code-review", "quality-assurance", "best-practices", "embedded-systems", "education"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "code-review-facilitator",
+      "description": "Automated code review focusing on best practices, memory safety, and optimization for embedded systems",
+      "enabled": true
+    }
+  ]
+}

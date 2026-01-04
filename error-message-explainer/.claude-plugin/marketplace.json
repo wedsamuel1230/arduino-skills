@@ -1,0 +1,18 @@
+{
+  "name": "error-message-explainer",
+  "metadata": {
+    "description": "Interprets Arduino/ESP32/RP2040 compiler errors in plain English for beginners. Use when user shares error messages, compilation failures, upload problems, or asks \"what does this error mean\". Covers common errors like undefined references, type mismatches, missing libraries, and board-specific issues.",
+    "version": "0.8.0",
+    "license": "MIT",
+    "author": "arduino-skills contributors",
+    "tags": ["error-diagnosis", "debugging", "education", "embedded-systems", "troubleshooting"],
+    "category": "maker-tools"
+  },
+  "plugins": [
+    {
+      "name": "error-message-explainer",
+      "description": "Explain Arduino compiler errors in plain English with solutions and prevention tips",
+      "enabled": true
+    }
+  ]
+}

@@ -117,47 +117,6 @@ gemini extensions install https://github.com/yourusername/arduino-skills.git --c
 
 ---
 
-```mermaid
-flowchart TB
-    subgraph core["🔧 Arduino Core Skills"]
-        direction TB
-        config["Config.h Management"]
-        adc["ADC Filtering"]
-        buttons["Button Debouncing"]
-        i2c["I2C Scanner"]
-        csv["CSV Output"]
-        state["State Machine"]
-        scheduler["Non-blocking Scheduler"]
-        hardware["Hardware Compatibility"]
-        datalog["Data Logging"]
-    end
-    
-    subgraph maker["🛠️ Maker Tools"]
-        direction TB
-        circuit["Circuit Debugger"]
-        errors["Error Explainer"]
-        bom["BOM Generator"]
-        power["Power Calculator"]
-        battery["Battery Selector"]
-        enclosure["Enclosure Designer"]
-        readme["README Generator"]
-        review["Code Review"]
-        datasheet["Datasheet Interpreter"]
-    end
-    
-    subgraph builders["🏗️ Project Builders"]
-        direction LR
-        codegen["Code Generator"]
-        projbuild["Project Builder"]
-    end
-    
-    codegen --> core
-    projbuild --> core
-    projbuild --> maker
-```
-
----
-
 ## 🚀 Quick Start
 
 ### Generate Code Snippets

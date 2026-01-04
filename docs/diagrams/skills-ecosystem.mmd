@@ -1,0 +1,38 @@
+```mermaid
+flowchart TB
+    subgraph core["🔧 Arduino Core Skills"]
+        direction TB
+        config["Config.h\nManagement"]
+        adc["ADC Filtering"]
+        buttons["Button\nDebouncing"]
+        i2c["I2C Scanner"]
+        csv["CSV Output"]
+        state["State Machine"]
+        scheduler["Non-blocking\nScheduler"]
+        hardware["Hardware\nCompatibility"]
+        datalog["Data Logging"]
+    end
+    
+    subgraph maker["🛠️ Maker Tools"]
+        direction TB
+        circuit["Circuit\nDebugger"]
+        errors["Error\nExplainer"]
+        bom["BOM\nGenerator"]
+        power["Power\nCalculator"]
+        battery["Battery\nSelector"]
+        enclosure["Enclosure\nDesigner"]
+        readme["README\nGenerator"]
+        review["Code\nReview"]
+        datasheet["Datasheet\nInterpreter"]
+    end
+    
+    subgraph builders["🏗️ Project Builders"]
+        direction LR
+        codegen["Code\nGenerator"]
+        projbuild["Project\nBuilder"]
+    end
+    
+    codegen --> core
+    projbuild --> core
+    projbuild --> maker
+```

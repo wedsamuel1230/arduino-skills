@@ -1,0 +1,35 @@
+{
+  "project_name": "Weather Station Example",
+  "system_voltage": 3.3,
+  "safety_margin_percent": 20,
+  "components": [
+    {
+      "name": "ESP32",
+      "mode": "modem_sleep",
+      "duty_cycle_percent": 90,
+      "quantity": 1,
+      "notes": "WiFi transmission 10% of time"
+    },
+    {
+      "name": "ESP32",
+      "mode": "active_wifi_tx",
+      "duty_cycle_percent": 10,
+      "quantity": 1,
+      "notes": "Sending data every 10 minutes"
+    },
+    {
+      "name": "BME280",
+      "mode": "measuring",
+      "duty_cycle_percent": 1,
+      "quantity": 1,
+      "notes": "Quick measurement"
+    },
+    {
+      "name": "OLED_128x64",
+      "mode": "half_pixels",
+      "duty_cycle_percent": 50,
+      "quantity": 1,
+      "notes": "Display on half the time"
+    }
+  ]
+}

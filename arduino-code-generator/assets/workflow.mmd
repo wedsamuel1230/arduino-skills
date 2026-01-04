@@ -1,0 +1,28 @@
+```mermaid
+flowchart TD
+    A["User Request:\nGenerate Arduino Code"] --> B{"Pattern Type?"}
+    
+    B -->|config| C1["patterns-config.md"]
+    B -->|buttons| C2["patterns-buttons.md"]
+    B -->|i2c| C3["patterns-i2c.md"]
+    B -->|scheduler| C4["patterns-scheduler.md"]
+    B -->|filtering| C5["patterns-filtering.md"]
+    B -->|state-machine| C6["patterns-state-machine.md"]
+    B -->|csv| C7["patterns-csv.md"]
+    B -->|data-logging| C8["patterns-data-logging.md"]
+    B -->|hardware| C9["patterns-hardware.md"]
+    
+    C1 & C2 & C3 & C4 & C5 & C6 & C7 & C8 & C9 --> D["Template Engine\ngenerate_snippet.py"]
+    
+    D --> E{"Board Type?"}
+    
+    E -->|Arduino UNO| F1["2KB SRAM\n9600 baud\nF macro"]
+    E -->|ESP32| F2["520KB SRAM\nWiFi/BLE\n115200 baud"]
+    E -->|RP2040| F3["264KB SRAM\nDual-core\n115200 baud"]
+    
+    F1 & F2 & F3 --> G["Generated .ino Code"]
+    
+    style A fill:#e1f5fe
+    style G fill:#c8e6c9
+    style D fill:#fff3e0
+```

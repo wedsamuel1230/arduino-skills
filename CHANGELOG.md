@@ -1,0 +1,367 @@
+# Changelog
+
+All notable changes to the **arduino-skills** project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Planned
+- GitHub Actions CI pipeline for Arduino compilation and Python script validation
+- GitHub branch protection rules and status checks
+- Skill validation test suite (schema checking, YAML parsing)
+
+---
+
+## [0.8.0] - 2026-01-05
+
+### Risk Level: Low
+
+### Added
+- **CONTRIBUTING.md** - Comprehensive skill submission guidelines
+  - Skill folder structure and template
+  - SKILL.md sections checklist and YAML frontmatter
+  - Code quality standards (timing, memory, strings, hardware abstraction)
+  - Testing requirements for all 3 platforms
+  - Pull request workflow with clear expectations
+  - Contributor code examples (before/after patterns)
+
+- **CODE_OF_CONDUCT.md** - Community standards
+  - Contributor Covenant Code of Conduct v2.0
+  - Unacceptable behavior definitions
+  - Enforcement procedures and reporting channels
+  - Scope clarification for community interactions
+
+- **SECURITY.md** - Security vulnerability reporting policy
+  - Responsible disclosure process
+  - Reporting channels and timeline expectations
+  - Security scope definition (in/out of scope)
+  - Known security limitations on UNO/ESP32/RP2040
+  - Code quality security checklist (overflow, buffer safety, credential management)
+  - Dependency security standards
+  - Compliance references (OWASP, CERT C++, Arduino Guidelines)
+
+- **.github/pull_request_template.md** - PR submission checklist
+  - Auto-validates skill quality gate
+  - Separate checklists for skills vs other changes
+  - Platform testing requirements
+  - Pre-submission verification checklist
+
+- **.github/ISSUE_TEMPLATE/** - Issue templates (4 templates)
+  - **bug_report.md** - Bug reporting with reproduction steps
+  - **feature_request.md** - Feature requests with problem statement
+  - **skill_proposal.md** - New skill proposals with implementation outline
+  - **discussion.md** - General questions and discussions
+
+- **DEVELOPMENT.md** - Development guide for contributors
+  - Quick start with uv and Python setup
+  - Workspace structure and directory reference
+  - Step-by-step skill creation walkthrough
+  - Python script template (PEP 723 with inline dependencies)
+  - Testing procedures (compilation, execution, platform coverage)
+  - Common development tasks
+  - FAQ and troubleshooting
+  - Resource links and getting help
+
+### Changed
+- **README.md**
+  - Table of Contents restructured (removed Adding New Skills / Code Quality subsections)
+  - Contributing section simplified with links to detailed docs
+  - Added "Documentation" section with quick reference table
+
+### Updated
+- **memory-bank/SESSION.md** - Added v0.8.0 entry with improvements list
+
+### Impact
+- New contributors have clear onboarding path
+- Security vulnerabilities can be reported responsibly
+- Community standards established upfront
+- Development workflow documented comprehensively
+- GitHub automation guides submissions automatically
+
+### Notes
+- All community guidelines follow open-source best practices
+- CONTRIBUTING.md references arduino-skills.md design principles
+- Security policy aligns with OWASP and embedded systems standards
+- Issue templates provide structure for bug reports and feature requests
+- PR template enforces quality gate before merge
+
+---
+
+## [0.7.0] - 2026-01-04
+
+### Risk Level: Low
+
+### Added
+- **arduino-skills.md** - Comprehensive design principles document
+  - 3 core rules (Verifiable Output, Avoid delay() Blocking, Hardware Abstraction)
+  - Platform support matrix (UNO/ESP32/RP2040)
+  - Code quality standards (memory safety, timing safety, compilation)
+  - Pattern library reference (9 code patterns + 3 project templates)
+  - Manual testing protocol and verification checklist
+  - Script execution guide for uv-based automation
+
+### Changed
+- **README.md**
+  - Title changed to `arduino-skills` (from "Arduino & Maker Skills Collection")
+  - License statement updated to professional tone (removed "educational")
+  - Updated design principles reference from `arduino-skills-pro.md` to `arduino-skills.md`
+
+### Updated
+- **memory-bank/activeContext.md** - Workspace path changed to `d:\projects\arduino-skills\`
+
+### Notes
+- Workspace folder rename deferred to user due to VS Code workspace lock
+- All design principles now centralized in single reference document
+- Improved documentation discoverability with dedicated arduino-skills.md
+
+---
+
+## [0.6.0] - 2026-01-04
+
+### Risk Level: Low
+
+### Added
+- **Code Generator Scripts**
+  - `arduino-code-generator/scripts/generate_snippet.py` (~700 lines)
+    - 9 pattern templates: config, buttons, i2c, scheduler, csv, filtering, state-machine, hardware-detection, data-logging
+    - 3 board configurations: uno, esp32, rp2040 with SRAM/baud rate profiles
+    - CLI with --pattern, --board, --output, --list, --interactive options
+    - Interactive wizard mode for guided code generation
+    - PEP 723 inline dependencies (no external packages required)
+
+- **Project Builder Scripts**
+  - `arduino-project-builder/scripts/scaffold_project.py` (~650 lines)
+    - 3 project templates: environmental, robot, iot
+    - Auto-generates: config.h, main.ino, platformio.ini, README.md, .gitignore
+    - Full working code for each project type
+    - Board-specific optimizations (pin assignments, timing configs)
+    - CLI with --type, --board, --name, --output, --list, --interactive options
+    - PEP 723 inline dependencies
+
+- **Mermaid Diagram Assets**
+  - `docs/diagrams/skills-ecosystem.mmd` - Skills overview flowchart
+  - `docs/diagrams/pattern-relationships.mmd` - Pattern categories mindmap
+  - `arduino-code-generator/assets/workflow.mmd` - Code generation flowchart
+  - `arduino-project-builder/assets/workflow.mmd` - Project assembly flowchart
+
+- **README.md Modernization**
+  - 5 inline Mermaid diagrams (validated)
+  - Skills Ecosystem diagram with core/maker/builder skills
+  - Code Generator and Project Builder workflow diagrams
+  - Pattern Relationships mindmap
+  - Platform Support comparison matrix
+  - Quick Start command examples for all automation tools
+
+### Changed
+- **SKILL.md Files** (arduino-code-generator, arduino-project-builder)
+  - Added Quick Start sections with uv run script examples
+  - Updated with workflow diagram references
+
+### Fixed
+- **scaffold_project.py**
+  - Removed emoji characters from generated README templates (Windows cp950 encoding issue)
+
+### Verification
+- ✅ `generate_snippet.py --help` and `--list` tested
+- ✅ `generate_snippet.py --pattern scheduler --board esp32` generates working code
+- ✅ `scaffold_project.py --help` and `--list` tested
+- ✅ `scaffold_project.py --type iot --board esp32` scaffolds complete project with all files
+- ✅ All Mermaid diagrams validated via mermaid-diagram-validator MCP
+
+---
+
+## [0.5.0] - 2026-01-04
+
+### Risk Level: Low
+
+### Added
+- **PEP 723 Inline Dependencies** - Python scripts now self-documenting with inline dependency declarations
+
+### Changed
+- **datasheet-interpreter/scripts/extract_specs.py** - Complete rewrite
+  - Downloads PDFs from URLs using httpx library
+  - Extracts text and tables using pdfplumber
+  - Regex patterns for: voltage, current, I2C address, temp range, pin count
+  - Replaces static database with dynamic URL-based extraction
+  - PEP 723 dependencies: httpx, pdfplumber
+
+- **All 9 Maker Tool SKILL.md Files** - Updated Quick Start sections
+  - Changed `python scripts/xxx.py` to `uv run scripts/xxx.py`
+  - Updated in: power-budget-calculator, bom-generator, battery-selector, enclosure-designer, circuit-debugger, error-message-explainer, readme-generator, code-review-facilitator, datasheet-interpreter
+  - Updated all Python script docstrings with `uv run` examples
+
+- **Script Dependencies**
+  - `extract_specs.py`: Added httpx, pdfplumber inline deps
+  - `generate_bom.py`: Added openpyxl inline deps
+
+### Verification
+- ✅ `uv run extract_specs.py --help` works
+- ✅ `uv run extract_specs.py --url "https://example.com/DHT22.pdf"` successfully extracts specs
+
+### Benefits
+- Simplified dependency management (no separate requirements.txt)
+- Scripts remain executable without pre-installation
+- Improved reproducibility across platforms
+
+---
+
+## [0.4.0] - 2026-01-04
+
+### Risk Level: Very Low
+
+### Status
+- Reconnaissance phase for skills enhancement with scripts and references
+- No code changes in this version
+- Reviewed skill-creator framework and existing skill patterns
+- Planned additions: Python scripts, XLSX generation, references, assets
+
+---
+
+## [0.3.0] - 2026-01-04
+
+### Risk Level: Low
+
+### Added
+- **9 New Maker/Student Pain Point Skills** - Following skill-creator framework
+  1. **circuit-debugger** - 5-phase hardware debugging protocol, multimeter usage guide, common mistakes reference
+  2. **error-message-explainer** - 15+ compiler error patterns with causes and fixes
+  3. **bom-generator** - Component database, supplier links, example weather station BOM, XLSX export
+  4. **power-budget-calculator** - Current draw database, sleep mode analysis, battery sizing calculations
+  5. **battery-selector** - Battery chemistry comparison, charging solutions, safety rules
+  6. **enclosure-designer** - OpenSCAD parametric templates, board dimensions, 3D print settings
+  7. **readme-generator** - Awesome-readme template, badges, checklist, file structure guide
+  8. **code-review-facilitator** - 8 review categories, code smell detection, safe patterns reference
+  9. **datasheet-interpreter** - Quick spec extraction, wiring diagrams, example code generator
+
+### Details
+- Total files created: 12 (9 SKILL.md files + 3 reference documents)
+- Estimated documentation: ~3500 lines
+- Each skill includes: description, when to use, core principles, examples, verification, pitfalls, rationale
+- Comprehensive pattern coverage for hardware debugging, software errors, component selection, power planning, enclosure design, documentation, code quality, datasheet interpretation
+
+### Research Completed
+- skill-creator framework documentation reviewed
+- datasheet-parser reference implementation analyzed
+- awesome-readme best practices researched
+- PDF extraction patterns from pdf skill documented
+
+---
+
+## [0.2.0] - 2026-01-04
+
+### Risk Level: Low
+
+### Added
+- **Skill 8: Non-blocking Scheduler** (arduino-non-blocking-scheduler/)
+  - EveryMs pattern class with overflow-safe unsigned arithmetic
+  - Priority-based task scheduler with execution profiling
+  - Complete environmental monitor example demonstrating multi-task coordination
+  - ~600 lines of code with verification steps, common pitfalls, advanced patterns
+
+- **Skill 11: Hardware Compatibility Diagnosis** (arduino-hardware-compatibility/)
+  - Board detection for UNO/ESP32/RP2040 with SRAM/Flash reporting
+  - Runtime memory monitor with safety margin checks
+  - Sensor auto-detection system (BME280, DHT22, SHT31)
+  - Adaptive data logger with graceful degradation strategies
+  - ~650 lines with progressive enhancement patterns
+
+- **Skill 12: Data Logging** (arduino-data-logging/)
+  - EEPROM settings manager with CRC8 validation
+  - Circular EEPROM implementation with wear leveling (64-block rotation)
+  - SD card CSV logger with buffering (20-record batches)
+  - Complete environmental data logger with RTC integration
+  - ~700 lines with journaling, log rotation, dual-bank storage patterns
+
+### Changed
+- **README.md** - Updated skills completion progress (9/15 skills = 60%)
+- **memory-bank/activeContext.md** - Current state and next actions
+
+### Code Quality
+- All code includes verification steps with expected outputs
+- Pitfall documentation with ❌ vs ✅ comparisons
+- Engineering rationale explaining design decisions
+- Cross-skill integration examples
+
+### Session Stats
+- **Code Generated:** ~2000 lines across 3 skills
+- **Development Time:** ~2 hours
+- **All deliverables:** Complete with verification and documentation
+
+---
+
+## [0.1.0] - 2026-01-04
+
+### Risk Level: Very Low
+
+### Added
+- **Project Initialization**
+  - memory-bank structure with projectbrief.md, activeContext.md, SESSION.md
+  - Project brief documenting mission, success criteria, target audience
+  - Constraints: C language basics, high school electronics focus
+  - Platform support: Arduino UNO, ESP32, RP2040
+
+### Status
+- Initial reconnaissance and setup phase
+- Confirmed 6 Arduino core skills already completed in previous sessions
+- Established memory-bank for session logging and tracking
+
+### Project Brief Summary
+- **Mission:** Generate production-ready Arduino/embedded systems skills
+- **Target Audience:** High school electronics/EE students
+- **Success Criteria:** 15 skills with verified code, documentation, examples
+- **Core Rules:** Verifiable Output, Avoid delay() Blocking, Hardware Abstraction
+
+---
+
+## How to Use This Changelog
+
+### For Users
+- Check the **Risk Level** indicator to assess upgrade safety (Very Low/Low/Medium/High)
+- Read the **Added**, **Changed**, **Fixed** sections for your version
+- Check **Verification** sections to see what was tested
+
+### For Contributors
+- Add new entries under **[Unreleased]** during development
+- Use semantic versioning: MAJOR.MINOR.PATCH
+- Move to appropriate version header when releasing
+- Include Risk Level assessment
+
+### Release Process
+1. Gather commits since last release
+2. Update CHANGELOG.md with new version under [Unreleased]
+3. Categorize changes: Added, Changed, Fixed, Removed, Deprecated
+4. Assign Risk Level (Very Low/Low/Medium/High)
+5. Tag git commit: `git tag vX.Y.Z`
+6. Push with `git push --tags`
+
+---
+
+## Legend
+
+- **Added** - New features, skills, scripts, or documentation
+- **Changed** - Updates to existing features or documentation
+- **Deprecated** - Features planned for removal in a future version
+- **Removed** - Deleted features or files
+- **Fixed** - Bug fixes and corrections
+- **Security** - Security-related updates (if applicable)
+
+**Risk Levels:**
+- 🟢 **Very Low** - Documentation only, no code changes
+- 🟢 **Low** - New features with comprehensive testing
+- 🟡 **Medium** - API changes, significant refactors
+- 🔴 **High** - Breaking changes, platform migrations
+
+---
+
+## Links
+
+- [GitHub Repository](https://github.com/yourusername/arduino-skills)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Design Principles](arduino-skills.md)
+- [README](README.md)
+
+---
+
+**Last Updated:** 2026-01-04  
+**Current Version:** 0.7.0

@@ -1,0 +1,28 @@
+```mermaid
+flowchart TD
+    A["📋 Requirements"] --> B["🔧 Hardware Inventory"]
+    B --> C["🎯 Board Selection"]
+    C --> D{"Project Type?"}
+    
+    D -->|Environmental| E1["Sensors:\nDHT22, Light\nFeatures:\nLogging, SD Card"]
+    D -->|Robot| E2["Sensors:\nUltrasonic\nActuators:\nMotors, Servo"]
+    D -->|IoT| E3["Sensors:\nBME280\nFeatures:\nWiFi, MQTT"]
+    
+    E1 & E2 & E3 --> F["📦 Pattern Assembly\nscaffold_project.py"]
+    
+    F --> G["Code Generation"]
+    G --> H["📁 Project Structure"]
+    
+    H --> I1["src/config.h"]
+    H --> I2["src/main.ino"]
+    H --> I3["platformio.ini"]
+    H --> I4["README.md"]
+    
+    I1 & I2 & I3 & I4 --> J["🧪 Testing"]
+    J --> K["📝 Documentation"]
+    K --> L["✅ Complete Project"]
+    
+    style A fill:#e3f2fd
+    style L fill:#c8e6c9
+    style F fill:#fff3e0
+```

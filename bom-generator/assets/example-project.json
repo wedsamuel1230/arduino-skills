@@ -1,0 +1,50 @@
+{
+  "project_name": "Weather Station",
+  "version": "1.0",
+  "author": "Maker Student",
+  "date": "2026-01-04",
+  "items": [
+    {
+      "name": "ESP32-DevKit",
+      "quantity": 1,
+      "reference": "U1",
+      "notes": "Main controller"
+    },
+    {
+      "name": "BME280",
+      "quantity": 1,
+      "reference": "U2",
+      "notes": "Environmental sensor"
+    },
+    {
+      "name": "OLED-128x64",
+      "quantity": 1,
+      "reference": "DISP1",
+      "notes": "Local display"
+    },
+    {
+      "name": "TP4056",
+      "quantity": 1,
+      "reference": "U3",
+      "notes": "Battery charger"
+    },
+    {
+      "name": "LiPo-1000mAh",
+      "quantity": 1,
+      "reference": "BAT1",
+      "notes": "Power source"
+    },
+    {
+      "name": "Breadboard-830",
+      "quantity": 1,
+      "reference": "-",
+      "notes": "Prototyping"
+    },
+    {
+      "name": "Jumper-Wires-Kit",
+      "quantity": 1,
+      "reference": "-",
+      "notes": "Connections"
+    }
+  ]
+}

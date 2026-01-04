@@ -10,7 +10,28 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.10.1] - 2026-01-04
+## [1.1.0] - 2026-01-04
+
+### Added
+- **arduino-code-generator** — 9 production-ready example Arduino sketches
+  - config-example.ino: Hardware abstraction with board detection (UNO/ESP32/RP2040)
+  - filtering-example.ino: ADC filtering (moving average, EMA, median) with CSV output
+  - buttons-example.ino: Debounced button with press/release/long-press events
+  - i2c-example.ino: I2C bus scanner with device identification
+  - csv-example.ino: Structured data logging with timestamp + sensors
+  - scheduler-example.ino: Non-blocking task scheduler with 5 independent tasks
+  - state-machine-example.ino: Traffic light FSM with state transitions
+  - hardware-detection-example.ino: Runtime board capability reporting
+  - data-logging-example.ino: EEPROM circular buffer with persistence
+  - examples/README.md: Comprehensive guide with wiring diagrams, quick start, and testing verification
+
+### Changed
+- **arduino-code-generator** SKILL.md: Added examples/ folder to Quick Start and linked each pattern to example sketch
+- **arduino-code-generator** marketplace.json: version 0.8.0 → 1.0.0
+
+---
+
+## [1.0.0] - 2026-01-04
 
 ### Added
 - **freertos-patterns** — RP2040 dual-core support with mutex synchronization
@@ -25,6 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **freertos-patterns** SKILL.md: 1002 → 1212 lines (+210 lines)
 - YAML frontmatter: Added `rp2040` to platforms array
 - Title updated to include RP2040 multicore support
+- Version promoted to 1.0.0 (stable release following 0.10.x → 1.0.0 rule)
 
 ---
 

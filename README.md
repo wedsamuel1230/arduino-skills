@@ -1,13 +1,13 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-0.10.0-blue)
+![Status](https://img.shields.io/badge/version-1.1.0-blue)
 ![Skills](https://img.shields.io/badge/skills-20%20complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v0.9.0:** Marketplace configuration for all 11 skills, dual-platform support (Claude Code + Gemini CLI), skill-porter integration for universal conversions.
+> **v1.1.0:** 9 production-ready Arduino example sketches added to arduino-code-generator with comprehensive documentation, wiring diagrams, and testing verification.
 
 ## 📋 Table of Contents
 
@@ -76,7 +76,7 @@ All skills follow a consistent structure with:
 
 | Agent | Setup | Marketplace | Docs |
 |-------|-------|-------------|------|
-| **Claude Code** | `/plugin marketplace add arduino-skills` | ✅ Configured (v0.9.0) | [Docs](https://code.claude.com/docs/en/skills) |
+| **Claude Code** | `/plugin marketplace add arduino-skills` | ✅ Configured (v1.1.0) | [Docs](https://code.claude.com/docs/en/skills) |
 | **Google Gemini CLI** | `gemini extensions install` | ✅ Converted (11 extensions) | [Docs](https://geminicli.com/docs/) |
 | **VS Code Copilot** | Copy to `.github/skills/` folder | ⚠️ Manual setup | [Docs](https://code.visualstudio.com/docs/copilot/customization/agent-skills) |
 
@@ -88,7 +88,7 @@ All 11 skills include marketplace metadata for discovery and installation:
 
 Each marketplace file includes:
 - ✅ Skill name and description (50+ characters)
-- ✅ Version (0.9.0), license (MIT), and category tags
+- ✅ Version (1.1.0), license (MIT), and category tags
 - ✅ Plugin metadata for discovery
 - ✅ Compatible with skill-porter universal conversion tool
 
@@ -380,7 +380,7 @@ skills/
 
 ### Marketplace Configuration
 
-**v0.9.0 Feature:** All 11 skills now include marketplace metadata for discovery on Claude Code and Gemini CLI.
+**v1.1.0 Feature Release:** All 20 skills include marketplace metadata for discovery on Claude Code and Gemini CLI. arduino-code-generator now includes 9 production-ready example sketches with comprehensive documentation.
 
 Each skill's `.claude-plugin/marketplace.json` includes:
 ```json

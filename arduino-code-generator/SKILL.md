@@ -9,6 +9,16 @@ Generate production-quality Arduino code snippets for sensors, actuators, commun
 
 ## Quick Start
 
+**Browse example sketches:**
+```bash
+# See 9 production-ready examples in examples/ folder
+ls examples/
+# config-example.ino, filtering-example.ino, buttons-example.ino,
+# i2c-example.ino, csv-example.ino, scheduler-example.ino,
+# state-machine-example.ino, hardware-detection-example.ino,
+# data-logging-example.ino
+```
+
 **List available patterns:**
 ```bash
 uv run scripts/generate_snippet.py --list
@@ -27,6 +37,8 @@ uv run scripts/generate_snippet.py --interactive
 
 ## Resources
 
+- **examples/** - 9 production-ready example sketches (one per pattern category)
+- **examples/README.md** - Detailed documentation for each example with wiring diagrams
 - **scripts/generate_snippet.py** - CLI tool for code generation with 9 pattern templates
 - **assets/workflow.mmd** - Mermaid diagram of code generation workflow
 
@@ -37,21 +49,21 @@ uv run scripts/generate_snippet.py --interactive
 - Pin definitions for UNO/ESP32/RP2040
 - Memory budget tracking
 
-See [patterns-config.md](references/patterns-config.md)
+See [patterns-config.md](references/patterns-config.md) | Example: [config-example.ino](examples/config-example.ino)
 
 ### Sensor Reading & Filtering
 - ADC noise reduction (moving average, median, Kalman)
 - DHT22, BME280, analog sensors
 - Data validation and calibration
 
-See [patterns-filtering.md](references/patterns-filtering.md)
+See [patterns-filtering.md](references/patterns-filtering.md) | Example: [filtering-example.ino](examples/filtering-example.ino)
 
 ### Input Handling
 - Software button debouncing
 - Edge detection (PRESSED/RELEASED/LONG_PRESS)
 - Multi-button management
 
-See [patterns-buttons.md](references/patterns-buttons.md)
+See [patterns-buttons.md](references/patterns-buttons.md) | Example: [buttons-example.ino](examples/buttons-example.ino)
 
 ### Communication
 - I2C device scanning and diagnostics
@@ -59,7 +71,7 @@ See [patterns-buttons.md](references/patterns-buttons.md)
 - UART/Serial protocols
 - CSV data output
 
-See [patterns-i2c.md](references/patterns-i2c.md) and [patterns-csv.md](references/patterns-csv.md)
+See [patterns-i2c.md](references/patterns-i2c.md) and [patterns-csv.md](references/patterns-csv.md) | Examples: [i2c-example.ino](examples/i2c-example.ino), [csv-example.ino](examples/csv-example.ino)
 
 ### Timing & Concurrency
 - Non-blocking millis() patterns
@@ -67,7 +79,7 @@ See [patterns-i2c.md](references/patterns-i2c.md) and [patterns-csv.md](referenc
 - Priority-based schedulers
 - State machines
 
-See [patterns-scheduler.md](references/patterns-scheduler.md) and [patterns-state-machine.md](references/patterns-state-machine.md)
+See [patterns-scheduler.md](references/patterns-scheduler.md) and [patterns-state-machine.md](references/patterns-state-machine.md) | Examples: [scheduler-example.ino](examples/scheduler-example.ino), [state-machine-example.ino](examples/state-machine-example.ino)
 
 ### Hardware Detection
 - Auto-detect boards (UNO/ESP32/RP2040)
@@ -75,7 +87,7 @@ See [patterns-scheduler.md](references/patterns-scheduler.md) and [patterns-stat
 - Sensor fallback strategies
 - Adaptive configuration
 
-See [patterns-hardware-detection.md](references/patterns-hardware-detection.md)
+See [patterns-hardware-detection.md](references/patterns-hardware-detection.md) | Example: [hardware-detection-example.ino](examples/hardware-detection-example.ino)
 
 ### Data Persistence
 - EEPROM with CRC validation
@@ -83,7 +95,7 @@ See [patterns-hardware-detection.md](references/patterns-hardware-detection.md)
 - Wear leveling for EEPROM
 - Buffered writes
 
-See [patterns-data-logging.md](references/patterns-data-logging.md)
+See [patterns-data-logging.md](references/patterns-data-logging.md) | Example: [data-logging-example.ino](examples/data-logging-example.ino)
 
 ## Code Generation Workflow
 

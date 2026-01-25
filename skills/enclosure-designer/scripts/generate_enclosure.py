@@ -6,9 +6,9 @@ Generates customizable enclosure designs for electronics projects.
 Supports various form factors, mounting patterns, and features.
 
 Usage:
-    uv run generate_enclosure.py --interactive
-    uv run generate_enclosure.py --width 100 --depth 60 --height 30 --output my_case.scad
-    uv run generate_enclosure.py --pcb "Arduino Uno" --output arduino_case.scad
+    uv run --no-project scripts/generate_enclosure.py --interactive
+    uv run --no-project scripts/generate_enclosure.py --width 100 --depth 60 --height 30 --output my_case.scad
+    uv run --no-project scripts/generate_enclosure.py --pcb "Arduino Uno" --output arduino_case.scad
 """
 
 import argparse

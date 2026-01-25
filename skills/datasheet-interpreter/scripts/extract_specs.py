@@ -17,10 +17,10 @@ Downloads datasheet PDFs from URLs and extracts:
 - Timing parameters
 
 Usage:
-    uv run extract_specs.py --url "https://example.com/datasheet.pdf"
-    uv run extract_specs.py --url "https://example.com/datasheet.pdf" --format markdown
-    uv run extract_specs.py --file "local_datasheet.pdf"
-    uv run extract_specs.py --interactive
+    uv run --no-project scripts/extract_specs.py --url "https://example.com/datasheet.pdf"
+    uv run --no-project scripts/extract_specs.py --url "https://example.com/datasheet.pdf" --format markdown
+    uv run --no-project scripts/extract_specs.py --file "local_datasheet.pdf"
+    uv run --no-project scripts/extract_specs.py --interactive
 """
 
 import argparse
@@ -447,10 +447,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  uv run extract_specs.py --url "https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf"
-  uv run extract_specs.py --url "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" --format markdown
-  uv run extract_specs.py --file "local_datasheet.pdf"
-  uv run extract_specs.py --interactive
+  uv run --no-project scripts/extract_specs.py --url "https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf"
+  uv run --no-project scripts/extract_specs.py --url "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" --format markdown
+  uv run --no-project scripts/extract_specs.py --file "local_datasheet.pdf"
+  uv run --no-project scripts/extract_specs.py --interactive
         """
     )
     parser.add_argument("--url", "-u", type=str, help="URL of datasheet PDF to download and extract")

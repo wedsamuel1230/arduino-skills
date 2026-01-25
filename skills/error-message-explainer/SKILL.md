@@ -17,22 +17,22 @@ This skill includes bundled tools:
 
 **Analyze error from file:**
 ```bash
-uv run scripts/parse_errors.py --file error_log.txt
+uv run --no-project scripts/parse_errors.py --file error_log.txt
 ```
 
 **Analyze single error:**
 ```bash
-uv run scripts/parse_errors.py --message "error: 'LED' was not declared in this scope"
+uv run --no-project scripts/parse_errors.py --message "error: 'LED' was not declared in this scope"
 ```
 
 **Interactive mode:**
 ```bash
-uv run scripts/parse_errors.py --interactive
+uv run --no-project scripts/parse_errors.py --interactive
 ```
 
 **Pipe from compiler:**
 ```bash
-arduino-cli compile 2>&1 | uv run scripts/parse_errors.py --stdin
+arduino-cli compile 2>&1 | uv run --no-project scripts/parse_errors.py --stdin
 ```
 
 ## How to Use This Skill

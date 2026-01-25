@@ -17,22 +17,22 @@ This skill includes bundled tools:
 
 **Analyze a file:**
 ```bash
-uv run scripts/analyze_code.py sketch.ino
+uv run --no-project scripts/analyze_code.py sketch.ino
 ```
 
 **Analyze entire project:**
 ```bash
-uv run scripts/analyze_code.py --dir /path/to/project
+uv run --no-project scripts/analyze_code.py --dir /path/to/project
 ```
 
 **Interactive mode (paste code):**
 ```bash
-uv run scripts/analyze_code.py --interactive
+uv run --no-project scripts/analyze_code.py --interactive
 ```
 
 **Filter by severity:**
 ```bash
-uv run scripts/analyze_code.py sketch.ino --severity warning
+uv run --no-project scripts/analyze_code.py sketch.ino --severity warning
 ```
 
 ## When to Use

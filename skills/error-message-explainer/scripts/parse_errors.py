@@ -9,10 +9,10 @@ Parses compiler errors and provides:
 - Code examples
 
 Usage:
-    uv run parse_errors.py --file error_log.txt
-    uv run parse_errors.py --message "error: 'LED' was not declared"
-    uv run parse_errors.py --interactive
-    cat error.txt | uv run parse_errors.py --stdin
+    uv run --no-project scripts/parse_errors.py --file error_log.txt
+    uv run --no-project scripts/parse_errors.py --message "error: 'LED' was not declared"
+    uv run --no-project scripts/parse_errors.py --interactive
+    cat error.txt | uv run --no-project scripts/parse_errors.py --stdin
 """
 
 import argparse

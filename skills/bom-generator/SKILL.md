@@ -17,17 +17,17 @@ Creates comprehensive Bill of Materials for maker projects with supplier links a
 
 Generate BOM interactively:
 ```bash
-uv run scripts/generate_bom.py --interactive
+uv run --no-project scripts/generate_bom.py --interactive
 ```
 
 Generate from JSON configuration:
 ```bash
-uv run scripts/generate_bom.py --json assets/example-project.json --output bom.xlsx
+uv run --no-project scripts/generate_bom.py --json assets/example-project.json --output bom.xlsx
 ```
 
 List component database:
 ```bash
-uv run scripts/generate_bom.py --list
+uv run --no-project scripts/generate_bom.py --list
 ```
 
 Export formats: xlsx (default), csv, md, json

@@ -21,18 +21,18 @@ ls examples/
 
 **List available patterns:**
 ```bash
-uv run scripts/generate_snippet.py --list
+uv run --no-project scripts/generate_snippet.py --list
 ```
 
 **Generate code for specific pattern and board:**
 ```bash
-uv run scripts/generate_snippet.py --pattern i2c --board esp32
-uv run scripts/generate_snippet.py --pattern buttons --board uno --output button.ino
+uv run --no-project scripts/generate_snippet.py --pattern i2c --board esp32
+uv run --no-project scripts/generate_snippet.py --pattern buttons --board uno --output button.ino
 ```
 
 **Interactive mode:**
 ```bash
-uv run scripts/generate_snippet.py --interactive
+uv run --no-project scripts/generate_snippet.py --interactive
 ```
 
 ## Resources
@@ -99,83 +99,29 @@ See [patterns-data-logging.md](references/patterns-data-logging.md) | Example: [
 
 ## Code Generation Workflow
 
-When user requests Arduino code:
+- [ ] **[Identify Pattern Type](workflow/step1-identify-pattern.md)** - Analyze user request to determine core pattern category
+- [ ] **[Read Reference Documentation](workflow/step2-read-reference.md)** - Consult pattern-specific reference files for implementation details
+- [ ] **[Generate Code](workflow/step3-generate-code.md)** - Create production-ready code following quality standards
+- [ ] **[Provide Instructions](workflow/step4-provide-instructions.md)** - Include wiring diagrams and usage guidance
+- [ ] **[Mention Integration](workflow/step5-mention-integration.md)** - Suggest combinations with other patterns when relevant
 
-1. **Identify pattern type** from the request
-2. **Read relevant reference file** for that pattern
-3. **Generate code** following these rules:
-   - Include necessary `#include` statements
-   - Define pins in config.h style
-   - Use `millis()` instead of `delay()` for timing
-   - Add F() macro for strings on memory-constrained boards
-   - Include error handling
-   - Add Serial output for debugging
-   - Comment "why" not "what"
-4. **Provide usage instructions** with wiring and expected output
-5. **Mention integration** with other patterns when relevant
+## Quality Standards & Rules
 
-## Quality Standards
+- [ ] **[Quality Standards](rules/quality-standards.md)** - Compilation, timing, memory safety, and error handling requirements
+- [ ] **[Board Optimization](rules/board-optimization.md)** - UNO, ESP32, and RP2040 specific optimizations and features
+- [ ] **[Common Pitfalls](rules/common-pitfalls.md)** - Critical mistakes to avoid in Arduino development
 
-All generated code must:
-- ✅ Compile without warnings on Arduino IDE
-- ✅ Use unsigned long for millis() timing
-- ✅ Handle overflow conditions (millis() wraps every 49 days)
-- ✅ Include bounds checking for arrays
-- ✅ Use const for read-only data
-- ✅ Define magic numbers as constants
-- ✅ Be memory-safe (no buffer overflows)
+## Code Output Template
 
-## Example Usage Patterns
+- [ ] **[Code Template](templates/code-output-template.md)** - Standardized structure for generated Arduino sketches
 
-**User:** "Generate code to read a DHT22 sensor without blocking"
-→ Read patterns-filtering.md → Generate DHT22 + EveryMs pattern
+## Resources
 
-**User:** "Create a button handler with long press detection"
-→ Read patterns-buttons.md → Generate DebouncedButton with events
-
-**User:** "Make an I2C scanner for my Arduino"
-→ Read patterns-i2c.md → Generate scanner with diagnostics
-
-**User:** "Log data to SD card every 10 seconds"
-→ Read patterns-data-logging.md → Generate buffered CSV logger
-
-## Board-Specific Optimization
-
-### Arduino UNO (2KB SRAM)
-- Use F() macro for strings
-- Minimize buffer sizes
-- Prefer circular buffers
-- Avoid String class
-
-### ESP32 (520KB SRAM)
-- Enable WiFi/BLE patterns
-- Use FreeRTOS tasks
-- Leverage dual-core
-- Support larger buffers
-
-### RP2040 (264KB SRAM)
-- Use PIO for timing-critical tasks
-- Support USB host mode
-- Multicore patterns available
-
-## Common Pitfalls to Avoid
-
-❌ Never use `delay()` for timing (blocks execution)
-❌ Never use signed types for millis() comparisons
-❌ Never forget to call `begin()` on peripherals
-❌ Never assume hardware is present without checking
-❌ Never mix polling and interrupt-based input
-
-✅ Use millis() for non-blocking timing
-✅ Use unsigned long for time variables
-✅ Check return values from peripheral init
-✅ Provide fallback for missing hardware
-✅ Choose one input strategy per button
-
-## Integration Patterns
-
-Combine multiple patterns for complex projects:
-- **Environmental Monitor:** Filtering + Scheduler + CSV + Data Logging
-- **Button-Controlled Robot:** Buttons + State Machine + Scheduler
-- **IoT Data Logger:** Hardware Detection + WiFi + Data Logging + CSV
-- **Sensor Hub:** I2C + Filtering + Scheduler + Hardware Detection
+- **examples/** - 9 production-ready example sketches (one per pattern category)
+- **examples/README.md** - Detailed documentation for each example with wiring diagrams
+- **scripts/generate_snippet.py** - CLI tool for code generation with 9 pattern templates
+- **assets/workflow.mmd** - Mermaid diagram of code generation workflow
+- **workflow/** - Step-by-step code generation process
+- **rules/** - Quality standards and board-specific optimizations
+- **templates/** - Code output templates and structure guidelines
+- **references/** - Detailed pattern documentation and API references

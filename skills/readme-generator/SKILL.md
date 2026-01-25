@@ -17,17 +17,17 @@ This skill includes bundled tools:
 
 **Interactive mode:**
 ```bash
-uv run scripts/generate_readme.py --interactive
+uv run --no-project scripts/generate_readme.py --interactive
 ```
 
 **Quick generation:**
 ```bash
-uv run scripts/generate_readme.py --project "Weather Station" --board "ESP32" --output README.md
+uv run --no-project scripts/generate_readme.py --project "Weather Station" --board "ESP32" --output README.md
 ```
 
 **Scan existing project:**
 ```bash
-uv run scripts/generate_readme.py --scan /path/to/arduino/project --output README.md
+uv run --no-project scripts/generate_readme.py --scan /path/to/arduino/project --output README.md
 ```
 
 ## When to Use

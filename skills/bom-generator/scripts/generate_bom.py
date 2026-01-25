@@ -15,9 +15,9 @@ Generates professional BOM spreadsheets (xlsx, csv) with:
 - Formatted columns with formulas
 
 Usage:
-    uv run generate_bom.py --interactive
-    uv run generate_bom.py --json input.json --output bom.xlsx
-    uv run generate_bom.py --json input.json --format csv
+    uv run --no-project scripts/generate_bom.py --interactive
+    uv run --no-project scripts/generate_bom.py --json input.json --output bom.xlsx
+    uv run --no-project scripts/generate_bom.py --json input.json --format csv
 """
 
 import argparse

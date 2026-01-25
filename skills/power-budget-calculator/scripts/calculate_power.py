@@ -6,9 +6,9 @@ Calculates total power consumption, duty cycle impact, and battery runtime
 for Arduino/ESP32/RP2040 projects.
 
 Usage:
-    uv run calculate_power.py --interactive
-    uv run calculate_power.py --json input.json
-    uv run calculate_power.py --component ESP32 --mode active --duty 10
+    uv run --no-project scripts/calculate_power.py --interactive
+    uv run --no-project scripts/calculate_power.py --json input.json
+    uv run --no-project scripts/calculate_power.py --component ESP32 --mode active --duty 10
 
 Output: JSON report with power analysis and battery recommendations
 """

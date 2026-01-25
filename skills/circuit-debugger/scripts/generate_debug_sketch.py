@@ -12,10 +12,10 @@ Generates diagnostic code for common debugging tasks:
 - Interrupt tester
 
 Usage:
-    uv run generate_debug_sketch.py --i2c
-    uv run generate_debug_sketch.py --gpio --pins 2,3,4,5
-    uv run generate_debug_sketch.py --adc --pins A0,A1,A2
-    uv run generate_debug_sketch.py --all --output debug_suite.ino
+    uv run --no-project scripts/generate_debug_sketch.py --i2c
+    uv run --no-project scripts/generate_debug_sketch.py --gpio --pins 2,3,4,5
+    uv run --no-project scripts/generate_debug_sketch.py --adc --pins A0,A1,A2
+    uv run --no-project scripts/generate_debug_sketch.py --all --output debug_suite.ino
 """
 
 import argparse

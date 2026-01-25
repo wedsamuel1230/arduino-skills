@@ -25,19 +25,19 @@ Generates Mermaid diagrams from Arduino code to visualize state machines, timing
 
 ```bash
 # Generate state machine diagram from Arduino code
-uv run mermaid-diagram-generator/scripts/generate_diagram.py \
+uv run --no-project mermaid-diagram-generator/scripts/generate_diagram.py \
     --input src/main.ino \
     --type state-machine \
     --output docs/state-machine.mmd
 
 # Generate timing diagram for I2C communication
-uv run mermaid-diagram-generator/scripts/generate_diagram.py \
+uv run --no-project mermaid-diagram-generator/scripts/generate_diagram.py \
     --type timing \
     --signals "SDA,SCL,START,DATA,STOP" \
     --output docs/i2c-timing.mmd
 
 # Interactive mode
-uv run mermaid-diagram-generator/scripts/generate_diagram.py --interactive
+uv run --no-project mermaid-diagram-generator/scripts/generate_diagram.py --interactive
 ```
 
 ## When to Use

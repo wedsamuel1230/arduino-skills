@@ -10,9 +10,9 @@ Analyzes code for common issues:
 - Power efficiency issues
 
 Usage:
-    uv run analyze_code.py sketch.ino
-    uv run analyze_code.py --dir /path/to/project
-    uv run analyze_code.py --interactive
+    uv run --no-project scripts/analyze_code.py sketch.ino
+    uv run --no-project scripts/analyze_code.py --dir /path/to/project
+    uv run --no-project scripts/analyze_code.py --interactive
 """
 
 import argparse

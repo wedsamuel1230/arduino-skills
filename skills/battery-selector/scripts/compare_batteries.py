@@ -10,9 +10,9 @@ Analyzes project requirements and recommends suitable batteries based on:
 - Cost optimization
 
 Usage:
-    uv run compare_batteries.py --interactive
-    uv run compare_batteries.py --current 50 --hours 24 --rechargeable
-    uv run compare_batteries.py --project weather_station
+    uv run --no-project scripts/compare_batteries.py --interactive
+    uv run --no-project scripts/compare_batteries.py --current 50 --hours 24 --rechargeable
+    uv run --no-project scripts/compare_batteries.py --project weather_station
 """
 
 import argparse

@@ -17,22 +17,22 @@ Estimates power consumption and battery life for embedded projects.
 
 Run the calculator interactively:
 ```bash
-uv run scripts/calculate_power.py --interactive
+uv run --no-project scripts/calculate_power.py --interactive
 ```
 
 Or calculate for a single component:
 ```bash
-uv run scripts/calculate_power.py --component ESP32 --mode deep_sleep --duty 95
+uv run --no-project scripts/calculate_power.py --component ESP32 --mode deep_sleep --duty 95
 ```
 
 Load a project configuration:
 ```bash
-uv run scripts/calculate_power.py --json assets/example-project.json --output report.md
+uv run --no-project scripts/calculate_power.py --json assets/example-project.json --output report.md
 ```
 
 List all components in database:
 ```bash
-uv run scripts/calculate_power.py --list
+uv run --no-project scripts/calculate_power.py --list
 ```
 
 ## When to Use

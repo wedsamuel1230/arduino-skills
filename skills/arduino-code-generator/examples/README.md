@@ -141,13 +141,13 @@ Use the `generate_snippet.py` script to create custom variations:
 
 ```bash
 # Generate config pattern for ESP32
-uv run scripts/generate_snippet.py --pattern config --board esp32
+uv run --no-project scripts/generate_snippet.py --pattern config --board esp32
 
 # Generate button handler for UNO on pin 3
-uv run scripts/generate_snippet.py --pattern buttons --board uno --pin 3
+uv run --no-project scripts/generate_snippet.py --pattern buttons --board uno --pin 3
 
 # Interactive mode
-uv run scripts/generate_snippet.py --interactive
+uv run --no-project scripts/generate_snippet.py --interactive
 ```
 
 ---

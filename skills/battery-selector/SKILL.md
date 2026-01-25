@@ -18,19 +18,19 @@ This skill includes bundled tools and references:
 
 **Interactive selection:**
 ```bash
-uv run scripts/compare_batteries.py --interactive
+uv run --no-project scripts/compare_batteries.py --interactive
 ```
 
 **Command line:**
 ```bash
 # Find battery for 50mA project, 24h runtime
-uv run scripts/compare_batteries.py --current 50 --hours 24
+uv run --no-project scripts/compare_batteries.py --current 50 --hours 24
 
 # Require rechargeable
-uv run scripts/compare_batteries.py --current 100 --hours 12 --rechargeable
+uv run --no-project scripts/compare_batteries.py --current 100 --hours 12 --rechargeable
 
 # List all batteries in database
-uv run scripts/compare_batteries.py --list
+uv run --no-project scripts/compare_batteries.py --list
 ```
 
 ## When to Use

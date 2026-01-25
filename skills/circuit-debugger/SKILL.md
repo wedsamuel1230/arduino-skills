@@ -19,22 +19,22 @@ This skill includes bundled tools and references:
 
 **Generate I2C scanner:**
 ```bash
-uv run scripts/generate_debug_sketch.py --i2c --output i2c_scanner.ino
+uv run --no-project scripts/generate_debug_sketch.py --i2c --output i2c_scanner.ino
 ```
 
 **Generate GPIO tester:**
 ```bash
-uv run scripts/generate_debug_sketch.py --gpio --pins 2,3,4,5 --output gpio_test.ino
+uv run --no-project scripts/generate_debug_sketch.py --gpio --pins 2,3,4,5 --output gpio_test.ino
 ```
 
 **Generate all debug sketches:**
 ```bash
-uv run scripts/generate_debug_sketch.py --all
+uv run --no-project scripts/generate_debug_sketch.py --all
 ```
 
 **Interactive mode:**
 ```bash
-uv run scripts/generate_debug_sketch.py --interactive
+uv run --no-project scripts/generate_debug_sketch.py --interactive
 ```
 
 ## Trigger Phrases

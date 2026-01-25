@@ -18,23 +18,23 @@ This skill includes bundled tools and templates:
 
 **Generate for specific PCB:**
 ```bash
-uv run scripts/generate_enclosure.py --pcb "Arduino Uno" --output uno_case.scad
-uv run scripts/generate_enclosure.py --pcb "ESP32 DevKit" --output esp32_case.scad
+uv run --no-project scripts/generate_enclosure.py --pcb "Arduino Uno" --output uno_case.scad
+uv run --no-project scripts/generate_enclosure.py --pcb "ESP32 DevKit" --output esp32_case.scad
 ```
 
 **Custom dimensions:**
 ```bash
-uv run scripts/generate_enclosure.py --width 100 --depth 60 --height 30 --output custom.scad
+uv run --no-project scripts/generate_enclosure.py --width 100 --depth 60 --height 30 --output custom.scad
 ```
 
 **Interactive mode:**
 ```bash
-uv run scripts/generate_enclosure.py --interactive
+uv run --no-project scripts/generate_enclosure.py --interactive
 ```
 
 **List supported PCBs:**
 ```bash
-uv run scripts/generate_enclosure.py --list
+uv run --no-project scripts/generate_enclosure.py --list
 ```
 
 ## When to Use

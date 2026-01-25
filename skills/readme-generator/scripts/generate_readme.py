@@ -11,9 +11,9 @@ Analyzes project structure and generates documentation including:
 - License
 
 Usage:
-    uv run generate_readme.py --interactive
-    uv run generate_readme.py --project "Weather Station" --board "ESP32"
-    uv run generate_readme.py --scan /path/to/project
+    uv run --no-project scripts/generate_readme.py --interactive
+    uv run --no-project scripts/generate_readme.py --project "Weather Station" --board "ESP32"
+    uv run --no-project scripts/generate_readme.py --scan /path/to/project
 """
 
 import argparse

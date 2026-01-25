@@ -10,11 +10,11 @@ Generate production-ready Arduino code snippets from pattern templates.
 Supports UNO, ESP32, and RP2040 boards with proper pin configurations.
 
 Usage:
-    uv run generate_snippet.py --pattern config --board esp32
-    uv run generate_snippet.py --pattern buttons --board uno --pin 3
-    uv run generate_snippet.py --pattern i2c --board rp2040 --output scanner.ino
-    uv run generate_snippet.py --interactive
-    uv run generate_snippet.py --list
+    uv run --no-project scripts/generate_snippet.py --pattern config --board esp32
+    uv run --no-project scripts/generate_snippet.py --pattern buttons --board uno --pin 3
+    uv run --no-project scripts/generate_snippet.py --pattern i2c --board rp2040 --output scanner.ino
+    uv run --no-project scripts/generate_snippet.py --interactive
+    uv run --no-project scripts/generate_snippet.py --list
 """
 
 import argparse
@@ -1096,10 +1096,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  uv run generate_snippet.py --list
-  uv run generate_snippet.py --pattern config --board esp32
-  uv run generate_snippet.py --pattern buttons --board uno --output button.ino
-  uv run generate_snippet.py --interactive
+  uv run --no-project scripts/generate_snippet.py --list
+  uv run --no-project scripts/generate_snippet.py --pattern config --board esp32
+  uv run --no-project scripts/generate_snippet.py --pattern buttons --board uno --output button.ino
+  uv run --no-project scripts/generate_snippet.py --interactive
         """,
     )
 

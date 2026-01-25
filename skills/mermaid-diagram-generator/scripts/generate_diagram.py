@@ -7,8 +7,8 @@
 """Generate Mermaid diagrams from Arduino code.
 
 Usage:
-    uv run generate_diagram.py --input main.ino --type state-machine
-    uv run generate_diagram.py --interactive
+    uv run --no-project scripts/generate_diagram.py --input main.ino --type state-machine
+    uv run --no-project scripts/generate_diagram.py --interactive
 """
 
 import argparse
@@ -143,9 +143,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  uv run generate_diagram.py --input main.ino --type state-machine --output docs/fsm.mmd
-  uv run generate_diagram.py --interactive
-  uv run generate_diagram.py --type timing --output docs/i2c.mmd
+  uv run --no-project scripts/generate_diagram.py --input main.ino --type state-machine --output docs/fsm.mmd
+  uv run --no-project scripts/generate_diagram.py --interactive
+  uv run --no-project scripts/generate_diagram.py --type timing --output docs/i2c.mmd
         """
     )
     

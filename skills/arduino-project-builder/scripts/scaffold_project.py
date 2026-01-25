@@ -10,10 +10,10 @@ Generate complete Arduino project structures with config.h, main.ino,
 platformio.ini, and README.md from project templates.
 
 Usage:
-    uv run scaffold_project.py --type environmental --board esp32 --name "WeatherStation"
-    uv run scaffold_project.py --type robot --board uno --output ./my-robot
-    uv run scaffold_project.py --interactive
-    uv run scaffold_project.py --list
+    uv run --no-project scripts/scaffold_project.py --type environmental --board esp32 --name "WeatherStation"
+    uv run --no-project scripts/scaffold_project.py --type robot --board uno --output ./my-robot
+    uv run --no-project scripts/scaffold_project.py --interactive
+    uv run --no-project scripts/scaffold_project.py --list
 """
 
 import argparse
@@ -1017,10 +1017,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  uv run scaffold_project.py --list
-  uv run scaffold_project.py --type environmental --board esp32 --name "WeatherStation"
-  uv run scaffold_project.py --type robot --board uno --output ./my-robot
-  uv run scaffold_project.py --interactive
+  uv run --no-project scripts/scaffold_project.py --list
+  uv run --no-project scripts/scaffold_project.py --type environmental --board esp32 --name "WeatherStation"
+  uv run --no-project scripts/scaffold_project.py --type robot --board uno --output ./my-robot
+  uv run --no-project scripts/scaffold_project.py --interactive
         """,
     )
     

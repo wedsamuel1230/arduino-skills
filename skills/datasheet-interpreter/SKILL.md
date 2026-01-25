@@ -18,16 +18,16 @@ Extracts actionable specifications from component datasheet PDFs.
 ### Quick Start
 ```bash
 # Extract specs from a datasheet URL
-uv run scripts/extract_specs.py --url "https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf"
+uv run --no-project scripts/extract_specs.py --url "https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf"
 
 # Extract specs with markdown output
-uv run scripts/extract_specs.py --url "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" --format markdown
+uv run --no-project scripts/extract_specs.py --url "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" --format markdown
 
 # Extract from local PDF file
-uv run scripts/extract_specs.py --file "local_datasheet.pdf"
+uv run --no-project scripts/extract_specs.py --file "local_datasheet.pdf"
 
 # Interactive mode
-uv run scripts/extract_specs.py --interactive
+uv run --no-project scripts/extract_specs.py --interactive
 ```
 
 ---

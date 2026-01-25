@@ -31,6 +31,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.2.0] - 2026-01-26
+
+### Added
+- **arduino-serial-monitor** — Advanced serial monitoring and debugging tools
+  - Real-time serial port monitoring with configurable baud rates
+  - Data logging to files with timestamps for analysis
+  - Pattern filtering and error detection in serial output
+  - Support for multiple data formats (text, JSON, CSV, binary)
+  - Cross-platform serial port detection and connection
+
+### Changed
+- **README.md** — Major restructuring for v1.2.0
+  - Consolidated Arduino Core Skills table: Replaced 11 individual skill entries with 9 unified patterns from arduino-code-generator
+  - Added arduino-serial-monitor to Maker Tools table (now 11 tools)
+  - Updated version badges: 1.1.0 → 1.2.0, skills count: 20 → 22
+  - Updated overview description to highlight serial monitoring capabilities
+  - Generalized marketplace references to reflect skill consolidation
+  - Updated pattern relationships diagram to match current pattern names
+
+- **memory-bank/activeContext.md** — Updated to reflect v1.2.0 state
+  - Updated core skills list to show consolidated patterns
+  - Added arduino-serial-monitor to maker tools (now 11 total)
+  - Updated workspace summary with current file structure
+  - Corrected skill counts: 11 core + 11 maker + 2 builders = 24 total
+
+- **memory-bank/SESSION.md** — Added v1.2.0 session entry documenting README and memory-bank updates
+
+---
+
 ## [1.0.0] - 2026-01-04
 
 ### Added

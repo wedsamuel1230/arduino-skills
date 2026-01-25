@@ -1,13 +1,13 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-1.1.0-blue)
-![Skills](https://img.shields.io/badge/skills-20%20complete-brightgreen)
+![Status](https://img.shields.io/badge/version-1.2.0-blue)
+![Skills](https://img.shields.io/badge/skills-22%20complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v1.1.0:** 9 production-ready Arduino example sketches added to arduino-code-generator with comprehensive documentation, wiring diagrams, and testing verification.
+> **v1.2.0:** Enhanced code generation patterns and serial monitoring tools for improved debugging and development workflow.
 
 ## 📋 Table of Contents
 
@@ -46,10 +46,10 @@
 
 ## 🔍 Overview
 
-This collection provides **20 production-ready skills** for Arduino and maker projects:
+This collection provides **22 production-ready skills** for Arduino and maker projects:
 
-- **11 Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS
-- **9 Maker Tools** - Debugging, BOM generation, power planning, documentation, diagrams
+- **9 Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS
+- **11 Maker Tools** - Debugging, BOM generation, power planning, documentation, diagrams, serial monitoring
 - **2 Project Builders** - Code generation and project scaffolding with automation scripts
 
 All skills follow a consistent structure with:
@@ -82,7 +82,7 @@ All skills follow a consistent structure with:
 
 ### 📍 Marketplace Configuration
 
-All 11 skills include marketplace metadata for discovery and installation:
+All skills include marketplace metadata for discovery and installation:
 - **Claude Code:** `.claude-plugin/marketplace.json` — Enables `/plugin marketplace search` discovery
 - **Gemini CLI:** `gemini-extension.json` — Auto-generated from skill-porter conversion (see `d:/projects/gemini-extensions/`)
 
@@ -108,7 +108,7 @@ Each marketplace file includes:
 ```
 
 **What's configured:**
-- ✅ All 11 skills have marketplace metadata
+- ✅ All skills have marketplace metadata
 - ✅ Descriptions, tags, license, and version included
 - ✅ Ready for official marketplace publication
 
@@ -183,19 +183,17 @@ uv run arduino-project-builder/scripts/scaffold_project.py --interactive
 
 ## 🔧 Arduino Core Skills
 
-| Skill | Path | Description |
+| Pattern | Path | Description |
 |-------|------|-------------|
-| Config.h Management | `arduino-config-management/` | Multi-board hardware abstraction with conditional compilation |
-| ADC Filtering | `arduino-adc-filtering/` | Moving average, median, and Kalman filters for noisy sensors |
-| Button Debouncing | `arduino-button-debouncing/` | Software debouncing with press/release/long-press detection |
-| I2C Scanner | `arduino-i2c-scanner/` | Device scanning, address detection, bus diagnostics |
-| CSV Output | `arduino-csv-output/` | Structured data logging for Serial/SD/Excel analysis |
-| State Machine | `arduino-state-machine/` | Enum-based FSM for complex behavior control |
-| Non-blocking Scheduler | `arduino-non-blocking-scheduler/` | millis()-based timing, priority task scheduling |
-| Hardware Compatibility | `arduino-hardware-compatibility/` | Auto-detect boards, sensors, adaptive configuration |
-| Data Logging | `arduino-data-logging/` | EEPROM with CRC, SD card CSV, wear leveling |
-| **FreeRTOS Patterns** | `freertos-patterns/` | ESP32 multitasking, queues, mutexes, task notifications |
-| **Code Generator** | `arduino-code-generator/` | Pattern-based snippet generation with Python automation |
+| Button Debouncing | `arduino-code-generator/` | Software debouncing with press/release/long-press detection |
+| Config Management | `arduino-code-generator/` | Multi-board hardware abstraction with conditional compilation |
+| CSV Output | `arduino-code-generator/` | Structured data logging for Serial/SD/Excel analysis |
+| Data Logging | `arduino-code-generator/` | EEPROM with CRC, SD card CSV, wear leveling |
+| ADC Filtering | `arduino-code-generator/` | Moving average, median, and Kalman filters for noisy sensors |
+| Hardware Detection | `arduino-code-generator/` | Auto-detect boards, sensors, adaptive configuration |
+| I2C Communication | `arduino-code-generator/` | Device scanning, address detection, bus diagnostics |
+| Non-blocking Scheduler | `arduino-code-generator/` | millis()-based timing, priority task scheduling |
+| State Machine | `arduino-code-generator/` | Enum-based FSM for complex behavior control |
 
 ### Pattern Relationships
 
@@ -211,9 +209,9 @@ uv run arduino-project-builder/scripts/scaffold_project.py --interactive
 mindmap
   root((Arduino Patterns))
     Hardware
-      Config.h
+      Config Management
       Hardware Detection
-      I2C Scanner
+      I2C Communication
     Input
       Button Debouncing
       ADC Filtering
@@ -221,7 +219,7 @@ mindmap
       Non-blocking Scheduler
       State Machine
     Output
-      CSV Logging
+      CSV Output
       Data Logging
     Projects
       Environmental Monitor
@@ -245,6 +243,7 @@ mindmap
 | Code Review | `code-review-facilitator/` | 8-category review, code smell detection |
 | Datasheet Interpreter | `datasheet-interpreter/` | PDF spec extraction from URLs |
 | **Mermaid Generator** | `mermaid-diagram-generator/` | Visual documentation: state machines, timing, FreeRTOS |
+| **Serial Monitor** | `arduino-serial-monitor/` | Real-time monitoring, data logging, filtering, and pattern matching for debugging |
 
 ### Tool Scripts
 

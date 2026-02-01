@@ -1,5 +1,13 @@
 # Button Debouncing & Input Handling
 
+## Purpose
+- Provide robust button handling without blocking or false triggers.
+- Support press, release, and long-press events.
+
+## When to Use
+- Any sketch that reads mechanical buttons or switches.
+- UI flows that need reliable event detection.
+
 ## Basic Software Debouncing
 
 ```cpp
@@ -213,10 +221,14 @@ void loop() {
 }
 ```
 
-## Key Points
-- Always debounce buttons (hardware bounce lasts 5-50ms)
-- Use INPUT_PULLUP to avoid external resistors
-- Never use delay() in button checking (blocks other code)
-- Edge detection detects PRESS and RELEASE separately
-- Long press: track press duration before release
-- Multi-button: check all buttons each loop, return first pressed
+## Verification
+- Open Serial Monitor and press/release the button; verify expected events.
+- Hold the button past the long-press threshold to confirm long-press events.
+
+## Common Pitfalls & Tips
+- Always debounce buttons (hardware bounce lasts 5–50 ms).
+- Use INPUT_PULLUP to avoid external resistors.
+- Never use delay() in button checking (blocks other code).
+- Edge detection should report PRESS and RELEASE separately.
+- Long press requires tracking press duration before release.
+- For multi-button setups, scan all buttons each loop.

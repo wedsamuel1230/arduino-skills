@@ -1,5 +1,13 @@
 # I2C Communication Patterns
 
+## Purpose
+- Discover and communicate with I2C peripherals reliably.
+- Standardize register read/write helpers.
+
+## When to Use
+- Any project using I2C sensors, displays, or RTC modules.
+- Diagnostics for wiring or address conflicts.
+
 ## I2C Scanner
 
 ```cpp
@@ -71,3 +79,12 @@ if (checkI2CDevice(0x76)) {
   Serial.println(F("BME280 detected!"));
 }
 ```
+
+## Verification
+- Run the scanner and confirm expected device addresses appear.
+- Read a known register (e.g., BME280 ID) to validate wiring.
+
+## Common Pitfalls & Tips
+- Ensure correct SDA/SCL pins for the target board.
+- Use pull-up resistors if the module does not include them.
+- I2C addresses are 7-bit (0x08–0x77 in scans).

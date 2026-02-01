@@ -1,5 +1,13 @@
 # Non-Blocking Scheduler & Timing Patterns
 
+## Purpose
+- Replace blocking delays with cooperative scheduling.
+- Coordinate multiple time-based tasks in a single loop.
+
+## When to Use
+- Any sketch with multiple timed actions or sensor polls.
+- Systems that must remain responsive while doing periodic work.
+
 ## EveryMs Pattern (Core Building Block)
 
 ```cpp
@@ -201,10 +209,14 @@ void loop() {
 }
 ```
 
-## Key Points
-- NEVER use delay() for timing (blocks everything)
-- Use unsigned long for millis() (handles overflow correctly)
-- EveryMs pattern: simplest non-blocking timer
-- Scheduler: run multiple tasks with priorities
-- Each task tracks its own last execution time
-- Unsigned arithmetic handles millis() overflow (every 49 days)
+## Verification
+- Confirm tasks fire at the expected intervals without blocking.
+- Leave running past 49 days in simulation to verify rollover behavior.
+
+## Common Pitfalls & Tips
+- NEVER use delay() for timing (blocks everything).
+- Use unsigned long for millis() (handles overflow correctly).
+- EveryMs pattern is the simplest non-blocking timer.
+- Scheduler can run multiple tasks with priorities.
+- Each task tracks its own last execution time.
+- Unsigned arithmetic handles millis() overflow (every 49 days).

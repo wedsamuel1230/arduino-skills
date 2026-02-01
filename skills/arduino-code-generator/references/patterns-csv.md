@@ -1,5 +1,13 @@
 # CSV Data Output Pattern
 
+## Purpose
+- Emit structured, analysis-ready telemetry over Serial.
+- Standardize headers and column formatting for tooling.
+
+## When to Use
+- Logging sensor data for Excel/Python analysis.
+- Any workflow that needs consistent, parseable output.
+
 ## Basic CSV Logger
 
 ```cpp
@@ -56,8 +64,12 @@ void logWithTimestamp(float temp, float humid) {
 }
 ```
 
-## Key Points
-- Use F() macro for strings on UNO (saves SRAM)
-- Print header once at startup
-- Use consistent decimal places (temp, 2 = 25.50)
-- Excel/Python can import CSV directly
+## Verification
+- Confirm the header prints once on boot.
+- Capture a few lines and import into Excel or Python to validate parsing.
+
+## Common Pitfalls & Tips
+- Use F() macro for strings on UNO (saves SRAM).
+- Print the header once at startup.
+- Use consistent decimal places (e.g., 2 for 25.50).
+- Excel/Python can import CSV directly.

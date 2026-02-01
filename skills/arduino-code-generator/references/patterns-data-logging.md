@@ -1,5 +1,13 @@
 # Data Logging & Persistence Patterns
 
+## Purpose
+- Persist sensor data across reboots with EEPROM/SD/flash.
+- Use buffering and validation to protect data integrity.
+
+## When to Use
+- Long-running data collection or audit trails.
+- Systems that must survive power loss or resets.
+
 ## EEPROM Logging with CRC Validation
 
 ```cpp
@@ -352,11 +360,15 @@ void loop() {
 }
 ```
 
-## Key Points
-- EEPROM: Use CRC validation to detect corrupted data
-- SD Card: Buffer writes to reduce file open/close operations (reduces wear)
-- Wear leveling: Rotate write locations to extend flash lifetime
-- Circular buffer: In-memory logging with automatic overflow handling
-- Always flush buffers before power loss or reset
-- EEPROM has limited write cycles (~100,000 writes per byte)
-- F() macro stores strings in flash, not RAM
+## Verification
+- Write a few entries, power cycle, and dump to confirm persistence.
+- Trigger CRC mismatch by editing data and confirm it is detected.
+
+## Common Pitfalls & Tips
+- EEPROM: use CRC validation to detect corrupted data.
+- SD Card: buffer writes to reduce open/close operations (reduces wear).
+- Wear leveling: rotate write locations to extend flash lifetime.
+- Circular buffer: in-memory logging with automatic overflow handling.
+- Always flush buffers before power loss or reset.
+- EEPROM has limited write cycles (~100,000 writes per byte).
+- F() macro stores strings in flash, not RAM.

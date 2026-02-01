@@ -40,6 +40,8 @@ uv run --no-project scripts/generate_snippet.py --interactive
 - **examples/** - 9 production-ready example sketches (one per pattern category)
 - **examples/README.md** - Detailed documentation for each example with wiring diagrams
 - **scripts/generate_snippet.py** - CLI tool for code generation with 9 pattern templates
+- **scripts/verify_patterns.ps1** - Compile examples for UNO/ESP32/RP2040 (PowerShell)
+- **scripts/verify_patterns.sh** - Compile examples for UNO/ESP32/RP2040 (bash)
 - **assets/workflow.mmd** - Mermaid diagram of code generation workflow
 
 ## Supported Patterns
@@ -125,3 +127,4 @@ See [patterns-data-logging.md](references/patterns-data-logging.md) | Example: [
 - **rules/** - Quality standards and board-specific optimizations
 - **templates/** - Code output templates and structure guidelines
 - **references/** - Detailed pattern documentation and API references
+- **references/README.md** - Reference structure and formatting guide

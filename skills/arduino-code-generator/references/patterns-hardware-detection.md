@@ -1,5 +1,13 @@
 # Hardware Detection & Adaptive Configuration
 
+## Purpose
+- Detect board capabilities and adapt configuration safely.
+- Prevent memory and feature mismatches across targets.
+
+## When to Use
+- Multi-board deployments or libraries.
+- Systems that scale features based on memory or peripherals.
+
 ## Board Detection Pattern
 
 ```cpp
@@ -230,11 +238,15 @@ void setup() {
 }
 ```
 
-## Key Points
-- Use preprocessor directives (#if defined) for compile-time detection
-- Create BoardInfo static class for runtime queries
-- Monitor SRAM on AVR boards (UNO has only 2KB)
-- Adaptive buffer sizing prevents out-of-memory crashes
-- Feature detection allows graceful degradation
-- Print board info in setup() for debugging
-- Use F() macro to store strings in flash (saves SRAM)
+## Verification
+- Compile for UNO, ESP32, and RP2040 to confirm board paths.
+- Trigger memory monitor output on AVR to confirm warnings.
+
+## Common Pitfalls & Tips
+- Use preprocessor directives (#if defined) for compile-time detection.
+- Create a BoardInfo static class for runtime queries.
+- Monitor SRAM on AVR boards (UNO has only 2KB).
+- Adaptive buffer sizing prevents out-of-memory crashes.
+- Feature detection allows graceful degradation.
+- Print board info in setup() for debugging.
+- Use F() macro to store strings in flash (saves SRAM).

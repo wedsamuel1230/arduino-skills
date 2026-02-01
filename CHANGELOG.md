@@ -4,11 +4,40 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Changelog
+## [1.4.0] - 2026-02-02
 
-All notable changes to the **arduino-skills** project are documented in this file.
+### Added
+- **arduino-cli-skill** integration for CLI-based Arduino development
+  - `skills/arduino-cli-skill/` new skill directory with comprehensive CLI documentation
+  - Installation guide with `npx skills add wedsamuel1230/arduino-skills` command
+  - VS Code setup instructions for arduino-cli workflow
+  - Manual setup for platform-specific Arduino CLI configuration
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Changed
+- **Installation documentation** - Promoted CLI skill `npx` command to primary installation method
+- **README.md** - Updated structure with streamlined installation guidance
+- **marketplace.json** - Synchronized across all skills to v1.4.0 for discovery consistency
+
+### Fixed
+- **arduino-code-generator** - Reference file naming consistency clarified in documentation
+- **Verification scripts** - Added platform detection and error handling
+
+---
+
+## [1.3.0] - 2026-02-01
+
+### Added
+- **arduino-code-generator** reference structure guide (`references/README.md`)
+- **arduino-code-generator** verification scripts for UNO/ESP32/RP2040
+  - `scripts/verify_patterns.ps1`
+  - `scripts/verify_patterns.sh`
+
+### Changed
+- **arduino-code-generator** reference files structured with Purpose/When to Use/Verification sections
+- **arduino-code-generator** examples README updated with verification scripts and prerequisites
+- **arduino-code-generator** marketplace.json version: 1.0.0 → 1.3.0
+
+---
 
 ## [1.1.0] - 2026-01-04
 
@@ -465,5 +494,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-**Last Updated:** 2026-01-05  
-**Current Version:** 0.8.0
+**Last Updated:** 2026-02-01  
+**Current Version:** 1.3.0

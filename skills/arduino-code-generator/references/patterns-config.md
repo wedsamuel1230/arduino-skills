@@ -1,5 +1,13 @@
 # Config.h Hardware Abstraction Pattern
 
+## Purpose
+- Centralize board-specific pins, features, and limits in one header.
+- Enable a single codebase to compile across UNO/ESP32/RP2040.
+
+## When to Use
+- Multi-board projects or reusable libraries.
+- Any project that needs consistent pin and feature definitions.
+
 ## Basic Template
 
 ```cpp
@@ -55,8 +63,12 @@ void setup() {
 }
 ```
 
-## Key Points
-- Use `#if defined()` for board detection
-- Define all pins in config.h, never hardcode
-- Include memory limits for adaptive code
-- Add feature flags (HAS_WIFI, HAS_BLE) for capabilities
+## Verification
+- Compile for UNO, ESP32, and RP2040 to confirm board detection paths.
+- Confirm Serial output and I2C initialization succeed on each target.
+
+## Common Pitfalls & Tips
+- Use `#if defined()` for board detection.
+- Define all pins in config.h, never hardcode in sketches.
+- Include memory limits for adaptive code paths.
+- Add feature flags (HAS_WIFI, HAS_BLE) for capabilities.

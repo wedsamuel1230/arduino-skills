@@ -1,5 +1,13 @@
 # State Machine Patterns
 
+## Purpose
+- Model complex behavior with explicit, testable states.
+- Avoid nested conditionals and timing bugs.
+
+## When to Use
+- Multi-step processes (traffic lights, robots, mode controllers).
+- Systems with clear operational modes and transitions.
+
 ## Enum-Based FSM (Recommended)
 
 ```cpp
@@ -239,11 +247,15 @@ void loop() {
 }
 ```
 
-## Key Points
-- Use enum for state definitions (readable, type-safe)
-- Track stateStartTime for elapsed time checks
-- Each state handles its own transitions
-- Emergency states should be checked BEFORE normal state logic
-- Use updateState() helper to centralize state changes
-- Combine with EveryMs timers for periodic state updates
-- States should be mutually exclusive (only one active at a time)
+## Verification
+- Print current state changes and verify transitions follow the diagram.
+- Simulate inputs and confirm no invalid transitions occur.
+
+## Common Pitfalls & Tips
+- Use enum for state definitions (readable, type-safe).
+- Track stateStartTime for elapsed time checks.
+- Each state handles its own transitions.
+- Emergency states should be checked BEFORE normal state logic.
+- Use updateState() helper to centralize state changes.
+- Combine with EveryMs timers for periodic state updates.
+- States should be mutually exclusive (only one active at a time).

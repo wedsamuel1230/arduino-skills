@@ -1,5 +1,13 @@
 # Sensor Filtering & ADC Patterns
 
+## Purpose
+- Reduce noise and spikes in analog sensor readings.
+- Normalize readings for downstream control logic.
+
+## When to Use
+- Noisy ADC signals or slow-changing sensors.
+- Any pipeline that depends on stable sensor values.
+
 ## Moving Average Filter
 
 ```cpp
@@ -152,10 +160,15 @@ if (validateSensorReading(temp, -40, 80)) {
 }
 ```
 
-## Key Points
-- Always use filters for ADC readings (analog sensors are noisy)
-- Moving average: smooth readings, good for slow-changing sensors
-- Median filter: remove spikes, good for sensors with occasional glitches
-- DHT22 requires 2000ms between reads (hardware limitation)
-- Always validate readings (check for NaN, range limits)
-- Calibration: measure known values, calculate offset and gain
+## Verification
+- Log raw vs filtered values and confirm noise reduction.
+- Inject a spike and verify median filter rejects it.
+
+## Common Pitfalls & Tips
+- Always use filters for ADC readings (analog sensors are noisy).
+- Moving average smooths readings, best for slow-changing sensors.
+- Median filter removes spikes, best for occasional glitches.
+- DHT22 requires 2000 ms between reads (hardware limitation).
+- Always validate readings (NaN/range checks).
+- Prefer fixed-size buffers over heap allocations on small MCUs.
+- Calibration: measure known values, calculate offset and gain.

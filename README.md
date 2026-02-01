@@ -1,13 +1,13 @@
 # arduino-skills
 
 ![Status](https://img.shields.io/badge/version-1.2.0-blue)
-![Skills](https://img.shields.io/badge/skills-22%20complete-brightgreen)
+![Skills](https://img.shields.io/badge/skills-21%20complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v1.2.0:** Enhanced code generation patterns and serial monitoring tools for improved debugging and development workflow.
+> **v1.2.0:** Added arduino-serial-monitor skill for enhanced debugging with real-time monitoring, data logging, and error detection. Comprehensive project development workflow with board-specific considerations, integration checklist, and quality standards.
 
 ## 📋 Table of Contents
 
@@ -46,10 +46,10 @@
 
 ## 🔍 Overview
 
-This collection provides **22 production-ready skills** for Arduino and maker projects:
+This collection provides **21 production-ready skills** for Arduino and maker projects:
 
-- **9 Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS
-- **11 Maker Tools** - Debugging, BOM generation, power planning, documentation, diagrams, serial monitoring
+- **11 Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS
+- **10 Maker Tools** - Debugging, serial monitoring, BOM generation, power planning, documentation, diagrams
 - **2 Project Builders** - Code generation and project scaffolding with automation scripts
 
 All skills follow a consistent structure with:
@@ -76,7 +76,7 @@ All skills follow a consistent structure with:
 
 | Agent | Setup | Marketplace | Docs |
 |-------|-------|-------------|------|
-| **Claude Code** | `/plugin marketplace add arduino-skills` | ✅ Configured (v1.1.0) | [Docs](https://code.claude.com/docs/en/skills) |
+| **Claude Code** | `/plugin marketplace add arduino-skills` | ✅ Configured (v1.2.0) | [Docs](https://code.claude.com/docs/en/skills) |
 | **Google Gemini CLI** | `gemini extensions install` | ✅ Converted (11 extensions) | [Docs](https://geminicli.com/docs/) |
 | **VS Code Copilot** | Copy to `.github/skills/` folder | ⚠️ Manual setup | [Docs](https://code.visualstudio.com/docs/copilot/customization/agent-skills) |
 
@@ -88,7 +88,7 @@ All skills include marketplace metadata for discovery and installation:
 
 Each marketplace file includes:
 - ✅ Skill name and description (50+ characters)
-- ✅ Version (1.1.0), license (MIT), and category tags
+- ✅ Version (1.2.0), license (MIT), and category tags
 - ✅ Plugin metadata for discovery
 - ✅ Compatible with skill-porter universal conversion tool
 
@@ -242,6 +242,7 @@ mindmap
 | README Generator | `readme-generator/` | Professional GitHub documentation |
 | Code Review | `code-review-facilitator/` | 8-category review, code smell detection |
 | Datasheet Interpreter | `datasheet-interpreter/` | PDF spec extraction from URLs |
+| **Serial Monitor** | `arduino-serial-monitor/` | Enhanced serial debugging with real-time monitoring, data logging, filtering, and error detection |
 | **Mermaid Generator** | `mermaid-diagram-generator/` | Visual documentation: state machines, timing, FreeRTOS |
 | **Serial Monitor** | `arduino-serial-monitor/` | Real-time monitoring, data logging, filtering, and pattern matching for debugging |
 
@@ -250,6 +251,9 @@ mindmap
 All tools include Python scripts with PEP 723 inline dependencies:
 
 ```bash
+# Serial monitoring with filtering and error detection
+uv run arduino-serial-monitor/scripts/monitor_serial.py --port COM3 --detect-errors
+
 # Power budget calculation
 uv run power-budget-calculator/scripts/calculate_power.py --interactive
 
@@ -343,27 +347,31 @@ skills/
 ├── arduino-code-generator/           # Code snippet generation
 │   ├── SKILL.md
 │   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   │   └── marketplace.json          # Claude marketplace config (v1.2.0)
 │   ├── references/                   # 9 pattern files
 │   └── scripts/generate_snippet.py
 │
 ├── arduino-project-builder/          # Project scaffolding
 │   ├── SKILL.md
 │   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   │   └── marketplace.json          # Claude marketplace config (v1.2.0)
 │   ├── references/                   # 3 project templates
 │   └── scripts/scaffold_project.py
 │
+├── arduino-serial-monitor/           # Serial debugging tool (NEW v1.2.0)
+│   ├── SKILL.md
+│   └── scripts/monitor_serial.py     # Real-time monitoring & logging
+│
 ├── [arduino-*]/                      # Core skills (9 folders)
 │   └── .claude-plugin/
-│       └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│       └── marketplace.json          # Claude marketplace config (v1.2.0)
 │
-├── [maker-tools]/                    # Maker tools (9 folders)
+├── [maker-tools]/                    # Maker tools (10 folders)
 │   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (NEW v0.9.0)
+│   │   └── marketplace.json          # Claude marketplace config (v1.2.0)
 │   └── scripts/*.py                  # Automation scripts
 │
-├── gemini-extensions/                # Gemini CLI extensions (NEW v0.9.0)
+├── gemini-extensions/                # Gemini CLI extensions (v1.2.0)
 │   └── [skill-name]/
 │       ├── gemini-extension.json
 │       └── GEMINI.md
@@ -379,7 +387,7 @@ skills/
 
 ### Marketplace Configuration
 
-**v1.1.0 Feature Release:** All 20 skills include marketplace metadata for discovery on Claude Code and Gemini CLI. arduino-code-generator now includes 9 production-ready example sketches with comprehensive documentation.
+**v1.2.0 Feature Release:** All 21 skills include marketplace metadata for discovery on Claude Code and Gemini CLI. arduino-code-generator includes 9 production-ready example sketches with comprehensive documentation. New arduino-serial-monitor skill added for enhanced debugging with real-time monitoring, data logging, and error detection.
 
 Each skill's `.claude-plugin/marketplace.json` includes:
 ```json
@@ -387,7 +395,7 @@ Each skill's `.claude-plugin/marketplace.json` includes:
   "name": "skill-name",
   "metadata": {
     "description": "Full skill description (50+ characters)",
-    "version": "0.9.0",
+    "version": "1.2.0",
     "license": "MIT",
     "author": "arduino-skills contributors",
     "tags": ["arduino", "embedded-systems", "..."],

@@ -1,13 +1,14 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-1.4.0-blue)
-![Skills](https://img.shields.io/badge/skills-15%20packages-brightgreen)
+![Status](https://img.shields.io/badge/version-1.5.0-blue)
+![Skills](https://img.shields.io/badge/skills-19%20packages-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20|%20ESP32%20|%20RP2040-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> **v1.4.0:** Complete verification framework and CLI skill integration with cross-platform compilation testing.
+> v1.5.0 release prep: verification-first Arduino and maker skills for OTA deployment, calibration,
+> field-power triage, and I2C bring-up.
 
 ## 📋 Table of Contents
 
@@ -32,7 +33,7 @@
     - [Board-Specific Optimization](#board-specific-optimization)
   - [🏛️ Architecture](#️-architecture)
     - [Directory Structure](#directory-structure)
-    - [Marketplace Configuration](#marketplace-configuration)
+    - [Release And Tags](#release-and-tags)
     - [Design Principles](#design-principles)
   - [🤝 Contributing](#-contributing)
     - [Quick Submission Checklist](#quick-submission-checklist)
@@ -60,12 +61,23 @@ All skills follow a consistent structure with:
 
 ## 🤖 How Skills Work
 
-**arduino-skills** uses the **Agent Context Protocol (ACP)** — a standard for self-contained, interoperable skill packages for AI/ML agents. Each skill is a folder containing:
+**arduino-skills** uses the **Agent Skills** open format for self-contained,
+interoperable agent capabilities. Each skill is a folder containing:
 
-- **SKILL.md** — Instructions with YAML frontmatter (name, description, trigger conditions)
+- **SKILL.md** — Instructions with YAML frontmatter (`name`,
+  `description`, optional spec fields)
 - **scripts/** — Python automation tools with PEP 723 inline dependencies
 - **references/** — Code examples, patterns, and templates
 - **assets/** — Diagrams, datasheets, and resources
+
+Skills follow progressive disclosure:
+
+1. Discovery loads only `name` and `description`
+2. Activation loads the main `SKILL.md`
+3. Detailed references and scripts are loaded only when needed
+
+The main `SKILL.md` should stay focused. Heavy examples, troubleshooting, and
+deep reference material belong in `references/`, `scripts/`, or `assets/`.
 
 
 ---
@@ -89,11 +101,11 @@ cd arduino-skills
 
 2. **Copy Skills to Extensions Directory**
 ```bash
-# Create the skills directory (use one of the locations above)
-mkdir -p ~/(your agent)/skills
+# Example: install into Codex's local skills directory
+mkdir -p ~/.codex/skills
 
 # Copy all skills
-cp -r skills/* ~/(your agent)/skills/
+cp -r skills/* ~/.codex/skills/
 ```
 ---
 
@@ -104,27 +116,27 @@ cp -r skills/* ~/(your agent)/skills/
 
 ```bash
 # List available patterns
-uv run arduino-code-generator/scripts/generate_snippet.py --list
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --list
 
 # Generate I2C scanner for ESP32
-uv run arduino-code-generator/scripts/generate_snippet.py --pattern i2c --board esp32
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --pattern i2c --board esp32
 
 # Interactive mode
-uv run arduino-code-generator/scripts/generate_snippet.py --interactive
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --interactive
 ```
 
 ### Scaffold Complete Projects
 
 ```bash
 # List project types
-uv run arduino-project-builder/scripts/scaffold_project.py --list
+uv run skills/arduino-project-builder/scripts/scaffold_project.py --list
 
 # Create environmental monitor for ESP32
-uv run arduino-project-builder/scripts/scaffold_project.py \
+uv run skills/arduino-project-builder/scripts/scaffold_project.py \
     --type environmental --board esp32 --name "WeatherStation"
 
 # Interactive mode
-uv run arduino-project-builder/scripts/scaffold_project.py --interactive
+uv run skills/arduino-project-builder/scripts/scaffold_project.py --interactive
 ```
 
 ---
@@ -192,6 +204,10 @@ mindmap
 | Datasheet Interpreter | `datasheet-interpreter/` | PDF spec extraction from URLs |
 | **Serial Monitor** | `arduino-serial-monitor/` | Enhanced serial debugging with real-time monitoring, data logging, filtering, and error detection |
 | **Mermaid Generator** | `mermaid-diagram-generator/` | Visual documentation: state machines, timing, FreeRTOS |
+| **OTA Deployment** | `ota-deployment-guardian/` | OTA-safe deployment workflows, network port recovery, and remote update guardrails |
+| **Calibration Workbench** | `sensor-calibration-workbench/` | Calibration workflows, coefficient persistence, and drift checks for maker sensors |
+| **Field Power Triage** | `field-power-and-connectivity-triager/` | USB-vs-field-power diagnosis for WiFi and sensor-heavy maker projects |
+| **I2C Bringup** | `i2c-bringup-diagnostician/` | Fault isolation for I2C detection, library, pull-up, and board-quirk failures |
 
 ### Tool Scripts
 
@@ -199,16 +215,16 @@ All tools include Python scripts with PEP 723 inline dependencies:
 
 ```bash
 # Serial monitoring with filtering and error detection
-uv run arduino-serial-monitor/scripts/monitor_serial.py --port COM3 --detect-errors
+uv run skills/arduino-serial-monitor/scripts/monitor_serial.py --port COM3 --detect-errors
 
 # Power budget calculation
-uv run power-budget-calculator/scripts/calculate_power.py --interactive
+uv run skills/power-budget-calculator/scripts/calculate_power.py --interactive
 
 # BOM generation to Excel
-uv run bom-generator/scripts/generate_bom.py --output bom.xlsx
+uv run skills/bom-generator/scripts/generate_bom.py --output bom.xlsx
 
 # Extract specs from datasheet PDF
-uv run datasheet-interpreter/scripts/extract_specs.py \
+uv run skills/datasheet-interpreter/scripts/extract_specs.py \
     --url "https://example.com/sensor-datasheet.pdf"
 ```
 
@@ -290,84 +306,58 @@ flowchart TD
 ### Directory Structure
 
 ```
-skills/
-├── arduino-code-generator/           # Code snippet generation
-│   ├── SKILL.md
-│   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (v1.3.0)
-│   ├── references/                   # 9 pattern files
-│   └── scripts/generate_snippet.py
-│
-├── arduino-project-builder/          # Project scaffolding
-│   ├── SKILL.md
-│   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (v1.3.0)
-│   ├── references/                   # 3 project templates
-│   └── scripts/scaffold_project.py
-│
-├── arduino-cli-skill/                # Arduino CLI workflows and references
-│   ├── SKILL.md
-│   └── examples/README.md
-│
-├── arduino-serial-monitor/           # Serial debugging tool (v1.2.0)
-│   ├── SKILL.md
-│   └── scripts/monitor_serial.py     # Real-time monitoring & logging
-│
-├── [arduino-*]/                      # Core skills (9 folders)
-│   └── .claude-plugin/
-│       └── marketplace.json          # Claude marketplace config (v1.3.0)
-│
-├── [maker-tools]/                    # Maker tools (10 folders)
-│   ├── .claude-plugin/
-│   │   └── marketplace.json          # Claude marketplace config (v1.3.0)
-│   └── scripts/*.py                  # Automation scripts
-│
-├── gemini-extensions/                # Gemini CLI extensions (v1.3.0)
-│   └── [skill-name]/
-│       ├── gemini-extension.json
-│       └── GEMINI.md
-│
+.
+├── README.md
+├── CONTRIBUTING.md
+├── DEVELOPMENT.md
+├── CHANGELOG.md
+├── arduino-skills.md
 ├── docs/
-│   └── diagrams/                     # Mermaid diagram sources
-│
-└── memory-bank/                      # Project tracking
-    ├── projectbrief.md
-    ├── activeContext.md
-    └── SESSION.md
+│   ├── board-support/                # Shared board-family support references
+│   ├── diagrams/                     # Mermaid diagram sources
+│   ├── research/                     # Archived discovery and pain-point research
+│   └── workflows/                    # Archived PRD, plan, and test-map artifacts
+├── scripts/
+│   └── validate_agent_skills.py      # Repo-local skill conformance validator
+└── skills/
+    ├── arduino-code-generator/
+    ├── arduino-project-builder/
+    ├── arduino-cli-skill/
+    ├── ota-deployment-guardian/
+    ├── sensor-calibration-workbench/
+    ├── field-power-and-connectivity-triager/
+    ├── i2c-bringup-diagnostician/
+    └── ...                           # Remaining Arduino and maker skills
 ```
 
-### Marketplace Configuration
+### Release And Tags
 
-**v1.3.0 Documentation Update:** Marketplace metadata remains available for discovery on Claude Code and Gemini CLI. arduino-code-generator includes 9 production-ready example sketches with comprehensive documentation. arduino-serial-monitor adds enhanced debugging with real-time monitoring, data logging, and error detection.
+`SKILL.md` is the canonical source of truth for skill authoring and discovery.
+Before publishing a release, run:
 
-Each skill's `.claude-plugin/marketplace.json` includes:
-```json
-{
-  "name": "skill-name",
-  "metadata": {
-    "description": "Full skill description (50+ characters)",
-    "version": "1.3.0",
-    "license": "MIT",
-    "author": "arduino-skills contributors",
-    "tags": ["arduino", "embedded-systems", "..."],
-    "category": "embedded-systems | maker-tools"
-  },
-  "plugins": [
-    {
-      "name": "skill-name",
-      "description": "Brief one-liner for discovery",
-      "enabled": true
-    }
-  ]
-}
+```bash
+python3 scripts/validate_agent_skills.py
 ```
 
-**Multi-Platform Conversion:** Gemini extensions are auto-generated from these marketplace files using [skill-porter](https://github.com/jduncan-rva/skill-porter), which transforms:
-- Claude `SKILL.md` → Gemini `gemini-extension.json`
-- `allowed-tools` (whitelist) → `excludeTools` (blacklist)
-- YAML metadata → JSON manifest
+For the current release prep, the intended tag is:
 
-Both versions are validated and kept in sync via CI/CD.
+```bash
+git tag -a v1.5.0 -m "Release v1.5.0"
+git push origin v1.5.0
+```
+
+Suggested repository topics for hosting platforms:
+
+- `arduino`
+- `embedded`
+- `agent-skills`
+- `makers`
+- `esp32`
+- `rp2040`
+- `uno-r4`
+- `ota`
+- `i2c`
+- `calibration`
 
 ### Design Principles
 
@@ -381,11 +371,10 @@ All skills follow these rules from `arduino-skills.md`:
 
 ## 🤝 Contributing
 
-We welcome contributions! Before you start, please read:
+We welcome contributions. Before you start, read:
 
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Skill submission process, code quality checklist, pull request workflow
-- **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** — Community standards and expectations
-- **[DEVELOPMENT.md](DEVELOPMENT.md)** — Setup guide, skill creation walkthrough, automation scripts
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Skill submission process, code quality checklist, and pull request workflow
+- **[DEVELOPMENT.md](DEVELOPMENT.md)** — Setup guide, skill creation walkthrough, and automation scripts
 
 ### Quick Submission Checklist
 
@@ -408,10 +397,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md#submitting-a-new-skill) for the complete p
 | [README.md](README.md) | Main project documentation (this file) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Skill submission guidelines and checklist |
 | [DEVELOPMENT.md](DEVELOPMENT.md) | Setup, skill creation, automation scripts |
-| [SECURITY.md](SECURITY.md) | Security vulnerability reporting |
-| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards |
 | [arduino-skills.md](arduino-skills.md) | Design principles and constraints |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and release notes |
+| [docs/research/](docs/research/) | Archived discovery notes and pain-point research |
+| [docs/workflows/](docs/workflows/) | Archived PRD, plan, and verification artifacts |
 
 ---
 

@@ -8,8 +8,8 @@ Thank you for your interest in contributing to Arduino Skills! This repository p
 - [arduino-skills.md](arduino-skills.md) — Core rules, platform support, code quality standards
 
 **Understand the Skill Framework:**
-- [README.md](README.md#how-skills-work) — Skill structure and ACP (Agent Context Protocol)
-- Examine an existing skill folder (e.g., `battery-selector/`) for reference
+- [README.md](README.md#how-skills-work) — Skill structure and Agent Skills
+- Examine an existing skill folder (for example, `skills/battery-selector/`) for reference
 
 ## Submitting a New Skill
 
@@ -28,52 +28,32 @@ your-skill-name/
 
 ### 2. Write Your SKILL.md
 
-Every skill requires YAML frontmatter + body. Minimum sections:
+Every skill requires YAML frontmatter + body.
 
 ```yaml
 ---
-id: skill-name
-title: Skill Title
-category: arduino|maker|project-builder
-platforms:
-  - uno      # Arduino UNO
-  - esp32    # ESP32
-  - rp2040   # RP2040
-whenToUse: |
-  When users ask for [specific problem].
-  Triggers: keywords, phrases, problem descriptions.
+name: skill-name
+description: Explain what the skill does and when to use it. Include likely trigger phrases and problem types.
+compatibility: Optional. Mention product, runtime, or tool requirements only when needed.
 ---
-
-## Overview
-Clear, concise description.
-
-## Core Principles
-1. Explain WHY this approach works
-2. Design decisions and trade-offs
-
-## Implementation
-Complete, compile-ready code with comments.
-
-## Verification Steps
-✅ Expected output / behavior
-❌ Common mistakes
-
-## Common Pitfalls
-- Issue 1
-- Issue 2
-
-## Advanced Patterns
-For users who want to extend the skill.
-
-## Engineering Rationale
-Technical deep-dive for educators.
-
-## Integration Notes
-How this skill works with others.
-
-## References
-Links to datasheets, articles, code.
 ```
+
+Recommended body shape:
+
+- short overview
+- task-oriented workflow or checklist
+- targeted examples
+- explicit references to `references/...`, `scripts/...`, or `assets/...`
+- verification notes and common failure cases
+
+Authoring rules:
+
+- `name` must match the skill directory name
+- keep `SKILL.md` focused and move bulk detail into `references/`, `scripts/`,
+  or `assets/`
+- avoid legacy top-level keys like `id`, `title`, `category`, `platforms`, and
+  `whenToUse`
+- use shallow relative file references from the skill root
 
 ### 3. Checklist Before Submitting
 
@@ -86,11 +66,11 @@ Links to datasheets, articles, code.
 - [ ] Memory-safe (no buffer overflows)
 
 **Documentation:**
-- [ ] SKILL.md has all required sections
-- [ ] YAML frontmatter is valid (use `yamllint` to verify)
-- [ ] Code examples include comments
-- [ ] Verification steps have ✅/❌ comparisons
-- [ ] At least 2 advanced patterns documented
+- [ ] `name` and `description` are present and valid
+- [ ] `name` matches the skill folder name
+- [ ] No legacy top-level frontmatter keys remain
+- [ ] `SKILL.md` stays focused and loads details on demand
+- [ ] Code examples include comments where they add real value
 
 **Testing (Platforms):**
 - [ ] Tested on Arduino UNO (or documented limitation)
@@ -218,9 +198,9 @@ All contributions must follow these standards:
 
 ### Markdown & Documentation
 
-- Use **yamllint** to validate SKILL.md frontmatter:
+- Use the repo-local validator to check active skill conformance:
   ```bash
-  yamllint SKILL.md
+  python3 scripts/validate_agent_skills.py
   ```
 
 - Use **markdownlint** for Markdown consistency:
@@ -228,9 +208,9 @@ All contributions must follow these standards:
   markdownlint SKILL.md
   ```
 
-- Keep lines ≤100 characters
+- Keep lines ≤100 characters when practical
 - Use consistent heading hierarchy (#, ##, ###)
-- Link to references with full URLs
+- Use relative links for in-repo skill references
 
 ## Design Principles Reference
 
@@ -257,10 +237,9 @@ All skills must document which platforms they support.
 
 ## Questions?
 
-- **Existing issues:** Search [GitHub Issues](../../issues)
-- **Feature requests:** Open a [new issue](../../issues/new)
-- **Design questions:** File an issue with `[discussion]` prefix
-- **Security concerns:** See [SECURITY.md](SECURITY.md)
+- **Existing issues:** Search [GitHub Issues](https://github.com/wedsamuel1230/arduino-skills/issues)
+- **Feature requests:** Open a [new issue](https://github.com/wedsamuel1230/arduino-skills/issues/new)
+- **Design questions:** Use [GitHub Discussions](https://github.com/wedsamuel1230/arduino-skills/discussions) or file an issue with a clear design question
 
 ## License
 

@@ -1,7 +1,6 @@
 ---
 name: arduino-serial-monitor
 description: Tools for reading and analyzing Arduino serial monitor output for enhanced debugging. Provides real-time monitoring, data logging, filtering, and pattern matching to help troubleshoot Arduino sketches using arduino-cli or Arduino IDE.
-category: arduino
 ---
 
 # Arduino Serial Monitor

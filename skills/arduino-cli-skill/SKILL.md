@@ -1,21 +1,43 @@
 ---
-title: Arduino CLI Usage Skill
-version: 0.1.0
-tags: [arduino-cli, cli, tools]
+name: arduino-cli-skill
+description: Use when users need arduino-cli commands for board discovery, library installation, compilation, upload, or serial port troubleshooting on Windows, macOS, or Linux.
 ---
 
-# Arduino CLI Usage Skill
+# Arduino CLI Skill
 
-Purpose: Provide cross-platform arduino-cli commands and guidance for serial port detection, library and board discovery, compilation, and upload workflows.
+Provide cross-platform `arduino-cli` workflows and command references.
 
-Contents:
-- `references/` — detailed command references and OS-specific serial detection
-- `examples/` — runnable example workflows (command sequences)
-- `rules/` — best practices and common pitfalls
+## Resources
 
-Quick start:
+- `references/commands.md` - board, core, library, compile, and upload commands
+- `references/serial-ports.md` - OS-specific serial port discovery
+- `rules/common-pitfalls.md` - common command mistakes and recovery guidance
+- `examples/README.md` - runnable command sequences
+- `../../docs/board-support/uno-r4-family.md` - Uno R4 Minima and Uno R4 WiFi support notes
 
-- Use `arduino-cli` with `--format json` for machine-readable output when scripting.
-- Prefer platform-specific serial detection commands before attempting uploads.
+## Workflow
+
+1. Identify the user's platform and target board.
+2. Open `references/serial-ports.md` if the task depends on port discovery.
+3. Open `references/commands.md` for the exact command family you need.
+4. Check `rules/common-pitfalls.md` before suggesting upload or compile fixes.
+5. If the target is Uno R4 family and the problem touches WiFi, firmware bridge,
+   or OTA-related setup, open `../../docs/board-support/uno-r4-family.md`.
+6. Prefer `arduino-cli` JSON output when the result will be parsed or reused.
+
+## Quick Start
+
+```bash
+arduino-cli board list
+arduino-cli core list
+arduino-cli compile --fqbn arduino:avr:uno path/to/sketch
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno path/to/sketch
+```
+
+## Verification
+
+- Confirm the `fqbn` matches the target board.
+- Confirm the selected serial port exists before upload.
+- Prefer command output over remembered defaults when troubleshooting.
 
 See `references/commands.md` and `references/serial-ports.md` for detailed examples.

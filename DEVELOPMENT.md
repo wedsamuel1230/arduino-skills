@@ -7,7 +7,7 @@ Welcome! This guide explains how to set up the Arduino Skills workspace, run aut
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/arduino-skills.git
+git clone https://github.com/wedsamuel1230/arduino-skills.git
 cd arduino-skills
 ```
 
@@ -21,24 +21,24 @@ Arduino Skills uses Python automation scripts with `uv` for dependency managemen
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Run scripts with uv (no setup required)
-uv run arduino-code-generator/scripts/generate_snippet.py --board uno --pattern timer
-uv run arduino-project-builder/scripts/scaffold_project.py --type environmental-monitor --board esp32
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --board uno --pattern timer
+uv run skills/arduino-project-builder/scripts/scaffold_project.py --type environmental-monitor --board esp32
 ```
 
 **Option B: Using Python directly**
 ```bash
-python arduino-code-generator/scripts/generate_snippet.py --board uno --pattern timer
-python arduino-project-builder/scripts/scaffold_project.py --type environmental-monitor --board esp32
+python skills/arduino-code-generator/scripts/generate_snippet.py --board uno --pattern timer
+python skills/arduino-project-builder/scripts/scaffold_project.py --type environmental-monitor --board esp32
 ```
 
 ### 3. Verify Installation
 
 ```bash
 # Test code generator
-python arduino-code-generator/scripts/generate_snippet.py --help
+python skills/arduino-code-generator/scripts/generate_snippet.py --help
 
 # Test project builder
-python arduino-project-builder/scripts/scaffold_project.py --help
+python skills/arduino-project-builder/scripts/scaffold_project.py --help
 ```
 
 ## Workspace Structure
@@ -47,48 +47,22 @@ python arduino-project-builder/scripts/scaffold_project.py --help
 arduino-skills/
 ├── README.md                    # Main documentation
 ├── CONTRIBUTING.md              # Contribution guidelines
-├── CODE_OF_CONDUCT.md          # Community standards
-├── DEVELOPMENT.md              # This file
-├── SECURITY.md                 # Security policy
-├── LICENSE                     # MIT license
-├── CHANGELOG.md                # Version history
-│
-├── arduino-skills.md           # Design principles & constraints
-│
-├── Arduino Core Skills (9)
-├── battery-selector/
-├── bom-generator/
-├── circuit-debugger/
-│   ├── SKILL.md                # Skill documentation
-│   ├── scripts/                # Python generators (PEP 723)
-│   └── references/             # Example implementations
-├── code-review-facilitator/
-├── datasheet-interpreter/
-├── enclosure-designer/
-├── error-message-explainer/
-├── power-budget-calculator/
-├── readme-generator/
-│
-├── .github/
-│   ├── workflows/
-│   │   └── release.yml         # Automated GitHub releases
-│   ├── ISSUE_TEMPLATE/         # Issue templates
-│   │   ├── bug_report.md
-│   │   ├── feature_request.md
-│   │   ├── skill_proposal.md
-│   │   └── discussion.md
-│   └── pull_request_template.md
-│
-├── docs/                       # Documentation assets
-│   └── diagrams/
-│
-├── memory-bank/                # Session history & context
-│   ├── projectbrief.md
-│   ├── activeContext.md
-│   └── SESSION.md
-│
-└── reference/                  # Reference implementations
-    └── datasheet-parser/       # Example pattern library
+├── DEVELOPMENT.md               # This file
+├── CHANGELOG.md                 # Version history
+├── LICENSE                      # MIT license
+├── arduino-skills.md            # Design principles & constraints
+├── docs/
+│   ├── board-support/           # Shared board-family references
+│   ├── diagrams/                # Documentation assets
+│   ├── research/                # Archived discovery notes
+│   └── workflows/               # Archived PRD/plan/test-map artifacts
+├── scripts/
+│   └── validate_agent_skills.py # Repo-local validator
+└── skills/
+    ├── arduino-code-generator/
+    ├── arduino-project-builder/
+    ├── arduino-cli-skill/
+    └── ...                      # Each skill owns its own SKILL.md/resources
 ```
 
 ## Creating a New Skill
@@ -114,47 +88,19 @@ Use this template (also in [CONTRIBUTING.md](CONTRIBUTING.md)):
 
 ```yaml
 ---
-id: my-skill-name
-title: My Skill Title
-category: arduino|maker|project-builder
-platforms:
-  - uno
-  - esp32
-  - rp2040
-whenToUse: |
-  When users ask for [specific problem].
+name: my-skill-name
+description: Explain what the skill does and when to use it. Include concrete trigger phrases when helpful.
+compatibility: Optional. Include only if the skill has specific runtime or tool requirements.
 ---
-
-## Overview
-Clear, concise description.
-
-## Core Principles
-1. Why this approach works
-2. Design decisions
-
-## Implementation
-Complete, compile-ready code.
-
-## Verification Steps
-✅ Expected output
-❌ Common mistakes
-
-## Common Pitfalls
-- Issue 1
-- Issue 2
-
-## Advanced Patterns
-Extension ideas.
-
-## Engineering Rationale
-Technical deep-dive.
-
-## Integration Notes
-How this works with other skills.
-
-## References
-Datasheets, links, code samples.
 ```
+
+Recommended body shape:
+
+- concise overview
+- workflow or checklist
+- examples
+- targeted references to `references/...`, `scripts/...`, or `assets/...`
+- verification and failure notes
 
 ### Step 4: Add Code Examples
 
@@ -217,7 +163,7 @@ python scripts/generate_example.py --board uno
 
 1. Push to your fork: `git push origin skills/my-skill-name`
 2. Create PR with title: `feat(skill): my-skill-name — [description]`
-3. Complete checklist in [pull_request_template.md](.github/pull_request_template.md)
+3. Run the repo-local validator and any affected scripts before opening the PR
 4. Wait for review and feedback
 
 See [CONTRIBUTING.md](CONTRIBUTING.md#pull-request-workflow) for full details.
@@ -230,16 +176,16 @@ Generate Arduino code snippets for common patterns:
 
 ```bash
 # Interactive mode (prompts for options)
-uv run arduino-code-generator/scripts/generate_snippet.py
+uv run skills/arduino-code-generator/scripts/generate_snippet.py
 
 # Batch mode (specify all options)
-uv run arduino-code-generator/scripts/generate_snippet.py \
+uv run skills/arduino-code-generator/scripts/generate_snippet.py \
   --board esp32 \
   --pattern "wifi-state-machine" \
   --output my_sketch.ino
 
 # List supported patterns
-uv run arduino-code-generator/scripts/generate_snippet.py --help
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --help
 ```
 
 **Patterns:**
@@ -258,16 +204,16 @@ Scaffold complete Arduino projects:
 
 ```bash
 # Interactive mode
-uv run arduino-project-builder/scripts/scaffold_project.py
+uv run skills/arduino-project-builder/scripts/scaffold_project.py
 
 # Batch mode
-uv run arduino-project-builder/scripts/scaffold_project.py \
+uv run skills/arduino-project-builder/scripts/scaffold_project.py \
   --type "environmental-monitor" \
   --board "esp32" \
   --output "my_project"
 
 # List supported types
-uv run arduino-project-builder/scripts/scaffold_project.py --help
+uv run skills/arduino-project-builder/scripts/scaffold_project.py --help
 ```
 
 **Project Types:**
@@ -326,7 +272,7 @@ If you have linting tools:
 
 ```bash
 # YAML validation
-yamllint SKILL.md
+python3 scripts/validate_agent_skills.py
 
 # Markdown validation
 markdownlint SKILL.md
@@ -341,7 +287,7 @@ python -m pylint scripts/generate_*.py
 
 To add a new platform variant to an existing skill:
 
-1. Update SKILL.md `platforms:` section
+1. Update the `description` and any required support references
 2. Add platform-specific code in #ifdef blocks
 3. Test on new platform
 4. Update Integration Notes
@@ -356,10 +302,8 @@ To add a new platform variant to an existing skill:
 
 Found a bug? Help us improve:
 
-1. Check [existing issues](../../issues)
-2. Create new issue using appropriate template
-   - [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md)
-   - [Feature Request](.github/ISSUE_TEMPLATE/feature_request.md)
+1. Check [existing issues](https://github.com/wedsamuel1230/arduino-skills/issues)
+2. Open a new issue or discussion with the relevant reproduction details
 3. Include platform, board, and reproduction steps
 
 ## Frequently Asked Questions
@@ -390,9 +334,9 @@ A: Use F() macro for strings, limit arrays, avoid serial prints in loops.
 
 ## Need Help?
 
-- Check existing [issues](../../issues)
+- Check existing [issues](https://github.com/wedsamuel1230/arduino-skills/issues)
 - Read [CONTRIBUTING.md](CONTRIBUTING.md#questions)
-- Ask in a GitHub [discussion](../../discussions)
+- Ask in a GitHub [discussion](https://github.com/wedsamuel1230/arduino-skills/discussions)
 
 ---
 

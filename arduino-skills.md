@@ -95,19 +95,32 @@ All board-specific code must be isolated in `config.h` using conditional compila
 
 ## Skill Structure Requirements
 
-Every SKILL.md file must include:
+Every active skill must use the current Agent Skills frontmatter contract:
 
-1. **Description** — What the skill does (1-2 sentences)
-2. **When to Use** — Trigger conditions for the skill
-3. **Core Principles** — Key concepts (3-5 bullets)
-4. **Implementation** — Complete, runnable code examples
-5. **Verification Steps** — How to test the code
-6. **Common Pitfalls** — ❌ vs ✅ comparisons
-7. **Engineering Rationale** — Why decisions were made
-8. **Advanced Patterns** — Extensions and optimizations
-9. **Integration Notes** — How to combine with other skills
-10. **Acceptance Criteria** — Pass/fail checklist
-11. **References** — Links to datasheets, app notes, or standards
+```yaml
+---
+name: skill-name
+description: Explain what the skill does and when to use it.
+compatibility: Optional. Mention runtime or tool constraints only when needed.
+---
+```
+
+Body sections are flexible. The main requirement is that `SKILL.md` stays
+focused enough to load cleanly at activation time.
+
+Recommended structure:
+
+1. **Overview** — Short statement of purpose
+2. **Workflow** — The core steps the agent should follow
+3. **Verification** — How to confirm the output is correct
+4. **References** — Explicit pointers to `references/`, `scripts/`, or `assets/`
+
+Progressive-disclosure rule:
+
+- Keep `SKILL.md` focused and under 500 lines
+- Move heavy examples, deep troubleshooting, lookup tables, and long reference
+  material into support files
+- Tell the agent when to open each referenced file
 
 ---
 
@@ -181,14 +194,14 @@ All Python automation scripts use **uv** for dependency management:
 
 ```bash
 # List available patterns
-uv run arduino-code-generator/scripts/generate_snippet.py --list
+uv run skills/arduino-code-generator/scripts/generate_snippet.py --list
 
 # Generate code
-uv run arduino-code-generator/scripts/generate_snippet.py \
+uv run skills/arduino-code-generator/scripts/generate_snippet.py \
     --pattern i2c --board esp32
 
 # Scaffold project
-uv run arduino-project-builder/scripts/scaffold_project.py \
+uv run skills/arduino-project-builder/scripts/scaffold_project.py \
     --type environmental --board esp32 --name "WeatherStation"
 ```
 

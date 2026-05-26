@@ -12,6 +12,7 @@ Translates cryptic compiler errors into actionable fixes for Arduino/ESP32/RP204
 This skill includes bundled tools:
 
 - **scripts/parse_errors.py** - Automated error analysis with 20+ error patterns
+- **../../docs/board-support/uno-r4-family.md** - Shared Uno R4 board-family caveats
 
 ## Quick Start
 
@@ -42,6 +43,8 @@ When user pastes an error message:
 2. Explain what it means in simple terms
 3. Show the specific fix with code example
 4. Explain WHY this error happens (educational value)
+5. If the target is Uno R4 family and the failure touches WiFi, OTA, USB, or
+   board recognition, open `../../docs/board-support/uno-r4-family.md`
 
 ## Common Compilation Errors
 

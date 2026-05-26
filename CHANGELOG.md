@@ -4,6 +4,30 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-05-27
+
+### Added
+- **Maker-first skill wave**
+  - `skills/ota-deployment-guardian/`
+  - `skills/sensor-calibration-workbench/`
+  - `skills/field-power-and-connectivity-triager/`
+  - `skills/i2c-bringup-diagnostician/`
+- **Uno R4 shared support notes**
+  - `docs/board-support/uno-r4-family.md`
+- **Archived workflow and research docs**
+  - `docs/workflows/agent-skills-canonicalization/`
+  - `docs/research/embedded-pain-points/`
+  - `docs/research/maker-pain-points/`
+
+### Changed
+- **README.md** - Updated version badge to `1.5.0`, corrected install guidance, removed stale marketplace references, and added release-tag guidance
+- **CONTRIBUTING.md** - Removed dead links and aligned contribution guidance with the current repo surface
+- **DEVELOPMENT.md** - Replaced placeholder repository URLs and removed references to absent GitHub templates
+
+### Fixed
+- **Repository layout** - Moved planning artifacts out of the root so the publish-facing surface is limited to core project files
+- **Release metadata** - Aligned current version and repository links for the next publish/tag step
+
 ## [1.4.0] - 2026-02-02
 
 ### Added
@@ -487,12 +511,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Links
 
-- [GitHub Repository](https://github.com/yourusername/arduino-skills)
+- [GitHub Repository](https://github.com/wedsamuel1230/arduino-skills)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Design Principles](arduino-skills.md)
 - [README](README.md)
 
 ---
 
-**Last Updated:** 2026-02-01  
-**Current Version:** 1.3.0
+**Last Updated:** 2026-05-27  
+**Current Version:** 1.5.0

@@ -1,6 +1,7 @@
 ---
 name: datasheet-interpreter
 description: Extracts key specifications from component datasheet PDFs for maker projects. Use when user shares a datasheet PDF URL, asks about component specs, needs pin assignments, I2C addresses, timing requirements, or register maps. Downloads and parses PDF to extract essentials. Complements datasheet-parser for quick lookups.
+metadata: {triggers: "datasheet, pinout, I2C address, timing requirement, register map"}
 ---
 
 # Datasheet Interpreter
@@ -442,3 +443,9 @@ int16_t readReg16(uint8_t reg) {
 - 🚩 Missing timing diagrams for protocols
 
 → If you see these, try to find a better quality datasheet from the original manufacturer
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

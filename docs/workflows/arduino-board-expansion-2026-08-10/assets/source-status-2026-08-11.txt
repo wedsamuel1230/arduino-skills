@@ -1,0 +1,19 @@
+Source status command: Python subprocess calls curl -LfsS --max-time 20 for
+every indexed source of the four added profiles.
+
+arduino-mega-2560 200 https://docs.arduino.cc/hardware/mega-2560
+arduino-mega-2560 200 https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega640-1280-1281-2560-2561-Datasheet-DS40002211A.pdf
+arduino-mega-2560 200 https://github.com/arduino/ArduinoCore-avr/blob/11b9130371e8447920edb65a75706a6c951e51fc/variants/mega/pins_arduino.h
+arduino-nano-every 200 https://docs.arduino.cc/hardware/nano-every
+arduino-nano-every 200 https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega4808-09-DataSheet-DS40002173C.pdf
+arduino-nano-every 200 https://github.com/arduino/ArduinoCore-megaavr/blob/bbdfd4b8c5f0c6bdaec4dc162460c32d993e7d4e/variants/nona4809/pins_arduino.h
+arduino-nano-esp32 200 https://docs.arduino.cc/hardware/nano-esp32
+arduino-nano-esp32 200 https://docs.arduino.cc/resources/pinouts/ABX00083-full-pinout.pdf
+arduino-nano-esp32 200 https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/arduino_nano_nora/pins_arduino.h
+arduino-nano-esp32 200 https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf
+esp32-c3-devkitc-02 200 https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c3/esp32-c3-devkitc-02/user_guide.html
+esp32-c3-devkitc-02 200 https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf
+esp32-c3-devkitc-02 200 https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/api-reference/peripherals/gpio.html
+esp32-c3-devkitc-02 200 https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/esp32c3/pins_arduino.h
+
+Result: 14/14 added-profile source URLs returned HTTP 200 on 2026-08-11.

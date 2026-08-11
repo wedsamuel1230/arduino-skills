@@ -1,0 +1,13 @@
+{
+  "name": "arduino-skills",
+  "version": "1.6.0",
+  "description": "Toolchain-neutral, hardware-aware Arduino and embedded development skills.",
+  "author": {
+    "name": "arduino-skills contributors",
+    "url": "https://github.com/wedsamuel1230/arduino-skills"
+  },
+  "homepage": "https://github.com/wedsamuel1230/arduino-skills",
+  "repository": "https://github.com/wedsamuel1230/arduino-skills",
+  "license": "MIT",
+  "keywords": ["arduino", "embedded", "esp32", "rp2040", "hardware", "firmware"]
+}

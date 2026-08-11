@@ -1,0 +1,22 @@
+# v1.6.0 Release Sprint Contract
+
+- sprint_id: release-v1.6.0-loop-eval
+- included_tasks:
+  - loop-engine fixture evaluator
+  - embedded-project-loop recommendation
+  - public documentation and release notes
+  - final verification and GitHub publication
+- excluded_tasks:
+  - physical board wiring, flashing, measurement, upload, and deployment tests
+  - new board-family research beyond the accepted nine profiles
+  - global skill replacement or credential changes
+- done_criteria:
+  - the loop-engine case passes and rejects its invalid fixture
+  - existing conventions and board profiles remain intact
+  - docs identify the recommended entry point and v1.6.0
+  - commit, annotated tag, and origin push succeed
+- verification_criteria:
+  - all repository validators pass
+  - official plugin validator passes
+  - JSON, Python, diff, and release metadata checks pass
+  - final report lists unverified physical and semantic review boundaries

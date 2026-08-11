@@ -4,6 +4,112 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-08-11
+
+### Added
+
+- Mainstream plugin packaging: portable `plugin.json`, Codex
+  `.codex-plugin/plugin.json` and marketplace entry, Claude Code and Cursor
+  adapters, and thin `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` wrappers.
+- `pin-assignment`, `board-selection`, `wiring-safety-check`,
+  `non-blocking-patterns`, `library-selection`, `memory-budgeting`,
+  `hardware-tdd`, and `embedded-project-loop` skills.
+- Board reference index and profiles for Uno R3/R4, classic ESP32/WROOM,
+  ESP32-S3, and Pico/Pico W; skill-gap and loop-layer research reports.
+- Deterministic plugin, behavioral, regression, and board-source eval tooling
+  under `scripts/` and `evals/`.
+- Declarative forward-contract cases for all ten representative prompts,
+  including route order, trigger precedence, shared output sections, and the
+  required pin, wiring, and blocked-gate scenarios.
+- A dated board source ledger with fact-to-source mappings and immutable commit
+  pins for the Arduino-ESP32 and Arduino-Pico variant references.
+- Four additional source-backed board profiles: Arduino Mega 2560 Rev3,
+  Arduino Nano Every, Arduino Nano ESP32, and ESP32-C3-DevKitC-02.
+- A machine-readable `references/boards/index.json` inventory and a
+  discoverable `scripts/validate_board_references.py` gate for profile fields,
+  official source URLs, fact maps, explicit gaps, and source-ledger coverage.
+- A dedicated `loop-engine-evidence-contract` evaluation with valid and
+  fail-closed invalid durable-loop fixtures for `embedded-project-loop`.
+- Online research notes for Agent Skills frontmatter, progressive disclosure,
+  composable skills, and loop-engineering evidence boundaries.
+
+### Changed
+
+- Refined `arduino-workflow-router` to route combined workflows through board
+  selection, pin/wiring safety, library/memory, timing, testing, and durable
+  physical gates.
+- Refined `arduino-serial-monitor` to own structured serial debugging rather
+  than adding an overlapping serial skill.
+- Corrected the ESP32-S3 research reference to avoid applying classic ESP32
+  GPIO34-39 input-only behavior to S3 without checking the exact module.
+- Corrected Codex marketplace source metadata to the documented local source
+  object, made the serial helper self-contained with PEP 723 dependencies,
+  repaired a malformed Markdown output-contract fence, and added trigger
+  metadata to every active skill.
+- Made the serial monitor's optional imports lazy so `--help` works with the
+  host Python runtime, and added resumable long-run manifest, backlog, sprint,
+  heartbeat, and resume-token artifacts for this refinement.
+- Removed stale per-skill Claude marketplace files so root provider adapters are
+  the only discovery metadata surface; corrected the release push example to
+  use `v1.6.0`.
+- Expanded the board matrix without changing the five existing profile files;
+  the plugin validator now retains its legacy checks and consumes the dynamic
+  board index as an additional gate.
+- Made `embedded-project-loop` the recommended first skill for physical,
+  recovery, measurement, and multi-session work, with the router following it
+  for specialist selection.
+- Updated the shared contract, README, contributor/development guides, plugin
+  distribution notes, eval inventory, and release notes for the loop contract.
+- Prepared the `v1.6.0` release tag from the existing `v1.5.0` baseline.
+
+### Skipped
+
+- No separate `serial-debugging` skill: the existing serial monitor remains the
+  single owner for runtime serial evidence.
+- No physical board flashing, wiring, measurement, or global skill replacement
+  was performed.
+
+### Flagged conflicts
+
+- The requested `/Users/wed/.agents/skills/arduino/` directory does not exist;
+  the repository `skills/` tree is the canonical source and the five existing
+  global Arduino sibling skills were left untouched.
+- Codex marketplace and legacy manifest behavior is release-sensitive; the
+  package includes both the documented `.codex-plugin` adapter and portable
+  root metadata, with validation evidence recorded for the installed schema.
+- Product pages without immutable public revisions, exact board/module
+  variants, and aggregate board-current limits remain explicitly date-checked
+  or unverified rather than being guessed over.
+- Arduino GIGA R1 WiFi and ESP32-C6-DevKitC-1 were deferred from this bounded
+  loop. They remain candidates for a later profile after a separate source and
+  core-variant review; they are not silently treated as supported here.
+- Four bounded fresh-context post-repair reviewer attempts produced no verdict
+  artifact; this is an evaluator-availability blocker, not a passing review.
+
+### Research basis
+
+- Agent Skills specification and best practices: `agentskills.io`.
+- Local `skill-creator`, `plugin-creator`, `loop-engine`, and
+  `long-run-harness-execution` contracts.
+- Official Arduino, Espressif, Raspberry Pi, and Arduino-core board sources;
+  source ledger and unresolved board-family gaps are in `references/boards/`.
+
+### Existing baseline additions
+
+- `arduino-workflow-router` for board/toolchain intake and combined embedded
+  workflows across firmware, electronics, power, networking, enclosure,
+  deployment, and maintenance.
+- Shared board profile, lifecycle/evidence, output, recovery, security, and
+  maintenance references.
+- `scripts/validate_arduino_skill_contract.py` for deterministic cross-skill
+  review coverage checks.
+
+- Updated all active skills and contributor docs to name assumptions, tools and
+  versions, implementation steps, evidence stages, limitations, and recovery or
+  security notes.
+- Installed the distinct official OpenAI `cli-creator` and `plugin-creator`
+  companions globally for Codex without overwriting the existing `skill-creator`.
+
 ## [1.5.0] - 2026-05-27
 
 ### Added

@@ -1,0 +1,104 @@
+{
+  "goal": "Refine the Arduino skill family so it is toolchain-neutral, hardware-aware, lifecycle-oriented, composable across embedded disciplines, and aligned with current Agent Skills authoring practice.",
+  "primary_metric": {
+    "name": "review_requirements_covered",
+    "direction": "increase",
+    "threshold": "8/8 review themes pass the repository contract validator"
+  },
+  "correctness_gates": [
+    "python3 scripts/validate_agent_skills.py exits 0",
+    "python3 scripts/validate_arduino_skill_contract.py exits 0",
+    "all active SKILL.md files remain under 500 lines",
+    "root documentation links resolve to repository files",
+    "global companion skills exist at ~/.agents/skills/cli-creator and ~/.agents/skills/plugin-creator"
+  ],
+  "hard_constraints": [
+    "preserve existing skill directory names and examples",
+    "do not claim compilation proves hardware or system success",
+    "do not include secrets, tokens, or machine-local credentials in repository artifacts",
+    "do not overwrite the existing global skill-creator surface",
+    "keep the router concise and move detail into references"
+  ],
+  "editable_surface": [
+    "skills/*/SKILL.md",
+    "skills/arduino-workflow-router/",
+    "docs/",
+    "README.md",
+    "arduino-skills.md",
+    "CONTRIBUTING.md",
+    "DEVELOPMENT.md",
+    "CHANGELOG.md",
+    "scripts/validate_arduino_skill_contract.py"
+  ],
+  "protected_files": [
+    "skills/*/examples/**",
+    "skills/*/scripts/**",
+    "skills/*/templates/**",
+    "existing global ~/.agents/skills/skill-creator/**"
+  ],
+  "baseline": {
+    "id": "arduino-skills-baseline-2026-08-10",
+    "commands": [
+      "python3 scripts/validate_agent_skills.py",
+      "for f in skills/*/SKILL.md; do wc -l \"$f\"; done | sort -nr"
+    ],
+    "results": [
+      "20 repository skills and 5 global Arduino sibling skills were inventoried",
+      "no literal /Users/wed/.agents/skills/arduino/ root existed",
+      "raw ordered constexpr int and C/C++ embedded-first conventions were recorded"
+    ],
+    "evidence_paths": [
+      "docs/workflows/arduino-skills-refinement-2026-08-10/progress.md",
+      "docs/workflows/arduino-skills-refinement-2026-08-10/research.md"
+    ]
+  },
+  "best_known_state": {
+    "id": "arduino-skills-final-2026-08-10-repair",
+    "source": "repair-serial-help-and-harness-artifacts",
+    "verified": true,
+    "evidence_paths": [
+      "docs/workflows/arduino-skills-refinement-2026-08-10/review.md",
+      "docs/workflows/arduino-skills-refinement-2026-08-10/report.md",
+      "docs/workflows/arduino-skills-refinement-2026-08-10/run-manifest.md",
+      "docs/workflows/arduino-skills-refinement-2026-08-10/heartbeat.md",
+      "docs/workflows/arduino-skills-refinement-2026-08-10/resume-token.md"
+    ]
+  },
+  "experiment_budget": 3,
+  "per_iteration_budget": "one cohesive repository patch followed by deterministic validation",
+  "evaluation_method": "python3 scripts/validate_arduino_skill_contract.py plus python3 scripts/validate_agent_skills.py and targeted link/line-count checks",
+  "acceptance_rule": "Keep a candidate only when both validators pass, the 8/8 review themes are covered, no hard constraint is violated, and the diff remains scoped.",
+  "rollback_method": "Restore only the current experiment surface with apply_patch or an explicit reverse patch after inspecting git diff; preserve unrelated user changes and rerun both validators.",
+  "plateau_rule": "Stop after two consecutive candidates add no new passing review theme or require broadening beyond the editable surface.",
+  "stop_conditions": [
+    "validator cannot express an objective requirement without judging prose aesthetics",
+    "a patch would remove existing operational guidance without a referenced replacement",
+    "global installation would overwrite a distinct user-owned skill",
+    "hardware or live-device evidence is required but unavailable",
+    "rollback verification fails"
+  ],
+  "experiment_history": [
+    {
+      "id": "experiment-1",
+      "decision": "accepted as red gate",
+      "result": "new contract validator correctly reported 0/8 themes before implementation"
+    },
+    {
+      "id": "experiment-2",
+      "decision": "rejected as intermediate state",
+      "result": "router and references reached 8/8, but a generic code-fence patch misplaced a contract block and pushed one skill to 502 lines"
+    },
+    {
+      "id": "experiment-3",
+      "decision": "kept",
+      "result": "8/8 contract themes, 28 skills, 0 structural warnings/errors, all skills at or below 500 lines, 10/10 forward-contract cases"
+    }
+  ],
+  "open_uncertainties": [
+    "fresh-context semantic review must be reconciled after the latest repair slice",
+    "the local forward harness is deterministic contract evidence, not a model invocation",
+    "vendor-specific board behavior cannot be verified without target hardware and tool versions",
+    "the installer reports PromptScript incompatibility even though Codex copies completed",
+    "no physical hardware evidence is available for this software-and-docs run"
+  ]
+}

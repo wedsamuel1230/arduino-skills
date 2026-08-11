@@ -1,6 +1,7 @@
 ---
 name: arduino-code-generator
-description: Generate Arduino/embedded C++ code snippets and patterns on demand for UNO/ESP32/RP2040. Use when users request Arduino code for sensors, actuators, communication protocols, state machines, non-blocking timers, data logging, or hardware abstraction. Generates production-ready code with proper memory management, timing patterns, and board-specific optimization. Supports DHT22, BME280, buttons, I2C/SPI, EEPROM, SD cards, WiFi, and common peripherals.
+description: Generate Arduino and embedded C++ snippets for sensors, actuators, buses, state machines, timing, data logging, and hardware abstraction. Use when a user requests implementation code and provide the exact board, framework, toolchain, pins, voltage, memory, and library versions first. Bundled templates target UNO, ESP32, and RP2040; document unsupported board or vendor-framework behavior instead of guessing.
+metadata: {triggers: "generate Arduino code, C++, sensor, actuator, state machine"}
 ---
 
 # Arduino Code Generator
@@ -34,6 +35,15 @@ uv run --no-project scripts/generate_snippet.py --pattern buttons --board uno --
 ```bash
 uv run --no-project scripts/generate_snippet.py --interactive
 ```
+
+## Target Gate
+
+Read [the shared contract](../../docs/arduino-skill-contract.md) and the board
+profile before selecting pins, APIs, or libraries. Keep board-specific branches
+isolated, check memory and peripheral constraints, and state whether the result
+has build proof only or also has upload, hardware, and system proof. The
+generator's board flag is a template selector, not evidence that the generated
+code works on a similar-looking board.
 
 ## Resources
 
@@ -128,3 +138,9 @@ See [patterns-data-logging.md](references/patterns-data-logging.md) | Example: [
 - **templates/** - Code output templates and structure guidelines
 - **references/** - Detailed pattern documentation and API references
 - **references/README.md** - Reference structure and formatting guide
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

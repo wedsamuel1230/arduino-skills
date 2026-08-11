@@ -2,6 +2,7 @@
 name: circuit-debugger
 description: |
   Systematic hardware debugging guide for Arduino/ESP32/RP2040 circuits. Use when user reports: circuit not working, components getting hot, no power, intermittent failures, unexpected behavior, sensor not responding, LED not lighting, motor not spinning. Guides through power checks, continuity testing, signal tracing, and component isolation using multimeter techniques.
+metadata: {triggers: "circuit failure, no power, hot component, sensor not responding, multimeter"}
 ---
 
 # Circuit Debugger
@@ -237,3 +238,9 @@ If after this protocol you still can't find the issue:
 ## References
 - See [references/multimeter-guide.md](references/multimeter-guide.md) for detailed measurement techniques
 - See [references/common-mistakes.md](references/common-mistakes.md) for beginner pitfall gallery
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

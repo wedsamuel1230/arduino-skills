@@ -1,6 +1,7 @@
 ---
 name: readme-generator
 description: Auto-generates professional README.md files for Arduino/ESP32/RP2040 projects following open-source best practices. Use when user wants to document their project for GitHub, needs help writing a README, or says "make my project shareable". Follows awesome-readme standards with sections for Overview, Hardware, Software, Setup, Usage, Troubleshooting, and Contributing.
+metadata: {triggers: "write README, document Arduino project, GitHub documentation"}
 ---
 
 # README Generator
@@ -476,3 +477,9 @@ Before publishing, verify:
 □ No broken links
 □ Spelling/grammar checked
 ```
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

@@ -4,7 +4,48 @@ This document defines the core design principles and constraints for all skills 
 
 ## Core Rules
 
-All skills MUST follow these three fundamental rules:
+All skills MUST follow these rules. The router and shared contract provide the
+cross-skill workflow; specialists keep domain-specific detail focused.
+
+### Stable Pin Declaration Convention
+
+When a pin declaration is requested, emit raw C++ declarations in the user's
+fixed logical order, for example:
+
+```cpp
+constexpr int btn_esc = 101;
+constexpr int btn_enter = 102;
+```
+
+Do not replace this with an enum, macro, array, or explanatory wrapper. Keep the
+logical IDs separate from the board's physical GPIO map, which still requires
+board-specific input/output, strapping, flash/PSRAM, USB, voltage, pull, and
+current checks.
+
+### Composable Guardrails
+
+Use `board-selection` before choosing an exact target, `pin-assignment` and
+`wiring-safety-check` before wiring, `library-selection` and `memory-budgeting`
+before adding dependencies, `non-blocking-patterns` for timing, and
+`hardware-tdd` plus `embedded-project-loop` when physical evidence is needed.
+
+### Recommended Lifecycle Entry
+
+Use `embedded-project-loop` first for any physical, recovery, measurement, or
+multi-session request. It owns the durable goal, one next todo, append-only
+experiment evidence, rollback boundary, and user-owned physical gate. Continue
+through `arduino-workflow-router` for board, toolchain, wiring, firmware, test,
+and deployment specialists. A heartbeat or compile result never closes a later
+proof stage.
+
+### 0. Universal Intake And Routing
+
+Before board-dependent advice, record the exact board/revision, MCU, pins,
+memory, peripherals, voltage/current, protocols, framework, toolchain, and
+versions. Use `arduino-workflow-router` when the request crosses firmware,
+electronics, power, networking, enclosure, deployment, or maintenance.
+The supported toolchain branches are Arduino IDE, Arduino CLI, PlatformIO, and
+vendor-specific tools; do not merge their commands or compatibility claims.
 
 ### 1. Verifiable Output
 Every code example must include:
@@ -63,13 +104,20 @@ All board-specific code must be isolated in `config.h` using conditional compila
 
 ---
 
-## Supported Platforms
+## Reference Platforms
+
+These profiles are examples, not a guarantee for every board in the family.
+The exact target and revision always win over a remembered platform table.
 
 | Platform | SRAM | Flash | Baud Rate | Special Features |
 |----------|------|-------|-----------|------------------|
 | **Arduino UNO/Nano** | 2 KB | 32 KB | 9600 | F() macro required for strings |
 | **ESP32 DevKit** | 520 KB | 4 MB | 115200 | WiFi, BLE, dual-core, FreeRTOS |
 | **RP2040 (Pico)** | 264 KB | 2 MB | 115200 | Dual-core, PIO, USB host |
+
+Exact board profiles additionally cover Arduino Mega 2560 Rev3, Nano Every,
+Nano ESP32, and ESP32-C3-DevKitC-02. Read `references/boards/index.json` and
+the selected profile before assigning pins or making voltage/current claims.
 
 ---
 
@@ -122,6 +170,10 @@ Progressive-disclosure rule:
   material into support files
 - Tell the agent when to open each referenced file
 
+Every active skill also links `docs/arduino-skill-contract.md` and reports
+assumptions, required tools and versions, implementation steps, tests/evidence,
+known limitations, and recovery/security notes.
+
 ---
 
 ## Pattern Library
@@ -151,8 +203,17 @@ Progressive-disclosure rule:
 - [ ] Serial output matches expected results
 - [ ] Timing is non-blocking (no `delay()` in main loop)
 - [ ] Memory usage documented (SRAM/Flash percentages)
-- [ ] Works on target platform (UNO/ESP32/RP2040)
+- [ ] Works on the exact target board and toolchain (or limitation is documented)
 - [ ] Edge cases handled (overflow, disconnected sensors, etc.)
+- [ ] Multi-session or physical work has a durable loop state, one next todo,
+      append-only ledger, and explicit physical gate
+
+Label each result as build, upload, hardware, system, or deployment proof.
+Compilation success alone is not hardware or system success.
+
+Run `python3 scripts/run_arduino_evals.py` before release. The loop-engine
+scenario must accept complete durable artifacts and reject incomplete state or
+ledger fixtures.
 
 ### Manual Testing Protocol
 1. Upload code to target board
@@ -182,6 +243,8 @@ Skills are designed for teaching:
 - ❌ Hardcoded board assumptions (use config.h abstraction)
 - ❌ Blocking code (delay() in main loop)
 - ❌ Unsafe string handling (use F() macro on UNO)
+- ❌ Secrets, API keys, private keys, or passwords in source, examples, or logs
+- ❌ Unpinned dependency/toolchain claims presented as reproducible results
 
 ### License
 All skills are MIT-licensed for development, research, and prototyping.

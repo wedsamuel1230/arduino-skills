@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "checked": "2026-08-11",
+  "description": "Source-backed board profiles for board selection and hardware-aware Arduino workflows.",
+  "source_policy": "Use the exact board, revision, module suffix, framework, core, and toolchain. Treat product pages as date-checked when no immutable revision is published.",
+  "profiles": [
+    {
+      "id": "arduino-uno-r3",
+      "name": "Arduino Uno R3",
+      "path": "arduino-uno-r3.md",
+      "ledger_label": "Uno R3",
+      "status": "source-backed",
+      "frameworks": ["Arduino AVR"],
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-rev3",
+        "https://onlinedocs.microchip.com/oxy/GUID-0EC909F9-8FB7-46B2-BF4B-05290662B5C3-en-US-12/index.html"
+      ]
+    },
+    {
+      "id": "arduino-uno-r4",
+      "name": "Arduino Uno R4 Minima and WiFi",
+      "path": "arduino-uno-r4.md",
+      "ledger_label": "Uno R4",
+      "status": "source-backed",
+      "frameworks": ["Arduino Renesas", "Arduino Mbed OS for connectivity"],
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-r4-minima",
+        "https://docs.arduino.cc/hardware/uno-r4-wifi"
+      ]
+    },
+    {
+      "id": "esp32-devkit",
+      "name": "Classic ESP32 DevKit and WROOM",
+      "path": "esp32-devkit.md",
+      "ledger_label": "Classic ESP32",
+      "status": "source-backed",
+      "frameworks": ["Arduino ESP32", "ESP-IDF"],
+      "sources": [
+        "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html",
+        "https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf"
+      ]
+    },
+    {
+      "id": "esp32-s3-devkit",
+      "name": "ESP32-S3 DevKit",
+      "path": "esp32-s3-devkit.md",
+      "ledger_label": "ESP32-S3",
+      "status": "source-backed",
+      "frameworks": ["Arduino ESP32", "ESP-IDF"],
+      "sources": [
+        "https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/peripherals/gpio.html",
+        "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"
+      ]
+    },
+    {
+      "id": "pico-pico-w",
+      "name": "Raspberry Pi Pico and Pico W",
+      "path": "pico-pico-w.md",
+      "ledger_label": "Pico/Pico W",
+      "status": "source-backed",
+      "frameworks": ["Arduino-Pico", "Pico SDK"],
+      "sources": [
+        "https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf",
+        "https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf"
+      ]
+    },
+    {
+      "id": "arduino-mega-2560",
+      "name": "Arduino Mega 2560 Rev3",
+      "path": "arduino-mega-2560.md",
+      "ledger_label": "Mega 2560 Rev3",
+      "status": "source-backed",
+      "frameworks": ["Arduino AVR"],
+      "sources": [
+        "https://docs.arduino.cc/hardware/mega-2560",
+        "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega640-1280-1281-2560-2561-Datasheet-DS40002211A.pdf",
+        "https://github.com/arduino/ArduinoCore-avr/blob/11b9130371e8447920edb65a75706a6c951e51fc/variants/mega/pins_arduino.h"
+      ]
+    },
+    {
+      "id": "arduino-nano-every",
+      "name": "Arduino Nano Every",
+      "path": "arduino-nano-every.md",
+      "ledger_label": "Nano Every",
+      "status": "source-backed",
+      "frameworks": ["Arduino megaAVR"],
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-every",
+        "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega4808-09-DataSheet-DS40002173C.pdf",
+        "https://github.com/arduino/ArduinoCore-megaavr/blob/bbdfd4b8c5f0c6bdaec4dc162460c32d993e7d4e/variants/nona4809/pins_arduino.h"
+      ]
+    },
+    {
+      "id": "arduino-nano-esp32",
+      "name": "Arduino Nano ESP32",
+      "path": "arduino-nano-esp32.md",
+      "ledger_label": "Nano ESP32",
+      "status": "source-backed",
+      "frameworks": ["Arduino ESP32", "MicroPython"],
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-esp32",
+        "https://docs.arduino.cc/resources/pinouts/ABX00083-full-pinout.pdf",
+        "https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/arduino_nano_nora/pins_arduino.h",
+        "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"
+      ]
+    },
+    {
+      "id": "esp32-c3-devkitc-02",
+      "name": "ESP32-C3-DevKitC-02",
+      "path": "esp32-c3-devkitc-02.md",
+      "ledger_label": "ESP32-C3 DevKitC-02",
+      "status": "source-backed",
+      "frameworks": ["Arduino ESP32", "ESP-IDF"],
+      "sources": [
+        "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c3/esp32-c3-devkitc-02/user_guide.html",
+        "https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf",
+        "https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/api-reference/peripherals/gpio.html",
+        "https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/esp32c3/pins_arduino.h"
+      ]
+    }
+  ]
+}

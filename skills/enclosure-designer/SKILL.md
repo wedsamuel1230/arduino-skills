@@ -1,6 +1,7 @@
 ---
 name: enclosure-designer
 description: Use when users need a 3D-printable enclosure for an Arduino, ESP32, or RP2040 project and need help with measurements, cutouts, print settings, or environmental protection.
+metadata: {triggers: "3D enclosure, case, cutout, mounting, print settings"}
 ---
 
 # Enclosure Designer
@@ -64,3 +65,9 @@ Use this skill when the user asks for:
   drives the enclosure volume.
 - Pair with `readme-generator` when the enclosure should be documented for a
   project repo.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

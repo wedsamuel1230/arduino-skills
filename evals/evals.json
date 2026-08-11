@@ -1,0 +1,149 @@
+{
+  "skill_name": "arduino-skills",
+  "evaluation_mode": "forward-contract",
+  "description": "Declarative prompt scenarios consumed by the local contract harness and a fresh-context reviewer.",
+  "evals": [
+    {
+      "id": "pin-assignment-esp32",
+      "skill": "pin-assignment",
+      "prompt": "Assign pins for 4 buttons and 2 LEDs on ESP32. Preserve the project pin declaration convention.",
+      "expected_output": "Six raw constexpr int declarations in fixed logical order; physical outputs avoid classic ESP32 input-only and strapping pins.",
+      "route": ["pin-assignment"],
+      "assertions": [
+        {"id": "pin_declarations_only", "type": "fixture_pin_declarations", "description": "Declarations are raw constexpr int lines in 101-106 order with no commentary."},
+        {"id": "pin_output_safety", "type": "fixture_pin_safety", "description": "Physical output choices do not use classic ESP32 input-only or strapping pins."},
+        {"id": "pin_no_commentary", "type": "skill_terms", "skill": "pin-assignment", "terms": ["emit only the declarations as plain text", "do not add a code fence", "trailing comment"]},
+        {"id": "pin_shared_contract", "type": "shared_output_contract", "description": "The response keeps assumptions, tools, steps, evidence, limitations, and recovery findable."}
+      ]
+    },
+    {
+      "id": "wiring-5v-esp32",
+      "skill": "wiring-safety-check",
+      "prompt": "Wire a 5V sensor to an ESP32 and tell me whether I can connect the data line directly.",
+      "expected_output": "Flags 3.3V GPIO compatibility and requires a level shifter or divider after checking the sensor I/O contract.",
+      "route": ["wiring-safety-check"],
+      "assertions": [
+        {"id": "wiring_voltage_levels", "type": "skill_terms", "skill": "wiring-safety-check", "terms": ["5 v", "3.3 v"]},
+        {"id": "wiring_level_shift", "type": "skill_terms", "skill": "wiring-safety-check", "terms": ["level shifter", "divider"]},
+        {"id": "wiring_ground_limit", "type": "skill_terms", "skill": "wiring-safety-check", "terms": ["shared ground does not solve"]},
+        {"id": "wiring_shared_contract", "type": "shared_output_contract", "description": "Electrical advice is separated from build and upload proof."}
+      ]
+    },
+    {
+      "id": "blocked-physical-step",
+      "skill": "embedded-project-loop",
+      "prompt": "The firmware compiles. Ask me to verify the ESP32 3V3 rail before we continue, but assume I do not have a meter.",
+      "expected_output": "Asks a concrete measurement gate and accepts blocked: no meter without claiming hardware success.",
+      "route": ["embedded-project-loop"],
+      "assertions": [
+        {"id": "loop_physical_gate", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["physical gate", "specific question"]},
+        {"id": "loop_measurement_request", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["measurement", "expected:"]},
+        {"id": "loop_blocked_state", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["blocked:", "unverified yes"]},
+        {"id": "loop_shared_contract", "type": "shared_output_contract", "description": "The loop does not convert a compile result into hardware proof."}
+      ]
+    },
+    {
+      "id": "board-selection",
+      "skill": "board-selection",
+      "prompt": "Choose between Uno R4 WiFi, classic ESP32 DevKit, and Pico W for a battery-powered WiFi sensor.",
+      "expected_output": "Compares exact board, power, memory, radio, toolchain, update, and recovery constraints with sources.",
+      "route": ["board-selection"],
+      "assertions": [
+        {"id": "board_exact_target", "type": "skill_terms", "skill": "board-selection", "terms": ["exact board", "module"]},
+        {"id": "board_rejected_candidates", "type": "skill_terms", "skill": "board-selection", "terms": ["rejected alternatives", "open risks"]},
+        {"id": "board_verification_status", "type": "skill_terms", "skill": "board-selection", "terms": ["verification status", "primary source"]},
+        {"id": "board_shared_contract", "type": "shared_output_contract", "description": "The decision records assumptions and version boundaries."}
+      ]
+    },
+    {
+      "id": "wiring-and-pin-composition",
+      "skill": "arduino-workflow-router",
+      "prompt": "Build a four-button ESP32 controller with LEDs, safe wiring, debounce, serial diagnostics, and a target test plan.",
+      "expected_output": "Routes board selection/intake, pin assignment, wiring safety, non-blocking timing, serial monitoring, and hardware TDD in order.",
+      "route": ["arduino-workflow-router", "board-selection", "pin-assignment", "wiring-safety-check", "non-blocking-patterns", "arduino-serial-monitor", "hardware-tdd"],
+      "assertions": [
+        {"id": "combined_route_order", "type": "route_order", "description": "The combined route starts with the router and preserves the documented specialist order."},
+        {"id": "combined_serial_route", "type": "skill_terms", "skill": "arduino-workflow-router", "terms": ["arduino-serial-monitor", "structured runtime evidence"]},
+        {"id": "combined_trigger_precedence", "type": "trigger_precedence", "description": "The router wins over overlapping project-builder and board-selection triggers for combined work."},
+        {"id": "combined_shared_contract", "type": "shared_output_contract", "description": "The route keeps one owner per decision and labels evidence stages."}
+      ]
+    },
+    {
+      "id": "non-blocking",
+      "skill": "non-blocking-patterns",
+      "prompt": "Replace delay-based button debounce and sensor polling with a watchdog-safe millis state machine.",
+      "expected_output": "Uses wrap-safe elapsed timing, explicit states, bounded work, debounce, and timeout behavior.",
+      "route": ["non-blocking-patterns"],
+      "assertions": [
+        {"id": "timing_no_delay_shortcut", "type": "skill_terms", "skill": "non-blocking-patterns", "terms": ["a shorter delay is fine", "delay()"]},
+        {"id": "timing_wraparound", "type": "skill_terms", "skill": "non-blocking-patterns", "terms": ["wraparound", "unsigned long"]},
+        {"id": "timing_timeout", "type": "skill_terms", "skill": "non-blocking-patterns", "terms": ["timeout", "watchdog"]},
+        {"id": "timing_shared_contract", "type": "shared_output_contract", "description": "Timing claims include reproducible evidence."}
+      ]
+    },
+    {
+      "id": "library-selection",
+      "skill": "library-selection",
+      "prompt": "Pick an I2C sensor library for Arduino-Pico and ESP32-S3 and pin a version for a connected product.",
+      "expected_output": "Compares architecture, core/version, API, footprint, maintenance, provenance, license, and security.",
+      "route": ["library-selection"],
+      "assertions": [
+        {"id": "library_architecture", "type": "skill_terms", "skill": "library-selection", "terms": ["architecture", "framework", "compatibility"]},
+        {"id": "library_pinned_version", "type": "skill_terms", "skill": "library-selection", "terms": ["pinned version", "version"]},
+        {"id": "library_compile_fixture", "type": "skill_terms", "skill": "library-selection", "terms": ["compile fixture", "minimal"]},
+        {"id": "library_shared_contract", "type": "shared_output_contract", "description": "Dependency decisions name tool and version evidence."}
+      ]
+    },
+    {
+      "id": "memory-budget",
+      "skill": "memory-budgeting",
+      "prompt": "An Uno sketch is running out of SRAM after adding JSON and String values. Make a memory plan.",
+      "expected_output": "Separates static/heap/stack/flash, uses F() and bounded buffers where appropriate, and measures margin.",
+      "route": ["memory-budgeting"],
+      "assertions": [
+        {"id": "memory_flash_strings", "type": "skill_terms", "skill": "memory-budgeting", "terms": ["f()", "bounded buffers"]},
+        {"id": "memory_categories", "type": "skill_terms", "skill": "memory-budgeting", "terms": ["static", "heap", "stack", "flash"]},
+        {"id": "memory_runtime_evidence", "type": "skill_terms", "skill": "memory-budgeting", "terms": ["runtime memory", "margin"]},
+        {"id": "memory_shared_contract", "type": "shared_output_contract", "description": "Compile and runtime memory evidence remain separate."}
+      ]
+    },
+    {
+      "id": "hardware-tdd",
+      "skill": "hardware-tdd",
+      "prompt": "Create tests for an ESP32 motor controller that can run off-target and then be accepted on the real board.",
+      "expected_output": "Maps host, simulation, build, target, and system tests without treating compile success as physical proof.",
+      "route": ["hardware-tdd", "embedded-project-loop"],
+      "assertions": [
+        {"id": "hardware_test_stages", "type": "skill_terms", "skill": "hardware-tdd", "terms": ["host", "simulation", "target", "system"]},
+        {"id": "hardware_physical_gate", "type": "skill_terms", "skill": "hardware-tdd", "terms": ["physical gate", "user"]},
+        {"id": "hardware_shared_contract", "type": "shared_output_contract", "description": "Target and system acceptance are not inferred from compilation."}
+      ]
+    },
+    {
+      "id": "serial-debugging",
+      "skill": "arduino-serial-monitor",
+      "prompt": "Capture structured ESP32 boot and sensor logs for a reset investigation without exposing WiFi secrets.",
+      "expected_output": "Uses stable event fields, preserves unfiltered boot logs, redacts secrets, and labels proof stages.",
+      "route": ["arduino-serial-monitor"],
+      "assertions": [
+        {"id": "serial_structured_fields", "type": "skill_terms", "skill": "arduino-serial-monitor", "terms": ["structured", "level=INFO", "event="]},
+        {"id": "serial_secret_boundary", "type": "skill_terms", "skill": "arduino-serial-monitor", "terms": ["secrets", "passwords", "tokens"]},
+        {"id": "serial_unfiltered_boot", "type": "skill_terms", "skill": "arduino-serial-monitor", "terms": ["unfiltered log", "first boot"]},
+        {"id": "serial_shared_contract", "type": "shared_output_contract", "description": "Serial observations are labeled hardware or system evidence only when captured."}
+      ]
+    },
+    {
+      "id": "loop-engine-evidence-contract",
+      "skill": "embedded-project-loop",
+      "prompt": "Resume a multi-session ESP32 project after a failed rail measurement and choose the next bounded experiment.",
+      "expected_output": "Reads durable loop state, changes one causal variable, records append-only evidence, and stops at a concrete physical gate or blocked state.",
+      "route": ["embedded-project-loop"],
+      "assertions": [
+        {"id": "loop_artifact_schema", "type": "loop_engine_fixture", "description": "The evaluator accepts complete loop artifacts and rejects incomplete state or ledger data."},
+        {"id": "loop_bounded_change", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["one causal", "append", "rollback"]},
+        {"id": "loop_physical_boundary", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["physical gate", "blocked:", "unverified"]},
+        {"id": "loop_shared_contract", "type": "shared_output_contract", "description": "Loop progress does not promote build evidence into hardware or system proof."}
+      ]
+    }
+  ]
+}

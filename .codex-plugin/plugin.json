@@ -1,0 +1,28 @@
+{
+  "name": "arduino-skills",
+  "version": "1.6.0",
+  "description": "Toolchain-neutral, hardware-aware Arduino and embedded development skills.",
+  "author": {
+    "name": "arduino-skills contributors",
+    "url": "https://github.com/wedsamuel1230/arduino-skills"
+  },
+  "homepage": "https://github.com/wedsamuel1230/arduino-skills",
+  "repository": "https://github.com/wedsamuel1230/arduino-skills",
+  "license": "MIT",
+  "keywords": ["arduino", "embedded", "esp32", "rp2040", "hardware", "firmware"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Arduino Embedded Skills",
+    "shortDescription": "Board-aware Arduino and embedded workflows",
+    "longDescription": "Composable skills for board selection, pin safety, C++ firmware, toolchains, testing, recovery, deployment, and long-running hardware work.",
+    "developerName": "arduino-skills contributors",
+    "category": "Developer Tools",
+    "capabilities": ["Analyze", "Generate", "Test", "Debug"],
+    "defaultPrompt": [
+      "Start physical or multi-session work with embedded-project-loop.",
+      "Route this complete Arduino hardware and firmware task.",
+      "Assign safe pins for this exact embedded board.",
+      "Separate compile, upload, hardware, and system proof."
+    ]
+  }
+}

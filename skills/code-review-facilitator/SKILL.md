@@ -1,6 +1,7 @@
 ---
 name: code-review-facilitator
 description: Automated code review for Arduino/ESP32/RP2040 projects focusing on best practices, memory safety, and common pitfalls. Use when user wants code feedback, says "review my code", needs help improving code quality, or before finalizing a project. Generates actionable checklists and specific improvement suggestions.
+metadata: {triggers: "review embedded code, Arduino code quality, memory safety, code feedback"}
 ---
 
 # Code Review Facilitator
@@ -494,3 +495,6 @@ void scanI2C() {
   }
 }
 ```
+
+## Shared Output Contract
+See [the shared Arduino skill contract](../../docs/arduino-skill-contract.md).

@@ -39,7 +39,19 @@ python skills/arduino-code-generator/scripts/generate_snippet.py --help
 
 # Test project builder
 python skills/arduino-project-builder/scripts/scaffold_project.py --help
+
+# Validate Agent Skills structure and the shared Arduino workflow contract
+python3 scripts/validate_agent_skills.py
+python3 scripts/validate_arduino_skill_contract.py
+python3 scripts/validate_arduino_plugin.py
+python3 scripts/run_arduino_evals.py
+git diff --check
 ```
+
+The forward suite includes `loop-engine-evidence-contract`. It validates a
+complete durable loop state and append-only ledger, and also proves that an
+incomplete fixture is rejected. This is contract evidence only; it does not
+replace user-supplied measurements or target-board tests.
 
 ## Workspace Structure
 
@@ -57,13 +69,55 @@ arduino-skills/
 │   ├── research/                # Archived discovery notes
 │   └── workflows/               # Archived PRD/plan/test-map artifacts
 ├── scripts/
-│   └── validate_agent_skills.py # Repo-local validator
+│   ├── validate_agent_skills.py # Agent Skills schema validator
+│   ├── validate_arduino_skill_contract.py # Cross-skill workflow validator
+│   ├── validate_arduino_plugin.py # Plugin, reference, and fixture validator
+│   └── run_arduino_evals.py     # Deterministic behavioral fixture runner
+├── evals/                       # Scenarios, fixtures, results, fresh review
+├── references/boards/           # Board-family facts and source links
 └── skills/
+    ├── arduino-workflow-router/
     ├── arduino-code-generator/
     ├── arduino-project-builder/
     ├── arduino-cli-skill/
     └── ...                      # Each skill owns its own SKILL.md/resources
 ```
+
+## Plugin Packaging And Evaluation
+
+`skills/` is the only content source of truth. The root `plugin.json`,
+`.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/`, marketplace manifests,
+and `AGENTS.md`/`CLAUDE.md`/`GEMINI.md` files are host adapters or routing
+wrappers. Do not duplicate skill bodies in them. See
+[docs/plugin-distribution.md](docs/plugin-distribution.md) for install commands.
+
+For local development, validate the package before publishing:
+
+```bash
+python3 scripts/validate_agent_skills.py
+python3 scripts/validate_arduino_skill_contract.py
+python3 scripts/validate_arduino_plugin.py
+python3 scripts/run_arduino_evals.py --output evals/eval-results.json
+git diff --check
+```
+
+The deterministic suite covers ordered raw pin declarations, ESP32 output-pin
+constraints, 5 V-to-3.3 V wiring warnings, blocked physical-world gates,
+combined-workflow routing, board selection, non-blocking timing, library and
+memory checks, hardware test stages, and structured serial evidence. It does
+not prove that a physical board was wired, flashed, measured, or deployed.
+
+When the OpenAI Codex plugin creator is available, run its independent manifest
+validator as an additional host check:
+
+```bash
+UV_CACHE_DIR=/private/tmp/arduino-skills-uv-cache uv run --no-project --with pyyaml \
+  ~/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .
+```
+
+If that local system skill is unavailable, record the omission rather than
+claiming Codex manifest validation. Keep fresh-context semantic review results
+in `evals/fresh-review.md` and repair only the failed evaluator family.
 
 ## Creating a New Skill
 
@@ -71,7 +125,10 @@ arduino-skills/
 
 Answer these questions:
 - **Problem:** What does this skill teach or solve?
-- **Platforms:** UNO, ESP32, RP2040 (or subset)?
+- **Exact target:** board/revision, MCU, pins, memory, peripherals, voltage,
+  current, protocols, and recovery path?
+- **Toolchain:** Arduino IDE, Arduino CLI, PlatformIO, or vendor-specific tool?
+- **Versions:** host, framework/board package, compiler, libraries, and upload tool?
 - **Complexity:** Beginner, intermediate, or advanced?
 - **Dependencies:** What libraries or hardware required?
 
@@ -101,6 +158,11 @@ Recommended body shape:
 - examples
 - targeted references to `references/...`, `scripts/...`, or `assets/...`
 - verification and failure notes
+
+Use [the shared Arduino skill contract](docs/arduino-skill-contract.md) for
+assumptions, required tools and versions, implementation steps, evidence stages,
+limitations, recovery, and security. Keep detailed board or toolchain branches
+in directly linked references.
 
 ### Step 4: Add Code Examples
 
@@ -246,25 +308,25 @@ All code must follow the 3 core rules in [arduino-skills.md](arduino-skills.md):
 
 ### Manual Verification
 
-1. **Code Compilation:**
+1. **Build proof:**
    ```bash
    # Copy code into Arduino IDE
    # Select board: Tools > Board > [Your Board]
    # Click Verify (Ctrl+R)
-   # Expected: "Compilation complete."
+   # Record the exact target, versions, build flags, and output.
    ```
 
-2. **Code Execution:**
+2. **Upload and hardware proof:**
    ```bash
    # Upload to board
    # Open Serial Monitor (Tools > Serial Monitor, 9600 baud)
    # Verify output matches expected behavior
    ```
 
-3. **Platform Coverage:**
-   - Test on UNO (or document limitation)
-   - Test on ESP32 (or document limitation)
-   - Test on RP2040 (or document limitation)
+3. **System and deployment proof:**
+   - Test representative integrated behavior and failure conditions
+   - Test update, rollback, and recovery when the device is connected or field deployed
+   - Document every unverified stage and exact target limitation
 
 ### Linting (Optional)
 
@@ -273,6 +335,7 @@ If you have linting tools:
 ```bash
 # YAML validation
 python3 scripts/validate_agent_skills.py
+python3 scripts/validate_arduino_skill_contract.py
 
 # Markdown validation
 markdownlint SKILL.md
@@ -314,8 +377,9 @@ A: No. Use millis() and state machines instead. delay() blocks all other code.
 **Q: What's config.h?**
 A: A header file with board-specific pin definitions. Prevents hardcoding pins.
 
-**Q: Do I need to test on all 3 platforms?**
-A: Ideally yes. If your skill only works on some platforms, document the limitation clearly.
+**Q: Do I need to test on all board families?**
+A: No. Test the exact target and toolchain in scope, then document every
+unverified board, framework, and proof stage clearly.
 
 **Q: Can I use external libraries (e.g., Adafruit)?**
 A: Yes, but document in SKILL.md and verify they work on target platforms.

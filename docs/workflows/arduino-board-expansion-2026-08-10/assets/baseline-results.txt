@@ -1,0 +1,9 @@
+Baseline date: 2026-08-10 Asia/Hong_Kong
+Existing board profiles: 5
+Existing active skills: 28
+validate_agent_skills.py: PASS, 28 skills, 0 warnings, 0 errors
+validate_arduino_plugin.py: PASS, 28 skills, 0 errors
+validate_arduino_skill_contract.py: PASS, 8/8 review themes
+run_arduino_evals.py: PASS, 10/10 cases
+Protected existing board profile hashes: recorded in baseline-hashes.txt
+Physical hardware evidence: none; no board was wired, flashed, measured, uploaded, or deployed

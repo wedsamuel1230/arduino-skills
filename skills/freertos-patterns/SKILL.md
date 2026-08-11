@@ -1,6 +1,7 @@
 ---
 name: freertos-patterns
 description: Use when users need ESP32 FreeRTOS or RP2040 multicore patterns for task creation, queues, synchronization, memory checks, task notifications, or cross-core coordination.
+metadata: {triggers: "FreeRTOS, multicore, task, queue, mutex, cross-core"}
 ---
 
 # FreeRTOS Patterns for ESP32 and RP2040
@@ -91,3 +92,9 @@ Do not use this skill when:
   and a hardware timing issue still remains.
 - Combine with `mermaid-diagram-generator` when the concurrency design needs a
   task, queue, or event-flow diagram.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

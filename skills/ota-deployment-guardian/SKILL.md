@@ -1,6 +1,7 @@
 ---
 name: ota-deployment-guardian
 description: Use when users need safe over-the-air update workflows for ESP32-class boards or Arduino Uno R4 WiFi, including OTA sketch requirements, network port discovery failures, remote recovery planning, and rollout safety checks.
+metadata: {triggers: "OTA, over-the-air update, rollback, remote recovery, deployment"}
 ---
 
 # OTA Deployment Guardian
@@ -43,6 +44,14 @@ preparing for later OTA deployment.
 4. Treat core-version changes as a possible variable when OTA previously worked
    and later became unreliable.
 
+## Security And Maintenance Boundary
+
+Use the router's connected-device security reference for secrets, signed images,
+dependency versions, staged rollout, rollback, vulnerability response, and
+decommissioning. This skill's board-specific OTA procedures do not prove that
+the device has secure boot, authenticated updates, or a recoverable field
+deployment; verify those controls on the exact target.
+
 ## Core Rules
 
 - Never assume OTA remains available after a new sketch unless the sketch keeps
@@ -71,3 +80,9 @@ preparing for later OTA deployment.
 - Pair with `field-power-and-connectivity-triager` when the OTA path fails only
   off USB or in field power conditions.
 - Pair with `error-message-explainer` when the OTA sketch itself does not build.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

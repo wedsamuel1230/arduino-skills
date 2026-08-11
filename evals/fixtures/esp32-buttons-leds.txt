@@ -1,0 +1,6 @@
+constexpr int btn_esc = 101;
+constexpr int btn_enter = 102;
+constexpr int btn_next = 103;
+constexpr int btn_back = 104;
+constexpr int led_status = 105;
+constexpr int led_error = 106;

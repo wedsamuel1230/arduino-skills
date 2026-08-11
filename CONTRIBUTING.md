@@ -10,6 +10,16 @@ Thank you for your interest in contributing to Arduino Skills! This repository p
 **Understand the Skill Framework:**
 - [README.md](README.md#how-skills-work) — Skill structure and Agent Skills
 - Examine an existing skill folder (for example, `skills/battery-selector/`) for reference
+- [docs/plugin-distribution.md](docs/plugin-distribution.md) — Host packaging and install commands
+
+**Use the creator guidance when changing the skill surface:**
+- The Agent Skills `skill-creator` guidance informs concise frontmatter, progressive
+  disclosure, and fresh-context forward testing.
+- The Codex `plugin-creator` guidance informs `.codex-plugin/plugin.json`, marketplace
+  policy fields, and manifest validation.
+- `skills-lock.json` records the creator companions used for this repository:
+  `anthropics/skills@skill-creator`, `openai/skills@cli-creator`, and
+  `openai/skills@plugin-creator`.
 
 ## Submitting a New Skill
 
@@ -23,8 +33,12 @@ your-skill-name/
 ├── references/           # Optional: Reference implementations
 │   ├── example-*.md
 │   └── pattern-*.md
-└── README.md             # Optional: Quick reference
+└── assets/               # Optional: Output assets and templates
 ```
+
+Do not add a per-skill `README.md` or installation guide unless a packaging
+consumer explicitly requires it; keep activation guidance in `SKILL.md` and
+load-on-demand detail in `references/`, `scripts/`, or `assets/`.
 
 ### 2. Write Your SKILL.md
 
@@ -55,6 +69,39 @@ Authoring rules:
   `whenToUse`
 - use shallow relative file references from the skill root
 
+### Universal Embedded Workflow Contract
+
+For board-dependent skills, use [the shared contract](docs/arduino-skill-contract.md)
+and [board profile](docs/board-support/board-profile-template.md). Name the
+exact board/revision, framework, pins, memory, peripherals, voltage/current,
+protocols, host, and versions before giving implementation advice. Support
+Arduino IDE, Arduino CLI, PlatformIO, or vendor-specific tools only when the
+branch and compatibility boundary are explicit.
+For combined firmware, electronics, power, networking, enclosure, or deployment
+work, start with `embedded-project-loop` when the task is physical or spans
+sessions, then use `arduino-workflow-router` and load specialists on demand.
+
+Every response must distinguish build, upload, hardware, system, and
+deployment proof. Include assumptions, required tools and versions,
+implementation steps, tests/evidence, known limitations, and recovery/security
+notes. Never put secrets in source, examples, generated configuration, or logs.
+
+### Plugin Source And Distribution
+
+Keep all skill content under `skills/`; do not copy `SKILL.md` files into
+`.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/`, or host wrapper files.
+Update the provider adapter only when its manifest schema requires it, then
+validate every host surface. The supported install paths are documented in
+[docs/plugin-distribution.md](docs/plugin-distribution.md), including:
+
+- `npx skills add wedsamuel1230/arduino-skills` for the complete shared tree
+- `npx skills add wedsamuel1230/arduino-skills --skill pin-assignment` for one skill
+- the local Codex, Claude Code, and Cursor plugin adapters
+
+Do not add a second skill when an existing skill already owns the trigger. For
+example, structured serial runtime debugging belongs to `arduino-serial-monitor`.
+Record deliberate deduplication or host-schema conflicts in `CHANGELOG.md`.
+
 ### 3. Checklist Before Submitting
 
 **Code Quality:**
@@ -73,10 +120,14 @@ Authoring rules:
 - [ ] Code examples include comments where they add real value
 
 **Testing (Platforms):**
-- [ ] Tested on Arduino UNO (or documented limitation)
-- [ ] Tested on ESP32 (or documented limitation)
-- [ ] Tested on RP2040 (or documented limitation)
-- [ ] Platform support clearly marked in SKILL.md
+- [ ] Tested on the exact target (or documented limitation)
+- [ ] Board profile covers pins, memory, peripherals, voltage, current, and protocols
+- [ ] Toolchain and library versions are recorded
+- [ ] Build, upload, hardware, and system evidence are labeled separately
+- [ ] Recovery path is documented for upload, boot, power, or firmware faults
+- [ ] Platform and toolchain support boundaries are clear in SKILL.md
+- [ ] Physical or multi-session workflows use `embedded-project-loop` as the
+      first entry and preserve one next todo plus an evidence gate
 
 **Scripts (If Included):**
 - [ ] PEP 723 inline dependencies (no requirements.txt)
@@ -94,7 +145,7 @@ Authoring rules:
    
    - Implement core skill logic
    - Add verification examples
-   - Test on UNO, ESP32, RP2040
+   - Test on the exact target or document the limitation
    ```
 
 3. **Create a Pull Request** with:
@@ -104,13 +155,14 @@ Authoring rules:
      ## Skill: My Skill Name
      
      **Category:** arduino | maker | project-builder
-     **Platforms:** UNO, ESP32, RP2040
+     **Target and toolchain:** [exact board/revision, framework, IDE/CLI/PlatformIO/vendor tool]
      
      **Solves:** [Problem statement]
      
      **Verification:**
      - [ ] Compiles without warnings
-     - [ ] Tested on all platforms
+     - [ ] Tested on the exact target or limitation documented
+     - [ ] Evidence stages are labeled and reproducible
      - [ ] Checklist items complete
      - [ ] SKILL.md sections present
      ```
@@ -201,7 +253,14 @@ All contributions must follow these standards:
 - Use the repo-local validator to check active skill conformance:
   ```bash
   python3 scripts/validate_agent_skills.py
-  ```
+  python3 scripts/validate_arduino_skill_contract.py
+  python3 scripts/validate_arduino_plugin.py
+  python3 scripts/run_arduino_evals.py
+  git diff --check
+```
+
+The evaluation suite must include a loop-engine case with both a valid durable
+state/ledger fixture and an invalid fixture that is rejected fail-closed.
 
 - Use **markdownlint** for Markdown consistency:
   ```bash
@@ -216,17 +275,20 @@ All contributions must follow these standards:
 
 From [arduino-skills.md](arduino-skills.md):
 
-### 3 Core Rules
+### Core Rules
 1. **Verifiable Output** — Code output must be observable (Serial.print, LED, motor spin)
 2. **Avoid delay() Blocking** — Non-blocking patterns only (millis(), state machines)
 3. **Hardware Abstraction** — Pin definitions in config.h, not hardcoded
+4. **Universal Intake** — Record board, pins, memory, peripherals, voltage/current, protocols, toolchain, and versions
+5. **Evidence Separation** — Compile, upload, hardware, system, and deployment proof are distinct
 
-### Platform Support
+### Reference Hardware
 - **Arduino UNO:** 2 KB SRAM, 32 KB Flash
 - **ESP32:** 520 KB SRAM, WiFi/BLE/RTOS
 - **RP2040:** 264 KB SRAM, Dual-core
 
-All skills must document which platforms they support.
+All skills must document exact target and toolchain support, compatibility
+versions, known limitations, and recovery or security boundaries.
 
 ### Code Quality
 

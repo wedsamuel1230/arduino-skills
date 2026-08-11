@@ -1,0 +1,20 @@
+{
+  "name": "arduino-skills",
+  "interface": {
+    "displayName": "Arduino Embedded Skills"
+  },
+  "plugins": [
+    {
+      "name": "arduino-skills",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

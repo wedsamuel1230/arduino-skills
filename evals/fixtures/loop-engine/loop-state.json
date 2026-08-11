@@ -1,0 +1,38 @@
+{
+  "goal": "Validate one ESP32 sensor power change with independent evidence.",
+  "primary_metric": {
+    "name": "verified_acceptance_gates",
+    "direction": "increase",
+    "baseline": 1,
+    "target": 3,
+    "threshold": "all required proof stages have evidence"
+  },
+  "correctness_gates": ["build evidence", "hardware evidence", "rollback evidence"],
+  "hard_constraints": ["one physical change per iteration", "no invented measurements"],
+  "editable_surface": ["firmware/config.h"],
+  "protected_files": [".arduino/goal.md", ".arduino/experiment-log.jsonl"],
+  "baseline": {
+    "id": "baseline-001",
+    "commands": ["arduino-cli compile --fqbn esp32:esp32:esp32 project"],
+    "results": ["build pass only"],
+    "evidence_paths": [".arduino/evidence/build/baseline.txt"]
+  },
+  "best_known_state": {
+    "id": "candidate-002",
+    "commands": ["python3 tests/check_power_contract.py"],
+    "results": ["host check pass; hardware gate remains open"],
+    "evidence_paths": [".arduino/evidence/build/candidate-002.txt"]
+  },
+  "experiment_budget": 3,
+  "per_iteration_budget": "one causal change and one verification pass",
+  "evaluation_method": "independent host checks plus user-supplied physical evidence",
+  "acceptance_rule": "keep only if all applicable gates pass and no protected file changes",
+  "rollback_method": "restore the experiment surface and rerun the baseline check",
+  "plateau_rule": "stop after two consecutive non-improving candidates",
+  "stop_conditions": ["missing measurement", "unsafe power state", "repeated failure"],
+  "experiment_history": [
+    {"id": "baseline-001", "decision": "baseline"},
+    {"id": "candidate-002", "decision": "keep"}
+  ],
+  "open_uncertainties": ["meter reading not yet supplied"]
+}

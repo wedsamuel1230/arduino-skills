@@ -1,6 +1,7 @@
 ---
 name: battery-selector
 description: Helps choose the right battery type and charging solution for Arduino/ESP32/RP2040 projects. Use when user asks about battery options, charging circuits, power source selection, or says "what battery should I use". Covers chemistry selection, safety, voltage regulation, and charging circuits.
+metadata: {triggers: "battery choice, charging circuit, power source, battery life"}
 ---
 
 # Battery Selector
@@ -436,3 +437,9 @@ Runtime: Months to years
 | Robot | 2S LiPo | 2200mAh | Balance |
 | Ultra-low power | CR2032 | 220mAh | None |
 | Solar project | LiFePO4 | 3200mAh | MPPT |
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

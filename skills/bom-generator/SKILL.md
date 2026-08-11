@@ -1,6 +1,7 @@
 ---
 name: bom-generator
 description: Generates Bill of Materials (BOM) from project descriptions for Arduino/ESP32/RP2040 projects. Use when user needs component lists, parts shopping lists, cost estimates, or asks "what parts do I need". Outputs formatted BOMs with part numbers, quantities, suppliers (DigiKey, Mouser, Amazon, AliExpress), and compatibility warnings. Run scripts/generate_bom.py for xlsx/csv export.
+metadata: {triggers: "BOM, parts list, component list, supplier, cost estimate"}
 ---
 
 # BOM Generator
@@ -289,3 +290,9 @@ Provide direct "Add to Cart" links where possible.
 ## Example BOM Output
 
 See [references/example-bom.md](references/example-bom.md) for complete example.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

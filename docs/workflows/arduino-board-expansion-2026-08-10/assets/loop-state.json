@@ -1,0 +1,113 @@
+{
+  "goal": "Add a bounded set of mainstream, source-backed Arduino board profiles without regressing the existing skill package.",
+  "primary_metric": {
+    "name": "source_backed_board_profiles",
+    "direction": "increase",
+    "baseline": 5,
+    "target": 9,
+    "threshold": "at least four new profiles pass every board-reference gate"
+  },
+  "correctness_gates": [
+    "python3 scripts/validate_board_references.py exits 0",
+    "python3 scripts/validate_arduino_plugin.py exits 0",
+    "python3 scripts/validate_agent_skills.py exits 0",
+    "python3 scripts/validate_arduino_skill_contract.py exits 0",
+    "python3 scripts/run_arduino_evals.py exits 0 with 10/10 cases",
+    "protected existing board profile hashes remain unchanged",
+    "every added profile has at least two authoritative source URLs, fact mapping, and explicit gaps"
+  ],
+  "hard_constraints": [
+    "Preserve all five existing board profiles and their source claims.",
+    "Keep raw ordered constexpr int declarations and C/C++ embedded-first guidance unchanged.",
+    "Use official primary sources for board and MCU facts; mark mutable or inaccessible sources.",
+    "Do not claim compile, upload, power, hardware, system, or deployment success.",
+    "Do not weaken or modify an evaluator merely to accept a candidate.",
+    "Do not add secrets, undeclared dependencies, or host-specific duplicated skill content."
+  ],
+  "editable_surface": [
+    "references/boards/",
+    "scripts/validate_board_references.py",
+    "scripts/validate_arduino_plugin.py",
+    "skills/board-selection/SKILL.md",
+    "skills/arduino-workflow-router/SKILL.md",
+    "README.md",
+    "arduino-skills.md",
+    "CHANGELOG.md",
+    "docs/workflows/arduino-board-expansion-2026-08-10/"
+  ],
+  "protected_files": [
+    "references/boards/arduino-uno-r3.md",
+    "references/boards/arduino-uno-r4.md",
+    "references/boards/esp32-devkit.md",
+    "references/boards/esp32-s3-devkit.md",
+    "references/boards/pico-pico-w.md",
+    "skills/*/examples/**",
+    "skills/*/templates/**",
+    "existing global ~/.agents/skills/skill-creator/**"
+  ],
+  "baseline": {
+    "id": "arduino-board-expansion-baseline-2026-08-10",
+    "commands": [
+      "python3 scripts/validate_agent_skills.py",
+      "python3 scripts/validate_arduino_plugin.py",
+      "python3 scripts/validate_arduino_skill_contract.py",
+      "python3 scripts/run_arduino_evals.py --output /tmp/arduino-board-expansion-baseline-evals.json",
+      "sha256sum references/boards/*.md scripts/validate_arduino_plugin.py skills/board-selection/SKILL.md skills/arduino-workflow-router/SKILL.md"
+    ],
+    "results": [
+      "5 existing board profiles",
+      "28 active skills",
+      "all existing structural, plugin, contract, and forward evals pass"
+    ],
+    "evidence_paths": [
+      "docs/workflows/arduino-board-expansion-2026-08-10/assets/baseline-results.txt",
+      "docs/workflows/arduino-board-expansion-2026-08-10/assets/baseline-hashes.txt"
+    ]
+  },
+  "best_known_state": {
+    "id": "arduino-board-expansion-9-profiles-2026-08-11",
+    "source": "profile-index-validator plus full deterministic gates",
+    "verified": true,
+    "primary_metric": 9,
+    "evidence_paths": [
+      "docs/workflows/arduino-board-expansion-2026-08-10/assets/source-status-2026-08-11.txt",
+      "docs/workflows/arduino-board-expansion-2026-08-10/assets/experiment-log.jsonl",
+      "evals/eval-results.json"
+    ]
+  },
+  "experiment_budget": 3,
+  "per_iteration_budget": "one cohesive research or repository patch followed by targeted validation",
+  "evaluation_method": "scripts/validate_board_references.py plus existing structural, plugin, contract, forward, link, and hash checks",
+  "acceptance_rule": "Keep a candidate only if the primary metric reaches at least 9 profiles, every correctness gate passes, and protected hashes remain unchanged.",
+  "rollback_method": "Restore only the board-expansion experiment surface with an explicit reverse patch after inspecting git diff; preserve prior user changes and rerun the baseline gates.",
+  "plateau_rule": "Stop after two consecutive candidate sets are deferred for source gaps or fail to increase the verified profile count.",
+  "stop_conditions": [
+    "A candidate lacks two authoritative sources for its required facts.",
+    "A board profile conflicts with an existing exact-board claim and cannot be reconciled without guessing.",
+    "Any protected existing profile hash changes unexpectedly.",
+    "A validation repair would weaken evaluator coverage.",
+    "Physical hardware evidence is requested but unavailable."
+  ],
+  "experiment_history": [
+    {
+      "id": "baseline",
+      "decision": "preserve",
+      "result": "5 board profiles and all existing deterministic gates pass"
+    },
+    {
+      "id": "profile-index-validator",
+      "decision": "keep",
+      "result": "9 profiles; board validator, Python syntax, and diff checks pass"
+    },
+    {
+      "id": "full-deterministic-gates",
+      "decision": "keep",
+      "result": "Plugin, skill, contract, forward-eval, host manifest, JSON, source status, link, syntax, diff, and protected-profile hash gates pass"
+    }
+  ],
+  "open_uncertainties": [
+    "Arduino product pages remain mutable date-checked sources rather than immutable revisions.",
+    "Exact module, board revision, partition, regulator, aggregate current, and clone/carrier behavior remain board-specific.",
+    "Board-level aggregate current and clone/carrier behavior are not inferable from MCU limits."
+  ]
+}

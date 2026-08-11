@@ -1,6 +1,7 @@
 ---
 name: sensor-calibration-workbench
 description: Use when makers need calibration workflows for sensors such as CO2 sensors, load cells, magnetometers, color sensors, or analog sensors, including warm-up behavior, reference measurements, coefficient storage, and drift checks.
+metadata: {triggers: "sensor calibration, reference measurement, drift, coefficient"}
 ---
 
 # Sensor Calibration Workbench
@@ -71,3 +72,9 @@ through hardware or bus bring-up first.
   filtering code added to the sketch.
 - Pair with `field-power-and-connectivity-triager` when sensor behavior changes
   only off USB or under field power conditions.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

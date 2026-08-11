@@ -1,0 +1,14 @@
+{
+  "board": "classic ESP32 DevKit/WROOM",
+  "inputs": {
+    "btn_esc": 32,
+    "btn_enter": 33,
+    "btn_next": 34,
+    "btn_back": 35
+  },
+  "outputs": {
+    "led_status": 25,
+    "led_error": 26
+  },
+  "reserved_output_pins": [0, 2, 5, 6, 7, 8, 9, 10, 11, 12, 15, 34, 35, 36, 37, 38, 39]
+}

@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.8"
+# dependencies = [
+#   "colorama>=0.4.6,<1",
+#   "pyserial>=3.5,<4",
+# ]
+# ///
 """
 Arduino Serial Monitor - Enhanced debugging tool for Arduino serial output
 """
 
-import serial
-import serial.tools.list_ports
 import argparse
 import re
 import json
 import time
 import sys
 from datetime import datetime
-import colorama
-from colorama import Fore, Back, Style
 
-colorama.init()
+serial = None
+colorama = None
+Fore = Back = Style = None
 
 class ArduinoSerialMonitor:
     def __init__(self, port, baud=9600, timeout=1):
@@ -121,6 +126,21 @@ def main():
     parser.add_argument('--list-ports', '-l', action='store_true', help='List available serial ports')
 
     args = parser.parse_args()
+
+    global serial, colorama, Fore, Back, Style
+    try:
+        import serial as serial_module
+        import colorama as colorama_module
+        from colorama import Back as back, Fore as fore, Style as style
+    except ModuleNotFoundError as exc:
+        parser.error(
+            "missing runtime dependency %s; run with "
+            "uv run --no-project scripts/monitor_serial.py" % exc.name
+        )
+    serial = serial_module
+    colorama = colorama_module
+    Fore, Back, Style = fore, back, style
+    colorama.init()
 
     if args.list_ports:
         list_ports()

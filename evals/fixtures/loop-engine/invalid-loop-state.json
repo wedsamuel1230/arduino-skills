@@ -1,0 +1,7 @@
+{
+  "goal": "Incomplete fixture used to prove the evaluator fails closed.",
+  "primary_metric": {"name": "metric"},
+  "baseline": {"id": "bad"},
+  "best_known_state": {"id": "bad"},
+  "experiment_history": []
+}

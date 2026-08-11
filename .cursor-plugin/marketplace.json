@@ -1,0 +1,21 @@
+{
+  "name": "arduino-skills",
+  "owner": {
+    "name": "arduino-skills contributors"
+  },
+  "metadata": {
+    "description": "Composable Arduino and embedded development skills for Cursor.",
+    "version": "1.6.0"
+  },
+  "plugins": [
+    {
+      "name": "arduino-skills",
+      "source": "./",
+      "description": "Board-aware firmware, electronics, testing, recovery, and deployment workflows.",
+      "version": "1.6.0",
+      "author": {
+        "name": "arduino-skills contributors"
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: arduino-project-builder
-description: Build complete, production-ready Arduino projects (environmental monitors, robot controllers, IoT devices, automation systems). Assembles multi-component systems combining sensors, actuators, communication protocols, state machines, data logging, and power management. Supports Arduino UNO, ESP32, and Raspberry Pi Pico with board-specific optimizations. Use this skill when users request complete Arduino applications, not just code snippets.
+description: Build complete Arduino and embedded projects across Arduino IDE, Arduino CLI, PlatformIO, and vendor-specific toolchains. Use when users request an application combining firmware, sensors, actuators, networking, power, or deployment rather than a code snippet. The bundled scaffold targets UNO, ESP32, and Raspberry Pi Pico; use the board profile and document limitations for other targets.
+metadata: {triggers: "build Arduino project, scaffold firmware, application, PlatformIO"}
 ---
 
 # Arduino Project Builder
@@ -24,6 +25,19 @@ uv run --no-project scripts/scaffold_project.py --type robot --board uno --outpu
 ```bash
 uv run --no-project scripts/scaffold_project.py --interactive
 ```
+
+## Intake And Evidence Boundary
+
+Before assembling a project, read [the shared contract](../../docs/arduino-skill-contract.md)
+and fill [the board profile](../../docs/board-support/board-profile-template.md).
+Record the exact board, framework, toolchain, versions, pins, memory, power,
+protocols, and recovery path. Keep build, upload, hardware, system, and
+deployment proof separate; a generated scaffold is not hardware validation.
+
+The scaffold script emits its supported board targets and PlatformIO structure.
+For another board or vendor framework, reuse the requirements and architecture
+workflow, then provide a toolchain-specific implementation rather than changing
+the script's claimed support.
 
 ## Resources
 
@@ -80,3 +94,9 @@ High-frequency sampling, SD card logging, real-time visualization
 - **workflow/** - Step-by-step project assembly process
 - **rules/** - Quality standards and board-specific optimizations
 - **templates/** - Project output templates and documentation standards
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

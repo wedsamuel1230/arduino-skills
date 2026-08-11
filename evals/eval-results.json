@@ -1,0 +1,1116 @@
+{
+  "suite": "arduino-skills",
+  "evaluation_mode": "forward-contract",
+  "prompt_count": 11,
+  "cases": [
+    {
+      "id": "pin-assignment-esp32",
+      "skill": "pin-assignment",
+      "prompt": "Assign pins for 4 buttons and 2 LEDs on ESP32. Preserve the project pin declaration convention.",
+      "expected_route": [
+        "pin-assignment"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['pin-assignment']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['pin-assignment']"
+        },
+        {
+          "name": "raw declarations only",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/evals/fixtures/esp32-buttons-leds.txt"
+        },
+        {
+          "name": "ordered logical IDs",
+          "passed": true,
+          "evidence": "[101, 102, 103, 104, 105, 106]"
+        },
+        {
+          "name": "safe physical output choices",
+          "passed": true,
+          "evidence": "{'outputs': [25, 26], 'reserved': [0, 2, 5, 6, 7, 8, 9, 10, 11, 12, 15, 34, 35, 36, 37, 38, 39]}"
+        },
+        {
+          "name": "declarations contain no commentary",
+          "passed": true,
+          "evidence": "fixture contains declarations only; no headings, fences, or comments"
+        },
+        {
+          "name": "physical output map",
+          "passed": true,
+          "evidence": "pin fixture hardware map"
+        },
+        {
+          "name": "emit only the declarations as plain text",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "do not add a code fence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "trailing comment",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "pin-assignment links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "wiring-5v-esp32",
+      "skill": "wiring-safety-check",
+      "prompt": "Wire a 5V sensor to an ESP32 and tell me whether I can connect the data line directly.",
+      "expected_route": [
+        "wiring-safety-check"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['wiring-safety-check']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['wiring-safety-check']"
+        },
+        {
+          "name": "5 v",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "3.3 v",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "level shifter",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "divider",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "shared ground does not solve",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "wiring-safety-check links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "blocked-physical-step",
+      "skill": "embedded-project-loop",
+      "prompt": "The firmware compiles. Ask me to verify the ESP32 3V3 rail before we continue, but assume I do not have a meter.",
+      "expected_route": [
+        "embedded-project-loop"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['embedded-project-loop']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['embedded-project-loop']"
+        },
+        {
+          "name": "physical gate",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "specific question",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "measurement",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "expected:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "blocked:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "unverified yes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "embedded-project-loop links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-selection",
+      "skill": "board-selection",
+      "prompt": "Choose between Uno R4 WiFi, classic ESP32 DevKit, and Pico W for a battery-powered WiFi sensor.",
+      "expected_route": [
+        "board-selection"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-selection']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-selection']"
+        },
+        {
+          "name": "exact board",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "module",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "rejected alternatives",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "open risks",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "verification status",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "primary source",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-selection links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "wiring-and-pin-composition",
+      "skill": "arduino-workflow-router",
+      "prompt": "Build a four-button ESP32 controller with LEDs, safe wiring, debounce, serial diagnostics, and a target test plan.",
+      "expected_route": [
+        "arduino-workflow-router",
+        "board-selection",
+        "pin-assignment",
+        "wiring-safety-check",
+        "non-blocking-patterns",
+        "arduino-serial-monitor",
+        "hardware-tdd"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+        },
+        {
+          "name": "combined route order",
+          "passed": true,
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 94, 119, 146, 174]}"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+        },
+        {
+          "name": "combined route order",
+          "passed": true,
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 94, 119, 146, 174]}"
+        },
+        {
+          "name": "arduino-serial-monitor",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "structured runtime evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "## trigger precedence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "this router owns",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "arduino-project-builder",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "board-selection",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "combined-workflow order",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "arduino-workflow-router links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-workflow-router/SKILL.md"
+        },
+        {
+          "name": "board-selection links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "pin-assignment links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "wiring-safety-check links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/wiring-safety-check/SKILL.md"
+        },
+        {
+          "name": "non-blocking-patterns links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "arduino-serial-monitor links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "hardware-tdd links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "non-blocking",
+      "skill": "non-blocking-patterns",
+      "prompt": "Replace delay-based button debounce and sensor polling with a watchdog-safe millis state machine.",
+      "expected_route": [
+        "non-blocking-patterns"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['non-blocking-patterns']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['non-blocking-patterns']"
+        },
+        {
+          "name": "a shorter delay is fine",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "delay()",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "wraparound",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "unsigned long",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "timeout",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "watchdog",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "non-blocking-patterns links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/non-blocking-patterns/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "library-selection",
+      "skill": "library-selection",
+      "prompt": "Pick an I2C sensor library for Arduino-Pico and ESP32-S3 and pin a version for a connected product.",
+      "expected_route": [
+        "library-selection"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['library-selection']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['library-selection']"
+        },
+        {
+          "name": "architecture",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "framework",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "compatibility",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "pinned version",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "version",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "compile fixture",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "minimal",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "library-selection links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/library-selection/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "memory-budget",
+      "skill": "memory-budgeting",
+      "prompt": "An Uno sketch is running out of SRAM after adding JSON and String values. Make a memory plan.",
+      "expected_route": [
+        "memory-budgeting"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['memory-budgeting']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['memory-budgeting']"
+        },
+        {
+          "name": "f()",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "bounded buffers",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "static",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "heap",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "stack",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "flash",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "runtime memory",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "margin",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "memory-budgeting links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/memory-budgeting/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "hardware-tdd",
+      "skill": "hardware-tdd",
+      "prompt": "Create tests for an ESP32 motor controller that can run off-target and then be accepted on the real board.",
+      "expected_route": [
+        "hardware-tdd",
+        "embedded-project-loop"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['hardware-tdd', 'embedded-project-loop']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['hardware-tdd', 'embedded-project-loop']"
+        },
+        {
+          "name": "host",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "simulation",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "target",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "system",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "physical gate",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "user",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "hardware-tdd links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/hardware-tdd/SKILL.md"
+        },
+        {
+          "name": "embedded-project-loop links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "serial-debugging",
+      "skill": "arduino-serial-monitor",
+      "prompt": "Capture structured ESP32 boot and sensor logs for a reset investigation without exposing WiFi secrets.",
+      "expected_route": [
+        "arduino-serial-monitor"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['arduino-serial-monitor']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['arduino-serial-monitor']"
+        },
+        {
+          "name": "structured",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "level=INFO",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "event=",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "secrets",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "passwords",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "tokens",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "unfiltered log",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "first boot",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "arduino-serial-monitor links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/arduino-serial-monitor/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "loop-engine-evidence-contract",
+      "skill": "embedded-project-loop",
+      "prompt": "Resume a multi-session ESP32 project after a failed rail measurement and choose the next bounded experiment.",
+      "expected_route": [
+        "embedded-project-loop"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['embedded-project-loop']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['embedded-project-loop']"
+        },
+        {
+          "name": "valid loop artifacts satisfy the contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/evals/fixtures/loop-engine"
+        },
+        {
+          "name": "invalid loop artifacts are rejected",
+          "passed": true,
+          "evidence": "['loop state missing keys: correctness_gates, hard_constraints, editable_surface, protected_files, experiment_budget, per_iteration_budget, evaluation_method, acceptance_rule, rollback_method, plateau_rule, stop_conditions, open_uncertainties', 'primary_metric has no valid direction', 'primary_metric has no acceptance threshold', 'baseline missing keys: commands, results, evidence_paths', 'best_known_state missing keys: commands, results, evidence_paths', 'experiment_history is empty', 'ledger line 1 missing keys: timestamp, baseline_id, hypothesis, changed_files, command, result, primary_metric, correctness_gates, revert_evidence, lesson, next_candidate', 'ledger has no baseline decision']"
+        },
+        {
+          "name": "one causal",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "append",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "rollback",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "physical gate",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "blocked:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "unverified",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "embedded-project-loop links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

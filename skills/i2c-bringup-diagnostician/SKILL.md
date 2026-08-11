@@ -1,6 +1,7 @@
 ---
 name: i2c-bringup-diagnostician
 description: Use when users need to diagnose I2C bring-up failures on Arduino or ESP32-class boards, including no devices found, wrong readings, address conflicts, scanner-detects-but-library-fails cases, pull-up problems, or board-family-specific bus quirks.
+metadata: {triggers: "I2C failure, address conflict, pull-up, scanner, bus bring-up"}
 ---
 
 # I2C Bringup Diagnostician
@@ -69,3 +70,9 @@ Use this skill when the request includes:
   details are not known.
 - Pair with `arduino-code-generator` when the user needs a minimal test sketch or
   a cleaned-up bus probe.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

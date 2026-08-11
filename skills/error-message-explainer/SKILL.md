@@ -1,6 +1,7 @@
 ---
 name: error-message-explainer
-description: Interprets Arduino/ESP32/RP2040 compiler errors in plain English for beginners. Use when user shares error messages, compilation failures, upload problems, or asks "what does this error mean". Covers common errors like undefined references, type mismatches, missing libraries, and board-specific issues.
+description: Explain Arduino and embedded compiler, upload, boot, power, and runtime errors in plain English. Use when a user shares an error or failure from Arduino IDE, Arduino CLI, PlatformIO, or a vendor-specific tool. Separate build, upload, hardware, and system evidence and give a board-specific recovery path without assuming UNO, ESP32, or RP2040 behavior.
+metadata: {triggers: "compiler error, upload failure, boot failure, power error, runtime error"}
 ---
 
 # Error Message Explainer
@@ -45,6 +46,14 @@ When user pastes an error message:
 4. Explain WHY this error happens (educational value)
 5. If the target is Uno R4 family and the failure touches WiFi, OTA, USB, or
    board recognition, open `../../docs/board-support/uno-r4-family.md`
+
+## Recovery Boundary
+
+Before recommending a reset, erase, bootloader repair, or reflash, capture the
+exact board/revision, tool and library versions, port, power path, and last
+known-good image. Use [the router recovery reference](../arduino-workflow-router/references/failure-recovery.md)
+for failed uploads, boot failures, power faults, or corrupted firmware. Do not
+call a compile fix a hardware or system fix.
 
 ## Common Compilation Errors
 
@@ -414,11 +423,15 @@ snprintf(c, sizeof(c), "%s%s", a, b);
 
 ## Debugging Strategy
 
-```
 1. Read the FIRST error (later ones often cascade)
 2. Note the FILE and LINE NUMBER
 3. Look at that line AND the line above
 4. Check for common patterns above
 5. Fix ONE error at a time, recompile
 6. Repeat until clean
-```
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

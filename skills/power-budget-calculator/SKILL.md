@@ -1,6 +1,7 @@
 ---
 name: power-budget-calculator
 description: Calculates total power consumption and battery life for Arduino/ESP32/RP2040 projects. Use when user asks about battery life, power requirements, current draw, or needs to estimate runtime. Includes sleep mode analysis, power optimization tips, and battery sizing recommendations. Run scripts/calculate_power.py for accurate calculations.
+metadata: {triggers: "power budget, current draw, battery life, runtime, regulator"}
 ---
 
 # Power Budget Calculator
@@ -362,3 +363,9 @@ Runtime = Capacity × 0.8 / Average_current
         = _____ hours
         = _____ days
 ```
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

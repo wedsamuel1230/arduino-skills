@@ -1,6 +1,7 @@
 ---
 name: arduino-cli-skill
-description: Use when users need arduino-cli commands for board discovery, library installation, compilation, upload, or serial port troubleshooting on Windows, macOS, or Linux.
+description: Use when users need Arduino CLI commands for board discovery, library installation, compilation, upload, or serial-port troubleshooting on Windows, macOS, or Linux. Use it as the CLI branch of a broader workflow when the project also involves Arduino IDE, PlatformIO, vendor tools, hardware, power, or deployment.
+metadata: {triggers: "Arduino CLI, board discovery, compile, upload, serial port"}
 ---
 
 # Arduino CLI Skill
@@ -25,6 +26,15 @@ Provide cross-platform `arduino-cli` workflows and command references.
    or OTA-related setup, open `../../docs/board-support/uno-r4-family.md`.
 6. Prefer `arduino-cli` JSON output when the result will be parsed or reused.
 
+## Compatibility And Proof Boundary
+
+Record `arduino-cli version`, the core/index version, FQBN, libraries, host OS,
+and port before changing commands. Check library architecture support and board
+package compatibility. A successful `compile` is build proof only; an accepted
+upload is upload proof and does not establish hardware or system success. For
+IDE, PlatformIO, or vendor-specific commands, route to the appropriate branch
+instead of silently translating them.
+
 ## Quick Start
 
 ```bash
@@ -41,3 +51,9 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno path/to/sketch
 - Prefer command output over remembered defaults when troubleshooting.
 
 See `references/commands.md` and `references/serial-ports.md` for detailed examples.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

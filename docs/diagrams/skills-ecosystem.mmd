@@ -1,5 +1,6 @@
 ```mermaid
 flowchart TB
+    router["Workflow\nRouter"]
     subgraph core["🔧 Arduino Core Skills"]
         direction TB
         config["Config.h\nManagement"]
@@ -32,6 +33,9 @@ flowchart TB
         projbuild["Project\nBuilder"]
     end
     
+    router --> projbuild
+    router --> core
+    router --> maker
     codegen --> core
     projbuild --> core
     projbuild --> maker

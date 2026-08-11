@@ -1,6 +1,7 @@
 ---
 name: mermaid-diagram-generator
 description: Use when users need Mermaid diagrams for Arduino code structure, state machines, timing diagrams, task architecture, or workflow documentation.
+metadata: {triggers: "Mermaid diagram, state machine diagram, timing diagram, workflow"}
 ---
 
 # Mermaid Diagram Generator
@@ -53,3 +54,9 @@ Do not use it for tiny code snippets where a diagram adds no clarity.
 - Pair with `arduino-code-generator` when a generated sketch also needs visual
   documentation.
 - Pair with `readme-generator` when the diagram should ship in repository docs.
+
+## Shared Output Contract
+
+Use [the shared Arduino skill contract](../../docs/arduino-skill-contract.md):
+state assumptions, required tools and versions, implementation steps,
+tests/evidence by proof stage, known limitations, and recovery/security notes.

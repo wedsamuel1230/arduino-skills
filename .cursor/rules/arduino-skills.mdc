@@ -1,0 +1,15 @@
+---
+description: Route Arduino and embedded work through the shared skills tree with board-aware and evidence-aware constraints.
+globs:
+  - "**/*.ino"
+  - "**/*.cpp"
+  - "**/*.h"
+alwaysApply: false
+---
+
+Use the canonical `skills/` source. For physical or multi-session work, start
+with `skills/embedded-project-loop/SKILL.md`, then use the workflow router for
+combined work; otherwise load the narrowest matching skill. Confirm the exact board,
+framework, toolchain, pins, voltage, current, memory, and library versions.
+Keep build, upload, hardware, system, and deployment proof separate. Never
+invent physical measurements or flashing results.

@@ -57,7 +57,7 @@
       "python3 scripts/validate_arduino_plugin.py"
     ],
     "results": [
-      "11/11 forward cases; 28 skills; 9 board profiles; all deterministic package gates pass"
+      "11/11 forward cases; 28 skills; 9 board profiles; all deterministic package gates pass; release refs verified"
     ],
     "evidence_paths": [
       "evals/eval-results.json",
@@ -74,7 +74,8 @@
   "experiment_history": [
     {"id": "v1.5.0-baseline", "decision": "baseline"},
     {"id": "v1.6.0-loop-eval", "decision": "keep"},
-    {"id": "v1.6.0-final-gates", "decision": "keep"}
+    {"id": "v1.6.0-final-gates", "decision": "keep"},
+    {"id": "v1.6.0-published", "decision": "keep"}
   ],
   "open_uncertainties": [
     "Model-level trigger behavior is not exercised by the deterministic harness.",

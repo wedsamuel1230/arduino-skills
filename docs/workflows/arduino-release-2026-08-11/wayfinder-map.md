@@ -2,7 +2,7 @@
 
 labels: `wayfinder:map`
 tracker: local-markdown
-status: in_progress
+status: closed
 
 ## Destination
 
@@ -20,7 +20,7 @@ the shared Arduino contract.
 
 ## Decisions so far
 
-- [Release v1.6.0 loop evaluation and recommendation](tickets/release-v1.6.0-loop-eval.md) - the loop fixture evaluator, recommendation docs, and release metadata are implemented and verified; GitHub publication is the final authorized action.
+- [Release v1.6.0 loop evaluation and recommendation](tickets/release-v1.6.0-loop-eval.md) - 11/11 evals and package gates passed, then commit `9882eb6`, tag `v1.6.0`, the GitHub Release, and remote refs were verified.
 
 ## Not yet specified
 

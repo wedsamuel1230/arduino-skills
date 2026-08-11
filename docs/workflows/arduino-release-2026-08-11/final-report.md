@@ -1,7 +1,7 @@
 # v1.6.0 Release Loop Final Report
 
-Status: READY TO PUBLISH after the pre-release gates; physical and semantic
-model-level evidence remain explicitly unverified.
+Status: PUBLISHED as `v1.6.0`; physical and semantic model-level evidence
+remain explicitly unverified.
 
 ## Baseline
 
@@ -16,6 +16,8 @@ model-level evidence remain explicitly unverified.
 
 - Candidate: `v1.6.0-final-gates`
 - Forward metric: 11/11 cases passed.
+- Release commit: `9882eb6d1c3dd5f8ca5aff79f13e53d062fd3524`
+- GitHub Release: [arduino-skills v1.6.0](https://github.com/wedsamuel1230/arduino-skills/releases/tag/v1.6.0)
 - Recommendation: `embedded-project-loop` is first for physical, recovery,
   measurement, and multi-session work; the router follows for specialist
   composition.
@@ -46,10 +48,10 @@ model-level evidence remain explicitly unverified.
 | Syntax and data | PASS | Python compilation and JSON parsing |
 | Diff hygiene | PASS | `git diff --check` |
 
-## Release action
+## Release verification
 
-The staged diff must be inspected before creating the release commit. The
-authorized commands are:
+The staged diff was inspected before creating the release commit. The release
+commands succeeded:
 
 ```bash
 git commit -m "feat(release): publish v1.6.0"
@@ -57,7 +59,9 @@ git tag -a v1.6.0 -m "Release v1.6.0"
 git push origin main v1.6.0
 ```
 
-After pushing, verify both refs with `git ls-remote --heads --tags origin`.
+Remote verification showed `origin/main` and the dereferenced `v1.6.0` tag at
+`9882eb6`; `gh release view v1.6.0` reported a published, non-draft,
+non-prerelease release.
 
 ## Unverified behavior and risks
 
@@ -71,6 +75,6 @@ After pushing, verify both refs with `git ls-remote --heads --tags origin`.
 
 ## Stop reason
 
-All local acceptance gates reached the release threshold. Stop after the
-authorized commit/tag/push and remote-ref verification; do not extend this
-loop into physical testing or deferred board-family research.
+All local acceptance gates reached the release threshold, and the authorized
+commit/tag/push plus remote-ref verification succeeded. Stop this loop; do not
+extend it into physical testing or deferred board-family research.

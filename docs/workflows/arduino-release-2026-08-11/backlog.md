@@ -13,4 +13,4 @@
     - evals/eval-results.json
     - docs/workflows/arduino-release-2026-08-11/final-report.md
     - git show v1.6.0
-  status: ready_to_publish
+  status: done

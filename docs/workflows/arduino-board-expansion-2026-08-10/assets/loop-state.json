@@ -65,14 +65,15 @@
     ]
   },
   "best_known_state": {
-    "id": "arduino-board-expansion-9-profiles-2026-08-11",
+      "id": "arduino-board-expansion-9-profiles-2026-08-11",
     "source": "profile-index-validator plus full deterministic gates",
     "verified": true,
     "primary_metric": 9,
-    "evidence_paths": [
-      "docs/workflows/arduino-board-expansion-2026-08-10/assets/source-status-2026-08-11.txt",
-      "docs/workflows/arduino-board-expansion-2026-08-10/assets/experiment-log.jsonl",
-      "evals/eval-results.json"
+      "evidence_paths": [
+        "docs/workflows/arduino-board-expansion-2026-08-10/assets/source-status-2026-08-11.txt",
+        "docs/workflows/arduino-board-expansion-2026-08-10/assets/experiment-log.jsonl",
+        "evals/eval-results.json",
+        "docs/workflows/arduino-board-expansion-2026-08-10/final-report.md"
     ]
   },
   "experiment_budget": 3,
@@ -103,6 +104,11 @@
       "id": "full-deterministic-gates",
       "decision": "keep",
       "result": "Plugin, skill, contract, forward-eval, host manifest, JSON, source status, link, syntax, diff, and protected-profile hash gates pass"
+    },
+    {
+      "id": "post-hardening-final-gates",
+      "decision": "keep",
+      "result": "9 profiles; 28 skills; 8/8 contract themes; 10/10 forward evals; official plugin validator pass; 14/14 added sources HTTP 200; 5/5 protected hashes pass; independent artifact unavailable and recorded as conditional"
     }
   ],
   "open_uncertainties": [

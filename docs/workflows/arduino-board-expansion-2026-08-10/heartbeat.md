@@ -1,6 +1,6 @@
 # Board Expansion Heartbeat
 
-- current_sprint: independent-review-and-final-bookkeeping
+- current_sprint: completed-conditionally
 - completed_sprints: [baseline, source-research, board-profile-index-and-gates, full-deterministic-gates]
 - blockers:
   - No physical hardware evidence; hardware and deployment claims remain open.
@@ -8,9 +8,8 @@
     used as evidence.
   - Fresh-context evaluator confirmed local gates but could not write its
     required artifact under its read-only contract; see `review.md`.
-- next_action: Reconcile the fresh read-only reviewer artifact; if the bounded
-  service remains unavailable, record that blocker and finish local selection,
-  plateau, and final-report bookkeeping without claiming independent approval.
+- next_action: No further action in this bounded board-expansion loop; a future
+  successor may evaluate GIGA R1 WiFi or ESP32-C6 with a write-capable reviewer.
 - tool_tier_escalations:
   - tool: curl
     tier: 1

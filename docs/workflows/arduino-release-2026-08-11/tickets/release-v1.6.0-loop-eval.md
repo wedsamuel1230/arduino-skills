@@ -1,7 +1,7 @@
 # Release v1.6.0 loop evaluation and recommendation
 
 labels: `wayfinder:task`
-status: ready_to_publish
+status: closed
 owner: coordinator
 blocked_by: none
 
@@ -32,4 +32,5 @@ and release notes. The forward suite passes 11/11 cases, including the
 positive/negative loop-engine fixture evaluation; 28 skills, 9 board profiles,
 8/8 contract themes, the official plugin validator, JSON/Python syntax, and
 diff checks also pass. Physical and model-level semantic evidence remains
-unverified. GitHub publication is the remaining authorized release operation.
+unverified. Commit `9882eb6`, annotated tag `v1.6.0`, remote refs, and the
+published GitHub Release were verified. The bounded ticket is closed.

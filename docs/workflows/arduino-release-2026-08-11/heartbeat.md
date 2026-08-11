@@ -1,15 +1,16 @@
 # v1.6.0 Release Heartbeat
 
-- current_sprint: release-pre-publish
+- current_sprint: published-v1.6.0
 - completed_sprints:
   - wayfinder-map
   - loop-engine-evaluator
   - recommendation-and-docs
   - final-gates
+  - publish-and-remote-verify
 - blockers:
   - Physical, upload, system, and deployment proof is intentionally unavailable.
   - Fresh-context semantic review from the prior loop did not persist its artifact.
-- next_action: Inspect the staged diff, then commit, tag, and push v1.6.0 if the release surface contains no secrets or unrelated changes.
+- next_action: No further action in this bounded release loop; start a successor loop only for physical validation, semantic model review, or deferred board-family research.
 - tool_tier_escalations:
   - tool: curl
     tier: 1

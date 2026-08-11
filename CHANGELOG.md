@@ -60,7 +60,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   for specialist selection.
 - Updated the shared contract, README, contributor/development guides, plugin
   distribution notes, eval inventory, and release notes for the loop contract.
-- Prepared the `v1.6.0` release tag from the existing `v1.5.0` baseline.
+- Published the `v1.6.0` release tag and GitHub Release from the existing
+  `v1.5.0` baseline after the deterministic gate suite passed.
 
 ### Skipped
 

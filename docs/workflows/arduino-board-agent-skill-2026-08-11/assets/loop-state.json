@@ -1,0 +1,138 @@
+{
+  "goal": "Make board support a retrieval-friendly, source-backed Agent Skill without regressing the Arduino skill package.",
+  "primary_metric": {
+    "name": "board_support_retrieval_contract_gates",
+    "direction": "increase",
+    "baseline": 0,
+    "target": 6,
+    "threshold": "at least six new board-support gates pass while all existing gates remain green"
+  },
+  "correctness_gates": [
+    "python3 scripts/validate_board_references.py exits 0",
+    "python3 scripts/validate_agent_skills.py exits 0",
+    "python3 scripts/validate_arduino_plugin.py exits 0",
+    "python3 scripts/validate_arduino_skill_contract.py exits 0",
+    "python3 scripts/run_arduino_evals.py exits 0",
+    "protected board profile hashes and constexpr pin fixture remain unchanged",
+    "independent acceptance and quality/regression reviews return no critical defect"
+  ],
+  "hard_constraints": [
+    "Preserve raw ordered constexpr int declarations with no extra syntax or explanation in declarations-only output.",
+    "Preserve C/C++ embedded-first guidance; use Python only for relevant deterministic tooling.",
+    "Use exact board, revision, module suffix, framework, core, and toolchain identity before board-specific advice.",
+    "Keep build, upload, hardware, system, and deployment evidence separate.",
+    "Never claim physical success without a user-provided measurement, log, or photo.",
+    "Do not weaken an evaluator to make a candidate pass.",
+    "Do not duplicate skill bodies in provider adapters or add unrelated skill scope."
+  ],
+  "editable_surface": [
+    "skills/board-selection/",
+    "skills/board-support/",
+    "skills/arduino-workflow-router/",
+    "references/boards/",
+    "scripts/validate_board_references.py",
+    "scripts/resolve_board_profile.py",
+    "scripts/run_arduino_evals.py",
+    "evals/evals.json",
+    "evals/board-support-trigger-queries.json",
+    "docs/arduino-skill-contract.md",
+    "README.md",
+    "arduino-skills.md",
+    "CHANGELOG.md",
+    "docs/workflows/arduino-board-agent-skill-2026-08-11/"
+  ],
+  "protected_files": [
+    "references/boards/arduino-uno-r3.md",
+    "references/boards/arduino-uno-r4.md",
+    "references/boards/esp32-devkit.md",
+    "references/boards/esp32-s3-devkit.md",
+    "references/boards/pico-pico-w.md",
+    "skills/pin-assignment/SKILL.md",
+    "evals/fixtures/esp32-buttons-leds.txt",
+    "evals/fixtures/esp32-buttons-leds.hardware-map.json"
+  ],
+  "baseline": {
+    "id": "arduino-board-agent-skill-baseline-2026-08-11",
+    "commands": [
+      "python3 scripts/validate_agent_skills.py",
+      "python3 scripts/validate_arduino_plugin.py",
+      "python3 scripts/validate_board_references.py",
+      "python3 scripts/validate_arduino_skill_contract.py",
+      "python3 scripts/run_arduino_evals.py --output /tmp/arduino-board-agent-baseline-evals.json",
+      "git diff --check",
+      "sha256sum evals/fixtures/esp32-buttons-leds.txt references/boards/arduino-uno-r3.md references/boards/arduino-uno-r4.md references/boards/esp32-devkit.md references/boards/esp32-s3-devkit.md references/boards/pico-pico-w.md"
+    ],
+    "results": [
+      "28 skills; 0 structural errors",
+      "plugin validator passed",
+      "9 board profiles; 0 board-reference errors",
+      "8/8 shared contract themes passed",
+      "11/11 forward eval cases passed",
+      "worktree clean on main; protected hashes recorded"
+    ],
+    "evidence_paths": [
+      "assets/baseline-results.md",
+      "assets/baseline-hashes.txt"
+    ]
+  },
+  "best_known_state": {
+    "id": "arduino-board-support-identity-contract-2026-08-11",
+    "source": "deterministic repository and official plugin gates",
+    "verified": true,
+    "primary_metric": 10,
+    "evidence_paths": [
+      "assets/experiment-log.jsonl",
+      "../../../../evals/eval-results.json",
+      "assets/baseline-hashes.txt",
+      "../research.md",
+      "../../../../evals/board-support-trigger-queries.json"
+    ]
+  },
+  "experiment_budget": 2,
+  "per_iteration_budget": "one bounded research or implementation change followed by targeted validation",
+  "evaluation_method": "existing repository validators plus resolver-backed retrieval scenarios, held-out trigger corpus shape checks, and independent review",
+  "acceptance_rule": "Keep the candidate only if the retrieval metric reaches at least six, all correctness gates pass, and protected hashes remain unchanged.",
+  "rollback_method": "Restore only the files listed in editable_surface after inspecting the diff; preserve unrelated user changes and rerun the baseline gates.",
+  "plateau_rule": "Stop after two consecutive candidate boundaries fail to add a measurable retrieval gate or introduce unresolved trigger ambiguity.",
+  "stop_conditions": [
+    "Research cannot distinguish a new skill from a board-selection upgrade without ambiguous trigger ownership.",
+    "A proposed field cannot be source-backed or safely marked unknown.",
+    "A protected customization changes unexpectedly.",
+    "A repair would weaken the evaluator or hide an evidence stage.",
+    "Physical validation is requested but unavailable."
+  ],
+  "experiment_history": [
+    {
+      "id": "baseline",
+      "decision": "preserve",
+      "result": "v1.6.0 package passes all existing deterministic gates"
+    },
+    {
+      "id": "board-support-contract",
+      "decision": "keep",
+      "result": "six retrieval contract gates plus exact lookup, ambiguity, unsupported-board, pin-handoff, toolchain, and composed-route cases pass"
+    },
+    {
+      "id": "board-reference-hardening",
+      "decision": "keep",
+      "result": "cross-profile lookup keys, primary-source confidence, date format, and unverified physical status are validated"
+    },
+    {
+      "id": "fresh-semantic-review",
+      "decision": "crash",
+      "result": "fresh acceptance and quality reviewers timed out; no independent semantic verdict artifact"
+    },
+    {
+      "id": "identity-resolution-contract",
+      "decision": "keep",
+      "result": "schema v3 identity contracts, deterministic fail-closed resolver, pin-handoff prerequisite, composed-route checks, and held-out trigger corpus shape checks pass; 18/18 forward cases and all deterministic gates remain green"
+    }
+  ],
+  "open_uncertainties": [
+    "Host-level trigger activation remains unrun; the 20-query held-out corpus is dataset-ready but has no model-run evidence.",
+    "No fresh post-repair independent semantic verdict artifact exists because delegated reviewers timed out or returned upstream 503 responses.",
+    "No target compilation, upload, wiring, power measurement, runtime, system, or deployment validation exists for this documentation and skill-package change.",
+    "Whether GIGA R1 WiFi and ESP32-C6 deserve separate source/core-variant profile loops.",
+    "Whether future profile revisions need a machine-readable per-fact source identifier."
+  ]
+}

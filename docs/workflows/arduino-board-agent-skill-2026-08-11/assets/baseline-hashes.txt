@@ -1,0 +1,6 @@
+6751368fabc599a46285b1597f9711d5bd5a9795e7e4fd87279a244e1bf93257  references/boards/arduino-uno-r3.md
+28e81109acce7b1c53f531eb6bff73d03038256fbc9944a93d30c6e5b778fcce  references/boards/arduino-uno-r4.md
+ac5db8d6f7be0aee72059be168a13d0e723944146db13d8800993e87f4f8da16  references/boards/esp32-devkit.md
+cffae3586565f04dc662e5fc7366d4d7d318396d516bf145733a898018128265  references/boards/esp32-s3-devkit.md
+0525beb9c4a5df1028bb311dbf03ce9997b6143108db325c13aa13df596cd370  references/boards/pico-pico-w.md
+bea647015483c8f7350578ea60b1e220d5fd05b9f4aff0e7f823331b1d664618  evals/fixtures/esp32-buttons-leds.txt

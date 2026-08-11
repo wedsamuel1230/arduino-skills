@@ -1,13 +1,14 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-1.6.0-blue)
-![Skills](https://img.shields.io/badge/skills-28%20packages-brightgreen)
+![Status](https://img.shields.io/badge/version-1.7.0-blue)
+![Skills](https://img.shields.io/badge/skills-29%20packages%20on%20main-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20%7C%20embedded-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> v1.6.0: toolchain-neutral, board-aware Arduino skills with plugin packaging,
+> v1.7.0: toolchain-neutral,
+> board-aware Arduino skills with plugin packaging,
 > physical-world evidence gates, and composable lifecycle workflows for OTA deployment, calibration,
 > field-power triage, and I2C bring-up.
 
@@ -51,6 +52,7 @@ This collection provides production-ready skills for Arduino and maker projects:
 - **Arduino Core Skills** - Hardware patterns, timing, communication, FreeRTOS, and CLI workflows
 - **Maker Tools** - Debugging, serial monitoring, BOM generation, power planning, documentation, diagrams
 - **Project Builders** - Code generation and project scaffolding with automation scripts
+- **Board Support** - AI-facing exact-board lookup, source status, capability tags, and safe pin handoff
 - **Workflow Router** - Board/toolchain intake and combined firmware, electronics, power, networking, enclosure, and deployment workflows
 
 The workflow is toolchain-neutral across Arduino IDE, Arduino CLI, PlatformIO,
@@ -89,7 +91,9 @@ For a complete request, start with `arduino-workflow-router`. For any request
 that spans physical hardware, recovery, measurements, or multiple sessions,
 load `embedded-project-loop` first. It creates the durable goal, one next todo,
 evidence ledger, rollback path, and user-owned physical gate before the router
-composes specialists. Neither entry point assumes Arduino IDE, a particular
+composes specialists. For a named board reference or capability lookup, start
+with `board-support`; for choosing or replacing a board from requirements, use
+`board-selection`. Neither entry point assumes Arduino IDE, a particular
 board family, or a successful compile as proof of system behavior.
 
 
@@ -243,6 +247,7 @@ mindmap
 | **Calibration Workbench** | `sensor-calibration-workbench/` | Calibration workflows, coefficient persistence, and drift checks for maker sensors |
 | **Field Power Triage** | `field-power-and-connectivity-triager/` | USB-vs-field-power diagnosis for WiFi and sensor-heavy maker projects |
 | **I2C Bringup** | `i2c-bringup-diagnostician/` | Fault isolation for I2C detection, library, pull-up, and board-quirk failures |
+| **Board Support** | `board-support/` | Exact-board profile lookup, capability/risk tags, source confidence, framework boundaries, and pin handoff |
 | **Workflow Router** | `arduino-workflow-router/` | Board/toolchain intake, combined workflow routing, recovery, security, and evidence stages |
 
 ### Engineering Guardrails
@@ -350,6 +355,14 @@ Mega 2560 Rev3, Nano Every, Nano ESP32, and ESP32-C3-DevKitC-02. A profile is
 documentation support, not a claim that the current checkout has been built,
 uploaded, wired, or measured on that board.
 
+For AI retrieval, the index carries compact aliases, MCU/architecture, logic
+level, capability tags, risk tags, identity contracts, toolchain families, and
+evidence status. Resolve names with the deterministic
+`scripts/resolve_board_profile.py` helper, then read the linked Markdown
+profile and the [AI reference schema](references/boards/ai-reference-schema.md)
+before assigning pins or making electrical claims. A generic family match is
+not a variant confirmation.
+
 
 |Arduino UNO (2KB)     |ESP32 (520KB)       |RP2040(264KB)   |
 |----------------------|--------------------|----------------|
@@ -392,12 +405,14 @@ board-to-profile inventory; this table is only a family-level orientation.
 ├── scripts/
 │   ├── validate_agent_skills.py      # Agent Skills schema validator
 │   ├── validate_arduino_skill_contract.py # Cross-skill lifecycle contract validator
-│   └── validate_arduino_plugin.py     # Plugin, reference, and eval validator
+│   ├── validate_arduino_plugin.py     # Plugin, reference, and eval validator
+│   └── resolve_board_profile.py       # Exact board lookup and identity gate
 ├── evals/
 │   ├── evals.json                     # Prompt and routing scenarios
 │   └── fixtures/loop-engine/          # Durable-loop positive/negative fixtures
 └── skills/
     ├── arduino-workflow-router/      # Concise universal router
+    ├── board-support/                # AI-facing exact-board reference lookup
     ├── board-selection/
     ├── pin-assignment/
     ├── wiring-safety-check/
@@ -432,11 +447,11 @@ UV_CACHE_DIR=/private/tmp/arduino-skills-uv-cache uv run --no-project --with pyy
   /Users/wed/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .
 ```
 
-For release `v1.6.0`, the tag and push commands are:
+For release `v1.7.0`, the tag and push commands are:
 
 ```bash
-git tag -a v1.6.0 -m "Release v1.6.0"
-git push origin main v1.6.0
+git tag -a v1.7.0 -m "Release v1.7.0"
+git push origin main v1.7.0
 ```
 
 Suggested repository topics for hosting platforms:
@@ -499,7 +514,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md#submitting-a-new-skill) for the complete p
 | [arduino-skills.md](arduino-skills.md) | Design principles and constraints |
 | [docs/arduino-skill-contract.md](docs/arduino-skill-contract.md) | Shared intake, toolchain, evidence, output, security, and lifecycle contract |
 | [docs/board-support/board-profile-template.md](docs/board-support/board-profile-template.md) | Board and hardware intake template |
-| [docs/releases/v1.6.0.md](docs/releases/v1.6.0.md) | Release notes and verification boundary |
+| [references/boards/index.json](references/boards/index.json) | Machine-readable board discovery inventory |
+| [references/boards/ai-reference-schema.md](references/boards/ai-reference-schema.md) | AI board lookup fields, evidence, and maintenance rules |
+| [docs/board-support/trigger-evaluation.md](docs/board-support/trigger-evaluation.md) | Held-out board-support activation evaluation contract |
+| [docs/releases/v1.7.0.md](docs/releases/v1.7.0.md) | Current release notes and verification boundary |
+| [docs/releases/v1.6.0.md](docs/releases/v1.6.0.md) | Previous release notes and verification boundary |
 | [evals/evals.json](evals/evals.json) | Prompt-level routing and loop-engine evaluation cases |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and release notes |
 | [docs/research/](docs/research/) | Archived discovery notes and pain-point research |

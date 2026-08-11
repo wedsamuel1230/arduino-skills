@@ -1,7 +1,7 @@
 {
   "suite": "arduino-skills",
   "evaluation_mode": "forward-contract",
-  "prompt_count": 11,
+  "prompt_count": 18,
   "cases": [
     {
       "id": "pin-assignment-esp32",
@@ -64,6 +64,21 @@
         },
         {
           "name": "trailing comment",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "board-support",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "resolution_status",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        },
+        {
+          "name": "must be `resolved`",
           "passed": true,
           "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
         },
@@ -373,12 +388,746 @@
       ]
     },
     {
+      "id": "board-support-known-profile",
+      "skill": "board-support",
+      "prompt": "Look up ESP32-C3-DevKitC-02 and report its exact profile, logic level, risky pins, default buses, framework scope, and source status.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "board index schema",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/references/boards/index.json"
+        },
+        {
+          "name": "AI query contract link",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/references/boards/index.json"
+        },
+        {
+          "name": "all profiles expose retrieval fields",
+          "passed": true,
+          "evidence": "('aliases', 'mcu', 'architecture', 'logic_level', 'capability_tags', 'risk_tags', 'identity_scope', 'identity_contract', 'toolchains', 'evidence')"
+        },
+        {
+          "name": "all profiles expose evidence fields",
+          "passed": true,
+          "evidence": "('source_confidence', 'checked', 'physical_status')"
+        },
+        {
+          "name": "physical status stays unverified",
+          "passed": true,
+          "evidence": "board index evidence"
+        },
+        {
+          "name": "profile aliases are non-empty",
+          "passed": true,
+          "evidence": "board index aliases"
+        },
+        {
+          "name": "board lookup keys are unique",
+          "passed": true,
+          "evidence": "[]"
+        },
+        {
+          "name": "source confidence names primary sources",
+          "passed": true,
+          "evidence": "board index evidence"
+        },
+        {
+          "name": "identity contracts are structured",
+          "passed": true,
+          "evidence": "board index identity_contract"
+        },
+        {
+          "name": "board query has one exact match",
+          "passed": true,
+          "evidence": "{'query': 'ESP32-C3 DevKitC-02', 'matches': ['esp32-c3-devkitc-02'], 'status': 'resolved'}"
+        },
+        {
+          "name": "board query resolves expected profile",
+          "passed": true,
+          "evidence": "{'expected': 'esp32-c3-devkitc-02', 'matches': ['esp32-c3-devkitc-02']}"
+        },
+        {
+          "name": "exact-board reference",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "source confidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "profile",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "physical",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "unverified",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "resolution_status",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "identity_contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "resolve_board_profile.py",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "--purpose pin",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "non-zero resolver status",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-variant-boundary",
+      "skill": "board-support",
+      "prompt": "I have an Uno R4 and need a GPIO map for an LED. Decide whether it is Minima or WiFi without making assumptions.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "board identity status",
+          "passed": true,
+          "evidence": "{'status': 'needs-disambiguation', 'reason': 'missing-identity-fields', 'query': 'Uno R4', 'normalized_query': 'uno-r4', 'matches': [{'id': 'arduino-uno-r4', 'name': 'Arduino Uno R4 Minima and WiFi', 'path': 'arduino-uno-r4.md', 'matched_alias': 'Uno R4', 'identity_contract': {'profile_type': 'bounded-variant-family', 'variants': ['Minima', 'WiFi'], 'required_for_pin_advice': ['variant'], 'required_for_electrical_advice': ['variant']}, 'evidence': {'source_confidence': 'primary-source-backed-with-explicit-gaps', 'checked': '2026-08-10', 'physical_status': 'unverified'}}], 'required_disambiguators': ['variant'], 'purpose': 'pin'}"
+        },
+        {
+          "name": "board identity missing fields",
+          "passed": true,
+          "evidence": "{'status': 'needs-disambiguation', 'reason': 'missing-identity-fields', 'query': 'Uno R4', 'normalized_query': 'uno-r4', 'matches': [{'id': 'arduino-uno-r4', 'name': 'Arduino Uno R4 Minima and WiFi', 'path': 'arduino-uno-r4.md', 'matched_alias': 'Uno R4', 'identity_contract': {'profile_type': 'bounded-variant-family', 'variants': ['Minima', 'WiFi'], 'required_for_pin_advice': ['variant'], 'required_for_electrical_advice': ['variant']}, 'evidence': {'source_confidence': 'primary-source-backed-with-explicit-gaps', 'checked': '2026-08-10', 'physical_status': 'unverified'}}], 'required_disambiguators': ['variant'], 'purpose': 'pin'}"
+        },
+        {
+          "name": "bounded-variant-family",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "needs-disambiguation",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "never silently choose a variant",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "required_disambiguators",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-variant-resolved",
+      "skill": "board-support",
+      "prompt": "Use the Raspberry Pi Pico W profile for an electrical and power review, and keep the result separate from physical proof.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "board identity status",
+          "passed": true,
+          "evidence": "{'status': 'resolved', 'reason': 'identity-complete', 'query': 'Pico W', 'normalized_query': 'pico-w', 'matches': [{'id': 'pico-pico-w', 'name': 'Raspberry Pi Pico and Pico W', 'path': 'pico-pico-w.md', 'matched_alias': 'Pico W', 'identity_contract': {'profile_type': 'bounded-variant-family', 'variants': ['Pico', 'Pico W'], 'required_for_pin_advice': ['variant'], 'required_for_electrical_advice': ['variant']}, 'evidence': {'source_confidence': 'primary-source-backed-with-explicit-gaps', 'checked': '2026-08-10', 'physical_status': 'unverified'}}], 'required_disambiguators': [], 'purpose': 'electrical'}"
+        },
+        {
+          "name": "board identity missing fields",
+          "passed": true,
+          "evidence": "{'status': 'resolved', 'reason': 'identity-complete', 'query': 'Pico W', 'normalized_query': 'pico-w', 'matches': [{'id': 'pico-pico-w', 'name': 'Raspberry Pi Pico and Pico W', 'path': 'pico-pico-w.md', 'matched_alias': 'Pico W', 'identity_contract': {'profile_type': 'bounded-variant-family', 'variants': ['Pico', 'Pico W'], 'required_for_pin_advice': ['variant'], 'required_for_electrical_advice': ['variant']}, 'evidence': {'source_confidence': 'primary-source-backed-with-explicit-gaps', 'checked': '2026-08-10', 'physical_status': 'unverified'}}], 'required_disambiguators': [], 'purpose': 'electrical'}"
+        },
+        {
+          "name": "resolution envelope",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "physical_status: unverified",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "routing record, not a build",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-ambiguous-target",
+      "skill": "board-support",
+      "prompt": "I have an ESP32 clone and want the correct GPIO map. Give me the pin assignments without asking any more questions.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "multiple profiles match",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "stop and ask",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "clones and carriers",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "exact match",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "do not map pins from a similar board",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "unknown",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "unverified",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-unsupported-target",
+      "skill": "board-support",
+      "prompt": "Support an STM32 Blue Pill using the Arduino board references in this repository and tell me its safe GPIO pins.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "unsupported by the indexed board set",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "minimum primary sources",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "do not map pins from a similar board",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-pin-handoff",
+      "skill": "board-support",
+      "prompt": "Resolve the Arduino Nano ESP32 profile, then hand its constraints to pin assignment for two LEDs and a UART sensor.",
+      "expected_route": [
+        "board-support",
+        "pin-assignment"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support', 'pin-assignment']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support', 'pin-assignment']"
+        },
+        {
+          "name": "board query has one exact match",
+          "passed": true,
+          "evidence": "{'query': 'ABX00083', 'matches': ['arduino-nano-esp32'], 'status': 'resolved'}"
+        },
+        {
+          "name": "board query resolves expected profile",
+          "passed": true,
+          "evidence": "{'expected': 'arduino-nano-esp32', 'matches': ['arduino-nano-esp32']}"
+        },
+        {
+          "name": "board_id:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "profile:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "framework_core:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "reserved_or_risky_pins:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "unresolved:",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "pin-assignment",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "logical IDs",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "physical GPIO numbers",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "raw ordered",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "pin-assignment links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/pin-assignment/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "board-support-toolchain-boundary",
+      "skill": "board-support",
+      "prompt": "Tell me whether the ESP32-S3 DevKit board reference proves my PlatformIO build will compile with the selected Arduino core.",
+      "expected_route": [
+        "board-support"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['board-support']"
+        },
+        {
+          "name": "framework/core",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "PlatformIO",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "compatibility scope",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "not proof that a build ran",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "build, upload, system",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "unverified",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
+        }
+      ]
+    },
+    {
       "id": "wiring-and-pin-composition",
       "skill": "arduino-workflow-router",
       "prompt": "Build a four-button ESP32 controller with LEDs, safe wiring, debounce, serial diagnostics, and a target test plan.",
       "expected_route": [
         "arduino-workflow-router",
         "board-selection",
+        "board-support",
         "pin-assignment",
         "wiring-safety-check",
         "non-blocking-patterns",
@@ -395,32 +1144,32 @@
         {
           "name": "route skills exist",
           "passed": true,
-          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+          "evidence": "['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
         },
         {
           "name": "route has no duplicate owners",
           "passed": true,
-          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+          "evidence": "['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
         },
         {
           "name": "combined route order",
           "passed": true,
-          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 94, 119, 146, 174]}"
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 138, 165, 193]}"
         },
         {
           "name": "route skills exist",
           "passed": true,
-          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+          "evidence": "['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
         },
         {
           "name": "route has no duplicate owners",
           "passed": true,
-          "evidence": "['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
+          "evidence": "['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd']"
         },
         {
           "name": "combined route order",
           "passed": true,
-          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 94, 119, 146, 174]}"
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 138, 165, 193]}"
         },
         {
           "name": "arduino-serial-monitor",
@@ -496,6 +1245,11 @@
           "name": "board-selection links shared contract",
           "passed": true,
           "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-selection/SKILL.md"
+        },
+        {
+          "name": "board-support links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/board-support/SKILL.md"
         },
         {
           "name": "pin-assignment links shared contract",

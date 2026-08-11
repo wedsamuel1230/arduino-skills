@@ -16,12 +16,19 @@ Install the complete shared tree into the detected agent targets:
 npx skills add wedsamuel1230/arduino-skills
 ```
 
-To install one specialist from the repository, use the CLI's per-skill path
-selection and keep its referenced repository docs available:
+To install one self-contained specialist from the repository, use the CLI's
+per-skill path selection:
 
 ```bash
 npx skills add wedsamuel1230/arduino-skills --skill pin-assignment
 ```
+
+`board-support`, `board-selection`, `pin-assignment`, and the workflow router
+are package-context skills: their contract, index, profiles, and neighboring
+skills are intentionally shared resources. Install the complete repository or
+host plugin for those entry points. A per-skill copy without
+`references/boards/`, `docs/arduino-skill-contract.md`, and the resolver is not
+a supported board-reference installation.
 
 Use `-g -y` for a user-level install when the skill should be available across
 projects, or `-a claude-code cursor` to target named Agent Skills hosts.
@@ -45,7 +52,15 @@ The Codex marketplace entry uses the host schema's local source object:
 ```
 
 For a published repository, use the Codex plugin marketplace flow for the
-repository URL, then install `arduino-skills` from the displayed marketplace.
+repository URL, then install `arduino-skills` from the displayed marketplace:
+
+```bash
+codex plugin marketplace add https://github.com/wedsamuel1230/arduino-skills
+codex plugin add arduino-skills@arduino-skills
+```
+
+The URL flow is the supported public-install path; use the local checkout form
+above when validating unpublished changes.
 Codex plugin behavior changes with releases; validate against the installed
 Codex version before publishing a lock-step release.
 

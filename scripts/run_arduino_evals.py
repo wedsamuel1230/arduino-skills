@@ -16,10 +16,12 @@ import re
 from pathlib import Path
 from typing import Any
 
+from resolve_board_profile import normalize_query, resolve_profile
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALS = ROOT / "evals" / "evals.json"
 CONTRACT = ROOT / "docs" / "arduino-skill-contract.md"
+BOARD_INDEX = ROOT / "references" / "boards" / "index.json"
 LOOP_FIXTURE_DIR = ROOT / "evals" / "fixtures" / "loop-engine"
 DECLARATION_RE = re.compile(r"^constexpr int [a-zA-Z_][a-zA-Z0-9_]* = (\d+);$")
 REQUIRED_CONTRACT_TERMS = (
@@ -120,6 +122,97 @@ def check_skill_terms(skill: str, terms: list[str]) -> list[dict[str, object]]:
     path = skill_path(skill)
     text = " ".join(path.read_text(encoding="utf-8").lower().split())
     return [check(term, " ".join(term.lower().split()) in text, str(path)) for term in terms]
+
+
+def check_board_index_contract() -> list[dict[str, object]]:
+    required_fields = (
+        "aliases",
+        "mcu",
+        "architecture",
+        "logic_level",
+        "capability_tags",
+        "risk_tags",
+        "identity_scope",
+        "identity_contract",
+        "toolchains",
+        "evidence",
+    )
+    required_evidence = ("source_confidence", "checked", "physical_status")
+    try:
+        index = load_json(BOARD_INDEX)
+    except (FileNotFoundError, json.JSONDecodeError, OSError) as exc:
+        return [check("board index loads", False, str(exc))]
+
+    profiles = index.get("profiles", []) if isinstance(index, dict) else []
+    lookup_keys: dict[str, str] = {}
+    collisions: list[str] = []
+    for profile in profiles:
+        values = [profile.get("id", ""), profile.get("name", ""), *profile.get("aliases", [])]
+        for value in values:
+            key = normalize_query(value)
+            previous = lookup_keys.get(key)
+            if previous and previous != profile.get("id"):
+                collisions.append(f"{key}:{previous}:{profile.get('id')}")
+            else:
+                lookup_keys[key] = profile.get("id", "")
+    checks: list[dict[str, object]] = [
+        check("board index schema", isinstance(index, dict) and index.get("schema_version") == 3, str(BOARD_INDEX)),
+        check("AI query contract link", isinstance(index, dict) and index.get("ai_query_contract") == "ai-reference-schema.md", str(BOARD_INDEX)),
+        check("all profiles expose retrieval fields", all(all(field in profile for field in required_fields) for profile in profiles), repr(required_fields)),
+        check("all profiles expose evidence fields", all(isinstance(profile.get("evidence"), dict) and all(field in profile["evidence"] for field in required_evidence) for profile in profiles), repr(required_evidence)),
+        check("physical status stays unverified", all(profile.get("evidence", {}).get("physical_status") == "unverified" for profile in profiles), "board index evidence"),
+        check("profile aliases are non-empty", all(isinstance(profile.get("aliases"), list) and profile["aliases"] for profile in profiles), "board index aliases"),
+        check("board lookup keys are unique", not collisions, repr(collisions)),
+        check("source confidence names primary sources", all(str(profile.get("evidence", {}).get("source_confidence", "")).startswith("primary-source-backed") for profile in profiles), "board index evidence"),
+        check(
+            "identity contracts are structured",
+            all(
+                isinstance(profile.get("identity_contract"), dict)
+                and profile["identity_contract"].get("profile_type") in {"exact-board", "bounded-variant-family"}
+                and isinstance(profile["identity_contract"].get("variants"), list)
+                and isinstance(profile["identity_contract"].get("required_for_pin_advice"), list)
+                and isinstance(profile["identity_contract"].get("required_for_electrical_advice"), list)
+                for profile in profiles
+            ),
+            "board index identity_contract",
+        ),
+    ]
+    return checks
+
+
+def check_board_lookup(assertion: dict[str, Any]) -> list[dict[str, object]]:
+    query = assertion.get("query", "")
+    expected_id = assertion.get("expected_id", "")
+    try:
+        index = load_json(BOARD_INDEX)
+    except (FileNotFoundError, json.JSONDecodeError, OSError) as exc:
+        return [check("board lookup index loads", False, str(exc))]
+
+    result = resolve_profile(index, query, purpose="lookup")
+    matches = [profile.get("id") for profile in result.get("matches", [])]
+    return [
+        check("board query has one exact match", result.get("status") == "resolved" and len(matches) == 1, repr({"query": query, "matches": matches, "status": result.get("status")})),
+        check("board query resolves expected profile", matches == [expected_id], repr({"expected": expected_id, "matches": matches})),
+    ]
+
+
+def check_board_identity(assertion: dict[str, Any]) -> list[dict[str, object]]:
+    try:
+        index = load_json(BOARD_INDEX)
+        result = resolve_profile(
+            index,
+            assertion.get("query", ""),
+            purpose=assertion.get("purpose", "lookup"),
+            identity=assertion.get("identity", []),
+        )
+    except (FileNotFoundError, json.JSONDecodeError, OSError, ValueError) as exc:
+        return [check("board identity resolver loads", False, str(exc))]
+    expected_status = assertion.get("expected_status")
+    expected_missing = assertion.get("expected_missing", [])
+    return [
+        check("board identity status", result.get("status") == expected_status, repr(result)),
+        check("board identity missing fields", result.get("required_disambiguators", []) == expected_missing, repr(result)),
+    ]
 
 
 def check_route(case: dict[str, Any]) -> list[dict[str, object]]:
@@ -284,6 +377,12 @@ def evaluate_assertion(assertion: dict[str, Any], case: dict[str, Any]) -> list[
         return [check("physical output map", check_pin_fixture()[2]["passed"], "pin fixture hardware map")]
     if assertion_type == "skill_terms":
         return check_skill_terms(assertion["skill"], assertion["terms"])
+    if assertion_type == "board_index_contract":
+        return check_board_index_contract()
+    if assertion_type == "board_lookup":
+        return check_board_lookup(assertion)
+    if assertion_type == "board_identity_contract":
+        return check_board_identity(assertion)
     if assertion_type == "shared_output_contract":
         return check_shared_output_contract(case["route"])
     if assertion_type == "route_order":

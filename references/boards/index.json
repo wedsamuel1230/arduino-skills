@@ -1,8 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 3,
   "checked": "2026-08-11",
   "description": "Source-backed board profiles for board selection and hardware-aware Arduino workflows.",
   "source_policy": "Use the exact board, revision, module suffix, framework, core, and toolchain. Treat product pages as date-checked when no immutable revision is published.",
+  "ai_query_contract": "ai-reference-schema.md",
   "profiles": [
     {
       "id": "arduino-uno-r3",
@@ -14,7 +15,17 @@
       "sources": [
         "https://docs.arduino.cc/hardware/uno-rev3",
         "https://onlinedocs.microchip.com/oxy/GUID-0EC909F9-8FB7-46B2-BF4B-05290662B5C3-en-US-12/index.html"
-      ]
+      ],
+      "aliases": ["Uno", "Uno Rev3", "ATmega328P Arduino"],
+      "mcu": "ATmega328P",
+      "architecture": "AVR 8-bit",
+      "logic_level": "5 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "5v-logic"],
+      "risk_tags": ["usb-serial-pins", "onboard-led-pin", "clone-variance"],
+      "identity_scope": "Official Arduino Uno Rev3; clones require separate board and regulator verification.",
+      "identity_contract": {"profile_type": "exact-board", "variants": [], "required_for_pin_advice": [], "required_for_electrical_advice": []},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-10", "physical_status": "unverified"}
     },
     {
       "id": "arduino-uno-r4",
@@ -26,7 +37,17 @@
       "sources": [
         "https://docs.arduino.cc/hardware/uno-r4-minima",
         "https://docs.arduino.cc/hardware/uno-r4-wifi"
-      ]
+      ],
+      "aliases": ["Uno R4", "Uno R4 Minima", "Uno R4 WiFi"],
+      "mcu": "Renesas RA4M1; WiFi variant adds ESP32-S3-MINI-1 connectivity MCU",
+      "architecture": "Arm Cortex-M4 with optional ESP32-S3 connectivity domain",
+      "logic_level": "5 V",
+      "capability_tags": ["adc", "can", "i2c", "pwm", "spi", "uart", "5v-logic", "wifi-variant"],
+      "risk_tags": ["minima-wifi-split", "can-transceiver-required", "clone-variance"],
+      "identity_scope": "Official Uno R4 Minima or WiFi header; WiFi connectivity pins are not Renesas header GPIO.",
+      "identity_contract": {"profile_type": "bounded-variant-family", "variants": ["Minima", "WiFi"], "required_for_pin_advice": ["variant"], "required_for_electrical_advice": ["variant"]},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-10", "physical_status": "unverified"}
     },
     {
       "id": "esp32-devkit",
@@ -38,7 +59,17 @@
       "sources": [
         "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html",
         "https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf"
-      ]
+      ],
+      "aliases": ["ESP32 DevKit", "ESP32 DevKitC", "ESP32-WROOM"],
+      "mcu": "ESP32",
+      "architecture": "dual-core Xtensa LX6",
+      "logic_level": "3.3 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "touch", "wifi", "ble", "dual-core", "3v3-logic"],
+      "risk_tags": ["gpio34-39-input-only", "gpio6-11-flash", "strapping-pins", "adc2-wifi", "module-variance", "clone-variance"],
+      "identity_scope": "Classic ESP32 DevKit/WROOM only; exact DevKit revision, WROOM suffix, and flash population are required.",
+      "identity_contract": {"profile_type": "bounded-variant-family", "variants": ["DevKit", "WROOM"], "required_for_pin_advice": ["devkit_revision", "wroom_suffix", "flash_population"], "required_for_electrical_advice": ["devkit_revision", "wroom_suffix", "flash_population"]},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO", "ESP-IDF"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-10", "physical_status": "unverified"}
     },
     {
       "id": "esp32-s3-devkit",
@@ -50,7 +81,17 @@
       "sources": [
         "https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/peripherals/gpio.html",
         "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"
-      ]
+      ],
+      "aliases": ["ESP32-S3 DevKit", "ESP32-S3 DevKitC", "ESP32-S3-WROOM"],
+      "mcu": "ESP32-S3",
+      "architecture": "dual-core Xtensa LX7",
+      "logic_level": "3.3 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "touch", "usb", "wifi", "ble", "dual-core", "3v3-logic"],
+      "risk_tags": ["strapping-pins", "usb-pins", "flash-psram-pins", "module-variance", "clone-variance"],
+      "identity_scope": "ESP32-S3 DevKit/WROOM reference only; exact DevKit revision, WROOM suffix, flash/PSRAM, and USB mode are required.",
+      "identity_contract": {"profile_type": "bounded-variant-family", "variants": ["DevKit", "WROOM"], "required_for_pin_advice": ["devkit_revision", "wroom_suffix", "flash_psram_population", "usb_mode"], "required_for_electrical_advice": ["devkit_revision", "wroom_suffix", "flash_psram_population"]},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO", "ESP-IDF"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-10", "physical_status": "unverified"}
     },
     {
       "id": "pico-pico-w",
@@ -62,7 +103,17 @@
       "sources": [
         "https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf",
         "https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf"
-      ]
+      ],
+      "aliases": ["Raspberry Pi Pico", "Pico", "Pico W", "RP2040 Pico"],
+      "mcu": "RP2040",
+      "architecture": "dual-core Arm Cortex-M0+",
+      "logic_level": "3.3 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "pio", "dual-core", "wifi-variant", "3v3-logic"],
+      "risk_tags": ["qspi-flash-pins", "pwm-slice-sharing", "pico-w-power", "clone-variance"],
+      "identity_scope": "Raspberry Pi Pico/Pico W with RP2040 and Arduino-Pico; does not cover RP2350 or arbitrary carriers.",
+      "identity_contract": {"profile_type": "bounded-variant-family", "variants": ["Pico", "Pico W"], "required_for_pin_advice": ["variant"], "required_for_electrical_advice": ["variant"]},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO", "Pico SDK"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-10", "physical_status": "unverified"}
     },
     {
       "id": "arduino-mega-2560",
@@ -75,7 +126,17 @@
         "https://docs.arduino.cc/hardware/mega-2560",
         "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega640-1280-1281-2560-2561-Datasheet-DS40002211A.pdf",
         "https://github.com/arduino/ArduinoCore-avr/blob/11b9130371e8447920edb65a75706a6c951e51fc/variants/mega/pins_arduino.h"
-      ]
+      ],
+      "aliases": ["Mega 2560", "Mega 2560 Rev3", "Arduino Mega"],
+      "mcu": "ATmega2560",
+      "architecture": "AVR 8-bit",
+      "logic_level": "5 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "4-uart", "5v-logic"],
+      "risk_tags": ["usb-serial-pins", "spi-icsp", "clone-variance"],
+      "identity_scope": "Official Arduino Mega 2560 Rev3; regulator, shield, and clone load behavior require exact verification.",
+      "identity_contract": {"profile_type": "exact-board", "variants": [], "required_for_pin_advice": [], "required_for_electrical_advice": []},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-11", "physical_status": "unverified"}
     },
     {
       "id": "arduino-nano-every",
@@ -88,7 +149,17 @@
         "https://docs.arduino.cc/hardware/nano-every",
         "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega4808-09-DataSheet-DS40002173C.pdf",
         "https://github.com/arduino/ArduinoCore-megaavr/blob/bbdfd4b8c5f0c6bdaec4dc162460c32d993e7d4e/variants/nona4809/pins_arduino.h"
-      ]
+      ],
+      "aliases": ["Nano Every", "Arduino Nano Every", "ATmega4809 Nano"],
+      "mcu": "ATmega4809",
+      "architecture": "AVR 8-bit megaAVR",
+      "logic_level": "5 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "5v-logic"],
+      "risk_tags": ["megaavr-register-differences", "clone-variance"],
+      "identity_scope": "Official Arduino Nano Every; do not substitute a classic ATmega328P Nano or an unverified clone.",
+      "identity_contract": {"profile_type": "exact-board", "variants": [], "required_for_pin_advice": [], "required_for_electrical_advice": []},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-11", "physical_status": "unverified"}
     },
     {
       "id": "arduino-nano-esp32",
@@ -102,7 +173,17 @@
         "https://docs.arduino.cc/resources/pinouts/ABX00083-full-pinout.pdf",
         "https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/arduino_nano_nora/pins_arduino.h",
         "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"
-      ]
+      ],
+      "aliases": ["Nano ESP32", "Arduino Nano ESP32", "ABX00083"],
+      "mcu": "ESP32-S3 in NORA-W106 module",
+      "architecture": "dual-core Xtensa LX7",
+      "logic_level": "3.3 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "usb", "wifi", "ble", "dual-core", "3v3-logic"],
+      "risk_tags": ["strapping-pins", "usb-pins", "flash-psram-pins", "nora-header-map", "partition-variance", "clone-variance"],
+      "identity_scope": "Official Arduino Nano ESP32 ABX00083 with NORA-W106; header aliases and partition behavior are board/core-specific.",
+      "identity_contract": {"profile_type": "exact-board", "variants": [], "required_for_pin_advice": [], "required_for_electrical_advice": []},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO", "MicroPython"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-11", "physical_status": "unverified"}
     },
     {
       "id": "esp32-c3-devkitc-02",
@@ -116,7 +197,17 @@
         "https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf",
         "https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/api-reference/peripherals/gpio.html",
         "https://github.com/espressif/arduino-esp32/blob/d8a1bf60d01aac021fc5f3cff30126f11d1e10a6/variants/esp32c3/pins_arduino.h"
-      ]
+      ],
+      "aliases": ["ESP32-C3 DevKitC-02", "ESP32-C3-WROOM-02 DevKit", "ESP32-C3-DevKitC-02"],
+      "mcu": "ESP32-C3",
+      "architecture": "single-core RISC-V",
+      "logic_level": "3.3 V",
+      "capability_tags": ["adc", "i2c", "pwm", "spi", "uart", "usb", "wifi", "ble", "3v3-logic"],
+      "risk_tags": ["strapping-pins", "usb-jtag-pins", "adc2-wifi", "rgb-led-pin", "module-variance", "clone-variance"],
+      "identity_scope": "Official ESP32-C3-DevKitC-02 with WROOM-02/02U; clone and revision differences require verification.",
+      "identity_contract": {"profile_type": "bounded-variant-family", "variants": ["WROOM-02", "WROOM-02U"], "required_for_pin_advice": ["module_suffix", "devkit_revision"], "required_for_electrical_advice": ["module_suffix", "devkit_revision"]},
+      "toolchains": ["Arduino IDE", "Arduino CLI", "PlatformIO", "ESP-IDF"],
+      "evidence": {"source_confidence": "primary-source-backed-with-explicit-gaps", "checked": "2026-08-11", "physical_status": "unverified"}
     }
   ]
 }

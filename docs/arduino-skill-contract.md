@@ -20,6 +20,47 @@ recovery actions:
 Use [the board profile template](board-support/board-profile-template.md) when
 the task is more than a small, board-independent explanation.
 
+## Board Support Reference Contract
+
+Use `skills/board-support/SKILL.md` for named-board lookup and
+`references/boards/index.json` as the compact AI discovery surface. Resolve
+`id`, `name`, or `aliases` to exactly one profile, then load the linked Markdown
+profile for detailed facts and its fact-to-source map. The index summary is a
+routing hint, not proof that every pin or peripheral is exposed.
+
+Every indexed profile records the MCU, architecture, logic level, capability
+tags, pin-risk tags, identity scope, an `identity_contract`, toolchain families,
+and evidence status. A `bounded-variant-family` profile must not be treated as
+an exact physical target until its required variant, revision, module, or
+population fields are confirmed for the requested advice. Require the exact
+board revision, module suffix, framework/core, and toolchain version before
+board-specific advice. Multiple matches are ambiguous; zero matches are
+unsupported until a profile is built from primary sources. Keep
+`physical_status: unverified` until the user supplies board-specific evidence.
+
+`board-support` should emit its machine-readable resolution envelope before the
+shared prose sections:
+
+```yaml
+resolution_status: resolved | needs-disambiguation | unsupported | profile-gap
+board_id: <index id or null>
+profile: <references/boards/*.md or null>
+identity:
+  profile_type: <exact-board | bounded-variant-family | null>
+  variant: <confirmed value or unknown>
+required_disambiguators: []
+evidence:
+  physical_status: unverified
+```
+
+This envelope is a routing record, not proof of compilation, upload, hardware,
+system, or deployment success.
+
+For pin work, pass the board id, profile path, exact identity, framework/core,
+logic level, reserved/risky pins, usable capabilities, and unresolved gaps to
+`pin-assignment`. Keep logical declaration IDs separate from physical GPIO
+numbers and preserve the raw ordered `constexpr int` convention.
+
 ## Toolchain And Compatibility
 
 Treat the toolchain as a variable, not as an implicit Arduino IDE assumption.

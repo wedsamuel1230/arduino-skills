@@ -1,0 +1,28 @@
+{
+  "skill_name": "board-support",
+  "evaluation_mode": "model-activation",
+  "runs_per_query": 3,
+  "status": "dataset-ready-model-run-pending",
+  "queries": [
+    {"id": "positive-c3-profile", "split": "train", "query": "Look up the ESP32-C3 DevKitC-02 GPIO map and source status.", "should_trigger": true},
+    {"id": "positive-pico-power", "split": "train", "query": "What pins and power constraints apply to my Pico W with Arduino-Pico?", "should_trigger": true},
+    {"id": "positive-uno-r4-variant", "split": "train", "query": "Is this an Uno R4 WiFi and which default buses and logic level does its board reference document?", "should_trigger": true},
+    {"id": "positive-nano-identity", "split": "train", "query": "Resolve product ABX00083 before assigning pins for my sensor.", "should_trigger": true},
+    {"id": "positive-classic-esp32", "split": "train", "query": "I need the exact board profile and risky GPIOs for a classic ESP32 DevKit.", "should_trigger": true},
+    {"id": "positive-s3-usb", "split": "train", "query": "Which ESP32-S3 DevKit pins are reserved for USB, strapping, flash, or PSRAM?", "should_trigger": true},
+    {"id": "positive-mega-reference", "split": "validation", "query": "Give me the source-backed Arduino Mega 2560 Rev3 peripheral and bus reference.", "should_trigger": true},
+    {"id": "positive-pico-handoff", "split": "validation", "query": "Hand the exact Pico W board constraints to pin assignment for buttons and LEDs.", "should_trigger": true},
+    {"id": "positive-unsupported-board", "split": "validation", "query": "Tell me whether this STM32 Blue Pill is covered by the indexed board references.", "should_trigger": true},
+    {"id": "positive-framework-boundary", "split": "validation", "query": "Does the ESP32-S3 board reference prove my PlatformIO Arduino core build will compile?", "should_trigger": true},
+    {"id": "negative-board-choice", "split": "train", "query": "Which board should I choose for a battery-powered WiFi sensor?", "should_trigger": false, "near_miss_owner": "board-selection"},
+    {"id": "negative-cli-build", "split": "train", "query": "Compile and upload my sketch with Arduino CLI.", "should_trigger": false, "near_miss_owner": "arduino-cli-skill"},
+    {"id": "negative-wiring-level", "split": "train", "query": "Check whether a 5V sensor needs a level shifter before connecting it.", "should_trigger": false, "near_miss_owner": "wiring-safety-check"},
+    {"id": "negative-nonblocking", "split": "train", "query": "Replace delay() with a millis() state machine and debounce the buttons.", "should_trigger": false, "near_miss_owner": "non-blocking-patterns"},
+    {"id": "negative-memory", "split": "train", "query": "Review the SRAM and flash budget of this Arduino sketch.", "should_trigger": false, "near_miss_owner": "memory-budgeting"},
+    {"id": "negative-datasheet", "split": "train", "query": "Extract the electrical limits and timing diagram from this sensor datasheet.", "should_trigger": false, "near_miss_owner": "datasheet-interpreter"},
+    {"id": "negative-battery", "split": "validation", "query": "Calculate battery runtime from this load table and a 2000mAh cell.", "should_trigger": false, "near_miss_owner": "power-budget-calculator"},
+    {"id": "negative-enclosure", "split": "validation", "query": "Design a printable enclosure around this board and display.", "should_trigger": false, "near_miss_owner": "enclosure-designer"},
+    {"id": "negative-serial", "split": "validation", "query": "Filter this captured serial log and highlight watchdog errors.", "should_trigger": false, "near_miss_owner": "arduino-serial-monitor"},
+    {"id": "negative-ota", "split": "validation", "query": "Add signed OTA updates with rollback for the connected device.", "should_trigger": false, "near_miss_owner": "ota-deployment-guardian"}
+  ]
+}

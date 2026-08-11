@@ -17,6 +17,7 @@ except ImportError:  # pragma: no cover - direct package execution fallback
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
+TRIGGER_QUERIES = ROOT / "evals" / "board-support-trigger-queries.json"
 BASELINE_SKILLS = {
     "arduino-cli-skill",
     "arduino-code-generator",
@@ -41,6 +42,7 @@ BASELINE_SKILLS = {
 }
 NEW_SKILLS = {
     "pin-assignment",
+    "board-support",
     "board-selection",
     "wiring-safety-check",
     "non-blocking-patterns",
@@ -282,6 +284,9 @@ def validate_contract_and_fixtures(errors: list[str]) -> None:
             "route_order",
             "trigger_precedence",
             "loop_engine_fixture",
+            "board_index_contract",
+            "board_lookup",
+            "board_identity_contract",
         }
         for case in evals["evals"]:
             if not isinstance(case, dict):
@@ -321,6 +326,50 @@ def validate_contract_and_fixtures(errors: list[str]) -> None:
         ):
             if not (ROOT / fixture).is_file():
                 errors.append(f"missing loop-engine eval fixture: {fixture}")
+    trigger_queries = load_json(TRIGGER_QUERIES, errors)
+    if isinstance(trigger_queries, dict):
+        queries = trigger_queries.get("queries")
+        if trigger_queries.get("skill_name") != "board-support":
+            errors.append("board-support trigger corpus has the wrong skill_name")
+        if not isinstance(queries, list) or len(queries) < 16:
+            errors.append("board-support trigger corpus needs at least 16 queries")
+        else:
+            trigger_ids: set[str] = set()
+            positive = 0
+            negative = 0
+            splits: dict[str, int] = {}
+            for query in queries:
+                if not isinstance(query, dict):
+                    errors.append("board-support trigger query must be an object")
+                    continue
+                query_id = query.get("id")
+                if not isinstance(query_id, str) or not query_id:
+                    errors.append("board-support trigger query needs an id")
+                elif query_id in trigger_ids:
+                    errors.append(f"duplicate board-support trigger query id: {query_id}")
+                else:
+                    trigger_ids.add(query_id)
+                if not isinstance(query.get("query"), str) or not query["query"].strip():
+                    errors.append(f"{query_id}: trigger query text is missing")
+                if not isinstance(query.get("should_trigger"), bool):
+                    errors.append(f"{query_id}: should_trigger must be boolean")
+                elif query["should_trigger"]:
+                    positive += 1
+                else:
+                    negative += 1
+                split = query.get("split")
+                if split not in {"train", "validation"}:
+                    errors.append(f"{query_id}: trigger split must be train or validation")
+                else:
+                    splits[split] = splits.get(split, 0) + 1
+            if positive < 8 or negative < 8:
+                errors.append("board-support trigger corpus must include at least 8 positive and 8 negative queries")
+            if not all(splits.get(split, 0) for split in ("train", "validation")):
+                errors.append("board-support trigger corpus must contain train and validation queries")
+            if trigger_queries.get("status") != "dataset-ready-model-run-pending":
+                errors.append("board-support trigger corpus must declare model-run status")
+    if not (ROOT / "scripts/resolve_board_profile.py").is_file():
+        errors.append("missing deterministic board resolver")
     fixture = ROOT / "evals/fixtures/esp32-buttons-leds.txt"
     if fixture.is_file():
         lines = fixture.read_text(encoding="utf-8").splitlines()

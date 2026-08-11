@@ -11,6 +11,14 @@ metadata:
 Choose a concrete board target from requirements rather than a marketing family
 name. This skill produces a decision record that downstream skills can consume.
 
+## Boundary With Board Support
+
+Use `board-support` when the user has named a board and needs its exact profile,
+capabilities, pin hazards, source status, or framework compatibility. Use this
+skill when the user is choosing, replacing, or comparing boards against project
+requirements. Consume the board-support profile instead of repeating or
+guessing its facts.
+
 ## Intake
 
 Capture required voltage and rails, inputs/outputs, PWM/ADC/timers, buses and
@@ -18,9 +26,10 @@ protocols, memory/flash/PSRAM, radio/USB, timing, power source and peak load,
 physical constraints, production quantity, toolchain, library constraints,
 security/update needs, and recovery access.
 
-Read `../../references/boards/README.md` and the relevant board profile. If the
-board is not covered, use the vendor product page, MCU/module datasheet, board
-schematic, and selected framework variant source. Label inferred values.
+Read `../../references/boards/README.md` and use `../board-support/SKILL.md` for
+the relevant exact profile. If the board is not covered, use the vendor product
+page, MCU/module datasheet, board schematic, and selected framework variant
+source. Label inferred values.
 
 ## Process
 

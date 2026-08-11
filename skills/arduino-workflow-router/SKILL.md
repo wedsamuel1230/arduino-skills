@@ -24,11 +24,13 @@ user-owned physical gate. Then return here for board and toolchain routing.
    implementation and keep it open until the evidence gate is satisfied.
 3. Fill `../../docs/board-support/board-profile-template.md` or state why it is
    unnecessary.
-4. Read `references/board-intake.md` for board and hardware checks.
-5. Read `references/toolchain-selection.md` for IDE, CLI, PlatformIO, or vendor
+4. When a named board or board family must be resolved, load
+   `../board-support/SKILL.md` and its indexed profile before selecting pins.
+5. Read `references/board-intake.md` for board and hardware checks.
+6. Read `references/toolchain-selection.md` for IDE, CLI, PlatformIO, or vendor
    version and library compatibility.
-6. Select specialist skills from the routing table below.
-7. Read `references/failure-recovery.md` before upload, boot, power, or firmware
+7. Select specialist skills from the routing table below.
+8. Read `references/failure-recovery.md` before upload, boot, power, or firmware
    recovery actions; read `references/connected-device-security.md` for any
    networked or updateable device.
 
@@ -45,6 +47,9 @@ variants remain progressive disclosure.
   this router, then return to this router for the combined specialist route.
 - For a single-stage request with a confirmed board and toolchain, load the
   narrowest specialist directly.
+- For a named-board reference or capability lookup, `board-support` owns the
+  exact identity and source-backed profile. `board-selection` owns choosing or
+  replacing a board from requirements and may consume its handoff.
 - A board-choice request without implementation, wiring, or lifecycle work may
   start at `board-selection`; once another discipline appears, return to this
   router and preserve the combined-workflow order.
@@ -62,8 +67,9 @@ framework, toolchain, host, dependency versions, and desired proof stage.
 
 | Need | Load next | Evidence focus |
 |---|---|---|
-| Requirements or board choice | `board-selection`, then `arduino-project-builder` | decision and design |
-| Pin map or GPIO declarations | `pin-assignment`, then `wiring-safety-check` | board constraints and hardware |
+| Requirements or board choice | `board-selection`, then `board-support`, then `arduino-project-builder` | decision and design |
+| Named board reference or capability lookup | `board-support`, then the relevant specialist | exact identity and source-backed constraints |
+| Pin map or GPIO declarations | `board-support`, then `pin-assignment`, then `wiring-safety-check` | board constraints and hardware |
 | Wiring, voltage, current, or pull-ups | `wiring-safety-check`, `power-budget-calculator`, `circuit-debugger` | hardware |
 | Code pattern or board abstraction | `arduino-code-generator`, `non-blocking-patterns`, `memory-budgeting` | build and memory |
 | Library or framework dependency | `library-selection`, then the code/project skill | compatibility and memory |
@@ -90,10 +96,14 @@ library/memory -> project/code/timing -> toolchain build/upload -> serial and
 hardware tests -> system/calibration -> deployment/security/maintenance`
 
 Default combined order: `arduino-workflow-router` -> `board-selection` ->
-`pin-assignment` -> `wiring-safety-check` -> `non-blocking-patterns` ->
+`board-support` -> `pin-assignment` -> `wiring-safety-check` -> `non-blocking-patterns` ->
 `arduino-serial-monitor` -> `hardware-tdd`. Start with
 `embedded-project-loop` when the work spans sessions or physical gates, then
 keep its next-todo and evidence ledger open through the later stages.
+
+If the user already supplied an exact, supported board identity, skip
+`board-selection` and begin with `board-support`; never skip `board-support`
+before pin or electrical advice.
 
 - **Battery-powered Wi-Fi sensor**: board intake -> datasheet -> power ->
   project builder -> code generator -> toolchain -> serial/calibration -> OTA

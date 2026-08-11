@@ -5,6 +5,17 @@ suffix, Arduino core/framework, and toolchain version. Values marked as a gap
 are intentionally not guessed. Board-family facts do not prove that a clone,
 carrier, or populated module exposes the same pins.
 
+`index.json` is the compact AI retrieval surface. It contains aliases, MCU and
+architecture identity, logic level, capability/risk tags, an identity contract,
+toolchain families, and evidence status for fast routing. The Markdown profile
+linked by `path` is still required for detailed pin, bus, memory, current, boot,
+and source claims. Use `scripts/resolve_board_profile.py` for exact lookups;
+do not replace an `identity_contract` boundary with fuzzy matching.
+Use [the board-support skill](../../skills/board-support/SKILL.md) for named
+board lookup and [the AI reference schema](ai-reference-schema.md) when adding
+or reviewing an index record. Use [board-selection](../../skills/board-selection/SKILL.md)
+when the user is choosing or replacing a board from requirements.
+
 The machine-readable inventory is [index.json](index.json). It is the
 discovery surface used by the board-reference validator; the Markdown profiles
 remain the human-readable source of the fact-to-source maps.
@@ -25,6 +36,17 @@ The source and accessibility ledger is [source-ledger.md](source-ledger.md).
 It records the check date, immutable commit pins where a repository is used,
 document identifiers where a datasheet exposes one, and any fetch or
 verification gap.
+
+## AI lookup boundary
+
+Resolve `id`, `name`, or `aliases` to exactly one profile. Zero matches are
+unsupported by this indexed set; multiple matches are ambiguous. A single
+profile match with `profile_type: bounded-variant-family` is still incomplete
+for variant-sensitive advice until its required identity fields are confirmed.
+Do not use a capability tag as proof that every pin is available. Load the
+detailed profile and selected framework variant before assigning pins or giving
+electrical, current, boot, upload, or recovery advice. `physical_status:
+unverified` remains true until a user supplies board-specific evidence.
 
 ## Source policy
 

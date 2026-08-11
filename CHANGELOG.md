@@ -4,6 +4,64 @@ All notable changes to the **arduino-skills** project are documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+No unreleased changes.
+
+## [1.7.0] - 2026-08-11
+
+### Added
+
+- `board-support`, an AI-facing exact-board lookup skill that resolves indexed
+  profiles, source status, capability/risk boundaries, framework/toolchain
+  scope, ambiguity, unsupported targets, and pin-assignment handoff.
+- `references/boards/ai-reference-schema.md` and schema version 3 summaries in
+  `references/boards/index.json` for aliases, MCU/architecture, logic level,
+  capability tags, risk tags, identity scope, variant identity contracts,
+  toolchains, and evidence status.
+- A deterministic `scripts/resolve_board_profile.py` helper that returns exact,
+  unsupported, or identity-incomplete results without fuzzy matching.
+- Variant-boundary and resolution-envelope scenarios; the forward suite now
+  covers 18/18 cases, plus a held-out 20-query trigger corpus.
+- Cross-profile lookup-key, evidence-confidence, and checked-date hardening in
+  the board validator and eval harness.
+- Durable Wayfinder and loop-engine records under
+  `docs/workflows/arduino-board-agent-skill-2026-08-11/`.
+
+### Changed
+
+- `arduino-workflow-router` now loads `board-support` for named-board facts
+  before pin assignment, while requirement-level board choice remains owned by
+  `board-selection`.
+- `pin-assignment` now requires a resolved board-support handoff before physical
+  pin selection.
+- `board-selection` now owns board choice/replacement only and consumes the
+  board-support profile instead of duplicating lookup behavior.
+- Board-reference validation now fails closed when AI retrieval fields,
+  structured identity contracts, or explicit `physical_status: unverified`
+  evidence are missing.
+- README, design principles, shared contract, board docs, and eval results now
+  describe the board-support entry point, compact reference surface, resolver,
+  and package-context installation boundary.
+
+### Flagged
+
+- Four delegated research agents and two fresh semantic reviewers were
+  initially unavailable because of upstream `503`/timeout failures. One delayed
+  fresh reviewer returned actionable findings; the retry batch still failed.
+  Deterministic gates pass, but model activation rates remain unrun.
+- The board-support skill intentionally depends on the complete repository/plugin
+  for shared profiles, contract, and resolver; standalone per-skill copies are
+  unsupported and documented as such.
+- No board was wired, flashed, compiled for target hardware, powered, measured,
+  or deployed in this loop. GIGA R1 WiFi and ESP32-C6 remain deferred.
+
+### Planned
+
+- GitHub Actions CI pipeline for Arduino compilation and Python script validation
+- GitHub branch protection rules and status checks
+- Skill validation test suite (schema checking, YAML parsing)
+
 ## [1.6.0] - 2026-08-11
 
 ### Added
@@ -265,13 +323,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - README badges updated: v0.9.0 → v0.10.0, 18 → 20 skills
 
 ---
-
-## [Unreleased]
-
-### Planned
-- GitHub Actions CI pipeline for Arduino compilation and Python script validation
-- GitHub branch protection rules and status checks
-- Skill validation test suite (schema checking, YAML parsing)
 
 ---
 
@@ -625,5 +676,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-**Last Updated:** 2026-05-27  
-**Current Version:** 1.5.0
+**Last Updated:** 2026-08-11
+**Current Version:** 1.7.0

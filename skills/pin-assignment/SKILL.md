@@ -17,8 +17,12 @@ number; keep those layers distinct.
 Record the exact board/revision, MCU/module, framework/core version, toolchain,
 signal names, direction, voltage, current, pull requirements, bus ownership,
 boot/debug/USB/radio constraints, and whether the user wants declarations,
-physical wiring, or both. Load the matching file under `../../references/boards/`
-before selecting a physical pin.
+physical wiring, or both. Resolve the target through
+`../board-support/SKILL.md` first; its `resolution_status` must be `resolved`
+for the requested pin-advice purpose. Load the matching file under
+`../../references/boards/` before selecting a physical pin. If the board is a
+bounded family with missing identity fields, stop and request them instead of
+using a similar profile.
 
 ## Process
 

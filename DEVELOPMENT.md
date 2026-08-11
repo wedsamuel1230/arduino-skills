@@ -48,10 +48,11 @@ python3 scripts/run_arduino_evals.py
 git diff --check
 ```
 
-The forward suite includes `loop-engine-evidence-contract`. It validates a
-complete durable loop state and append-only ledger, and also proves that an
-incomplete fixture is rejected. This is contract evidence only; it does not
-replace user-supplied measurements or target-board tests.
+The forward suite includes `loop-engine-evidence-contract` and the board-support
+identity, resolver, routing, and trigger-corpus checks. It currently passes
+18/18 cases and validates a complete durable loop state and append-only ledger,
+while proving that an incomplete fixture is rejected. This is contract evidence
+only; it does not replace user-supplied measurements or target-board tests.
 
 ## Workspace Structure
 
@@ -72,6 +73,7 @@ arduino-skills/
 │   ├── validate_agent_skills.py # Agent Skills schema validator
 │   ├── validate_arduino_skill_contract.py # Cross-skill workflow validator
 │   ├── validate_arduino_plugin.py # Plugin, reference, and fixture validator
+│   ├── resolve_board_profile.py # Exact board lookup and identity gate
 │   └── run_arduino_evals.py     # Deterministic behavioral fixture runner
 ├── evals/                       # Scenarios, fixtures, results, fresh review
 ├── references/boards/           # Board-family facts and source links

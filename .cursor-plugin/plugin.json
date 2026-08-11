@@ -1,7 +1,7 @@
 {
   "name": "arduino-skills",
   "displayName": "Arduino Embedded Skills",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Toolchain-neutral, hardware-aware Arduino and embedded development skills.",
   "author": {
     "name": "arduino-skills contributors",

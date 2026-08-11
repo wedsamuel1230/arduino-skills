@@ -24,7 +24,9 @@ current checks.
 
 ### Composable Guardrails
 
-Use `board-selection` before choosing an exact target, `pin-assignment` and
+Use `board-support` for named-board profile lookup, capabilities, source status,
+identity-contract checks, and exact pin-risk intake. Use `board-selection` before choosing an exact target,
+`pin-assignment` and
 `wiring-safety-check` before wiring, `library-selection` and `memory-budgeting`
 before adding dependencies, `non-blocking-patterns` for timing, and
 `hardware-tdd` plus `embedded-project-loop` when physical evidence is needed.
@@ -40,7 +42,8 @@ proof stage.
 
 ### 0. Universal Intake And Routing
 
-Before board-dependent advice, record the exact board/revision, MCU, pins,
+Before board-dependent advice, resolve a named board through `board-support` or
+record the exact board/revision, MCU, pins,
 memory, peripherals, voltage/current, protocols, framework, toolchain, and
 versions. Use `arduino-workflow-router` when the request crosses firmware,
 electronics, power, networking, enclosure, deployment, or maintenance.
@@ -118,6 +121,8 @@ The exact target and revision always win over a remembered platform table.
 Exact board profiles additionally cover Arduino Mega 2560 Rev3, Nano Every,
 Nano ESP32, and ESP32-C3-DevKitC-02. Read `references/boards/index.json` and
 the selected profile before assigning pins or making voltage/current claims.
+For repository work, use `scripts/resolve_board_profile.py` and stop on a
+`needs-disambiguation` result for variant-sensitive advice.
 
 ---
 

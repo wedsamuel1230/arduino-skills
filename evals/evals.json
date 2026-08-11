@@ -13,6 +13,7 @@
         {"id": "pin_declarations_only", "type": "fixture_pin_declarations", "description": "Declarations are raw constexpr int lines in 101-106 order with no commentary."},
         {"id": "pin_output_safety", "type": "fixture_pin_safety", "description": "Physical output choices do not use classic ESP32 input-only or strapping pins."},
         {"id": "pin_no_commentary", "type": "skill_terms", "skill": "pin-assignment", "terms": ["emit only the declarations as plain text", "do not add a code fence", "trailing comment"]},
+        {"id": "pin_requires_board_resolution", "type": "skill_terms", "skill": "pin-assignment", "terms": ["board-support", "resolution_status", "must be `resolved`"]},
         {"id": "pin_shared_contract", "type": "shared_output_contract", "description": "The response keeps assumptions, tools, steps, evidence, limitations, and recovery findable."}
       ]
     },
@@ -56,11 +57,97 @@
       ]
     },
     {
+      "id": "board-support-known-profile",
+      "skill": "board-support",
+      "prompt": "Look up ESP32-C3-DevKitC-02 and report its exact profile, logic level, risky pins, default buses, framework scope, and source status.",
+      "expected_output": "Resolves one indexed profile, loads its detailed fact-to-source map, keeps physical proof unverified, and returns a downstream-ready board record.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "board_index_contract", "type": "board_index_contract", "description": "Every indexed profile has compact AI retrieval fields and explicit evidence status."},
+        {"id": "board_c3_lookup", "type": "board_lookup", "query": "ESP32-C3 DevKitC-02", "expected_id": "esp32-c3-devkitc-02", "description": "The common board name resolves to exactly one profile."},
+        {"id": "board_support_source_boundary", "type": "skill_terms", "skill": "board-support", "terms": ["exact-board reference", "source confidence", "profile", "physical", "unverified", "resolution_status", "identity_contract"]},
+        {"id": "board_support_resolver_tool", "type": "skill_terms", "skill": "board-support", "terms": ["resolve_board_profile.py", "--purpose pin", "non-zero resolver status"]},
+        {"id": "board_support_shared_contract", "type": "shared_output_contract", "description": "The lookup returns the common assumptions, tools, steps, evidence, limitations, and recovery sections."}
+      ]
+    },
+    {
+      "id": "board-support-variant-boundary",
+      "skill": "board-support",
+      "prompt": "I have an Uno R4 and need a GPIO map for an LED. Decide whether it is Minima or WiFi without making assumptions.",
+      "expected_output": "Reports a bounded variant family and stops with needs-disambiguation until Minima or WiFi is confirmed.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "uno_r4_variant_gate", "type": "board_identity_contract", "query": "Uno R4", "purpose": "pin", "expected_status": "needs-disambiguation", "expected_missing": ["variant"]},
+        {"id": "board_support_variant_terms", "type": "skill_terms", "skill": "board-support", "terms": ["bounded-variant-family", "needs-disambiguation", "never silently choose a variant", "required_disambiguators"]},
+        {"id": "board_support_variant_contract", "type": "shared_output_contract", "description": "Variant-specific advice keeps identity uncertainty visible."}
+      ]
+    },
+    {
+      "id": "board-support-variant-resolved",
+      "skill": "board-support",
+      "prompt": "Use the Raspberry Pi Pico W profile for an electrical and power review, and keep the result separate from physical proof.",
+      "expected_output": "Resolves the Pico W variant, reports source and physical evidence status, and does not claim a measured power result.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "pico_w_variant_resolves", "type": "board_identity_contract", "query": "Pico W", "purpose": "electrical", "expected_status": "resolved", "expected_missing": []},
+        {"id": "board_support_envelope", "type": "skill_terms", "skill": "board-support", "terms": ["resolution envelope", "physical_status: unverified", "routing record, not a build"]},
+        {"id": "board_support_variant_shared_contract", "type": "shared_output_contract", "description": "Resolved identity still keeps physical and system evidence separate."}
+      ]
+    },
+    {
+      "id": "board-support-ambiguous-target",
+      "skill": "board-support",
+      "prompt": "I have an ESP32 clone and want the correct GPIO map. Give me the pin assignments without asking any more questions.",
+      "expected_output": "Stops at the ambiguous family/clone boundary, requests exact identity, and does not guess a pin map.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "board_support_ambiguity", "type": "skill_terms", "skill": "board-support", "terms": ["multiple profiles match", "stop and ask", "clones and carriers", "exact match"]},
+        {"id": "board_support_no_guess", "type": "skill_terms", "skill": "board-support", "terms": ["do not map pins from a similar board", "unknown", "unverified"]},
+        {"id": "board_support_ambiguity_contract", "type": "shared_output_contract", "description": "An incomplete identity is reported as an assumption/limitation, not hidden."}
+      ]
+    },
+    {
+      "id": "board-support-unsupported-target",
+      "skill": "board-support",
+      "prompt": "Support an STM32 Blue Pill using the Arduino board references in this repository and tell me its safe GPIO pins.",
+      "expected_output": "Reports the target as unsupported by the indexed board set, names the primary sources needed for a profile, and refuses to infer pins.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "board_support_unsupported", "type": "skill_terms", "skill": "board-support", "terms": ["unsupported by the indexed board set", "minimum primary sources", "do not map pins from a similar board"]},
+        {"id": "board_support_unsupported_contract", "type": "shared_output_contract", "description": "Unsupported-board behavior preserves evidence and limitation boundaries."}
+      ]
+    },
+    {
+      "id": "board-support-pin-handoff",
+      "skill": "board-support",
+      "prompt": "Resolve the Arduino Nano ESP32 profile, then hand its constraints to pin assignment for two LEDs and a UART sensor.",
+      "expected_output": "Produces a board-support handoff with exact profile, logic level, risky pins, bus ownership, framework, and unresolved gaps before pin allocation.",
+      "route": ["board-support", "pin-assignment"],
+      "assertions": [
+        {"id": "board_nano_lookup", "type": "board_lookup", "query": "ABX00083", "expected_id": "arduino-nano-esp32", "description": "The official product identifier resolves to the Nano ESP32 profile."},
+        {"id": "board_support_pin_handoff", "type": "skill_terms", "skill": "board-support", "terms": ["board_id:", "profile:", "framework_core:", "reserved_or_risky_pins:", "unresolved:", "pin-assignment"]},
+        {"id": "board_support_logical_physical", "type": "skill_terms", "skill": "board-support", "terms": ["logical IDs", "physical GPIO numbers", "raw ordered"]},
+        {"id": "board_support_handoff_contract", "type": "shared_output_contract", "description": "The handoff does not claim that pin allocation or hardware behavior has been verified."}
+      ]
+    },
+    {
+      "id": "board-support-toolchain-boundary",
+      "skill": "board-support",
+      "prompt": "Tell me whether the ESP32-S3 DevKit board reference proves my PlatformIO build will compile with the selected Arduino core.",
+      "expected_output": "Reports the framework/toolchain scope and required versions, but clearly separates compatibility documentation from build proof.",
+      "route": ["board-support"],
+      "assertions": [
+        {"id": "board_support_toolchain", "type": "skill_terms", "skill": "board-support", "terms": ["framework/core", "PlatformIO", "compatibility scope", "versions"]},
+        {"id": "board_support_build_boundary", "type": "skill_terms", "skill": "board-support", "terms": ["not proof that a build ran", "build, upload, system", "unverified"]},
+        {"id": "board_support_toolchain_contract", "type": "shared_output_contract", "description": "Toolchain claims remain separate from build and hardware evidence."}
+      ]
+    },
+    {
       "id": "wiring-and-pin-composition",
       "skill": "arduino-workflow-router",
       "prompt": "Build a four-button ESP32 controller with LEDs, safe wiring, debounce, serial diagnostics, and a target test plan.",
       "expected_output": "Routes board selection/intake, pin assignment, wiring safety, non-blocking timing, serial monitoring, and hardware TDD in order.",
-      "route": ["arduino-workflow-router", "board-selection", "pin-assignment", "wiring-safety-check", "non-blocking-patterns", "arduino-serial-monitor", "hardware-tdd"],
+      "route": ["arduino-workflow-router", "board-selection", "board-support", "pin-assignment", "wiring-safety-check", "non-blocking-patterns", "arduino-serial-monitor", "hardware-tdd"],
       "assertions": [
         {"id": "combined_route_order", "type": "route_order", "description": "The combined route starts with the router and preserves the documented specialist order."},
         {"id": "combined_serial_route", "type": "skill_terms", "skill": "arduino-workflow-router", "terms": ["arduino-serial-monitor", "structured runtime evidence"]},

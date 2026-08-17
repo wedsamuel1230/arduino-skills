@@ -231,6 +231,32 @@
         {"id": "loop_physical_boundary", "type": "skill_terms", "skill": "embedded-project-loop", "terms": ["physical gate", "blocked:", "unverified"]},
         {"id": "loop_shared_contract", "type": "shared_output_contract", "description": "Loop progress does not promote build evidence into hardware or system proof."}
       ]
+    },
+    {
+      "id": "sensor-signal-filtering-adc",
+      "skill": "sensor-signal-filtering",
+      "prompt": "My Arduino ADC value is noisy. Choose a filter, set a sample-rate plan, preserve raw readings, and give me host tests before target testing.",
+      "expected_output": "Separates raw diagnosis, sampling/aliasing, filter latency/startup, fault handling, deterministic TDD, and target evidence.",
+      "route": ["sensor-signal-filtering"],
+      "assertions": [
+        {"id": "filter_sampling_boundary", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["Nyquist", "raw samples", "sampling rate"]},
+        {"id": "filter_algorithm_tradeoffs", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["moving-average", "median", "EMA", "latency"]},
+        {"id": "filter_host_tdd", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["host", "deterministic", "filter_benchmark.py"]},
+        {"id": "filter_shared_contract", "type": "shared_output_contract", "description": "ADC filter advice labels assumptions, tools, steps, evidence, limitations, and recovery."}
+      ]
+    },
+    {
+      "id": "sensor-signal-filtering-hardware",
+      "skill": "sensor-signal-filtering",
+      "prompt": "Add an RC filter between a sensor and an ESP32 ADC. Explain the circuit, cutoff, ADC source impedance, voltage safety, grounding, and what I must measure before claiming it works.",
+      "expected_output": "Provides source-backed, board-aware analog guidance without inventing values and keeps hardware measurements separate from compile proof.",
+      "route": ["sensor-signal-filtering"],
+      "assertions": [
+        {"id": "filter_rc_network", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["RC cutoff", "ADC acquisition/settling"]},
+        {"id": "filter_adc_settling", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["source impedance", "exact board"]},
+        {"id": "filter_physical_gate", "type": "skill_terms", "skill": "sensor-signal-filtering", "terms": ["measure", "hardware proof"]},
+        {"id": "filter_hardware_contract", "type": "shared_output_contract", "description": "Circuit advice keeps voltage, measurement, and recovery boundaries explicit."}
+      ]
     }
   ]
 }

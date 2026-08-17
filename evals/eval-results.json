@@ -1,7 +1,7 @@
 {
   "suite": "arduino-skills",
   "evaluation_mode": "forward-contract",
-  "prompt_count": 18,
+  "prompt_count": 20,
   "cases": [
     {
       "id": "pin-assignment-esp32",
@@ -1154,7 +1154,7 @@
         {
           "name": "combined route order",
           "passed": true,
-          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 138, 165, 193]}"
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 167, 194, 222]}"
         },
         {
           "name": "route skills exist",
@@ -1169,7 +1169,7 @@
         {
           "name": "combined route order",
           "passed": true,
-          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 138, 165, 193]}"
+          "evidence": "{'route': ['arduino-workflow-router', 'board-selection', 'board-support', 'pin-assignment', 'wiring-safety-check', 'non-blocking-patterns', 'arduino-serial-monitor', 'hardware-tdd'], 'positions': [24, 53, 74, 93, 113, 167, 194, 222]}"
         },
         {
           "name": "arduino-serial-monitor",
@@ -1862,6 +1862,208 @@
           "name": "embedded-project-loop links shared contract",
           "passed": true,
           "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/embedded-project-loop/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "sensor-signal-filtering-adc",
+      "skill": "sensor-signal-filtering",
+      "prompt": "My Arduino ADC value is noisy. Choose a filter, set a sample-rate plan, preserve raw readings, and give me host tests before target testing.",
+      "expected_route": [
+        "sensor-signal-filtering"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['sensor-signal-filtering']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['sensor-signal-filtering']"
+        },
+        {
+          "name": "Nyquist",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "raw samples",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "sampling rate",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "moving-average",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "median",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "EMA",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "latency",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "host",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "deterministic",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "filter_benchmark.py",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "sensor-signal-filtering links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "sensor-signal-filtering-hardware",
+      "skill": "sensor-signal-filtering",
+      "prompt": "Add an RC filter between a sensor and an ESP32 ADC. Explain the circuit, cutoff, ADC source impedance, voltage safety, grounding, and what I must measure before claiming it works.",
+      "expected_route": [
+        "sensor-signal-filtering"
+      ],
+      "passed": true,
+      "checks": [
+        {
+          "name": "prompt is present",
+          "passed": true,
+          "evidence": "prompt consumed by forward harness"
+        },
+        {
+          "name": "route skills exist",
+          "passed": true,
+          "evidence": "['sensor-signal-filtering']"
+        },
+        {
+          "name": "route has no duplicate owners",
+          "passed": true,
+          "evidence": "['sensor-signal-filtering']"
+        },
+        {
+          "name": "RC cutoff",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "ADC acquisition/settling",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "source impedance",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "exact board",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "measure",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "hardware proof",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
+        },
+        {
+          "name": "assumptions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "required tools and versions",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "implementation steps",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "tests and evidence",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "known limitations",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "recovery and security notes",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/docs/arduino-skill-contract.md"
+        },
+        {
+          "name": "sensor-signal-filtering links shared contract",
+          "passed": true,
+          "evidence": "/Users/wed/Documents/GitHub/arduino-skills/skills/sensor-signal-filtering/SKILL.md"
         }
       ]
     }

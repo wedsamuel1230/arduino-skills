@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sensor Signal Filtering"
+  short_description: "Design ADC filters and analog signal paths"
+  default_prompt: "Use $sensor-signal-filtering to design, test, and document an ADC or sensor filtering path."

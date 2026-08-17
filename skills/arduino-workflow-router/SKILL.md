@@ -71,6 +71,7 @@ framework, toolchain, host, dependency versions, and desired proof stage.
 | Named board reference or capability lookup | `board-support`, then the relevant specialist | exact identity and source-backed constraints |
 | Pin map or GPIO declarations | `board-support`, then `pin-assignment`, then `wiring-safety-check` | board constraints and hardware |
 | Wiring, voltage, current, or pull-ups | `wiring-safety-check`, `power-budget-calculator`, `circuit-debugger` | hardware |
+| ADC/sensor noise, sampling, filtering, or signal conditioning | `board-support`, `wiring-safety-check`, `sensor-signal-filtering`, then `sensor-calibration-workbench` after detection is proven | signal-chain design and measured hardware behavior |
 | Code pattern or board abstraction | `arduino-code-generator`, `non-blocking-patterns`, `memory-budgeting` | build and memory |
 | Library or framework dependency | `library-selection`, then the code/project skill | compatibility and memory |
 | Datasheet, component, or protocol uncertainty | `datasheet-interpreter`, `i2c-bringup-diagnostician` | hardware assumptions |
@@ -96,8 +97,9 @@ library/memory -> project/code/timing -> toolchain build/upload -> serial and
 hardware tests -> system/calibration -> deployment/security/maintenance`
 
 Default combined order: `arduino-workflow-router` -> `board-selection` ->
-`board-support` -> `pin-assignment` -> `wiring-safety-check` -> `non-blocking-patterns` ->
-`arduino-serial-monitor` -> `hardware-tdd`. Start with
+`board-support` -> `pin-assignment` -> `wiring-safety-check` ->
+`sensor-signal-filtering` -> `non-blocking-patterns` -> `arduino-serial-monitor` ->
+`hardware-tdd`. Start with
 `embedded-project-loop` when the work spans sessions or physical gates, then
 keep its next-todo and evidence ledger open through the later stages.
 

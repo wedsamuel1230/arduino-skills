@@ -4,4 +4,9 @@ __pycache__/
 *.tmp
 /temp/
 memory-bank/
-.github/
+# Keep local Loop Engine snapshots out of release commits.
+**/loop-state.json
+.github/*
+!.github/
+!.github/workflows/
+!.github/workflows/sensor-signal-filtering.yml

@@ -1,13 +1,13 @@
 # arduino-skills
 
-![Status](https://img.shields.io/badge/version-1.7.0-blue)
-![Skills](https://img.shields.io/badge/skills-29%20packages%20on%20main-brightgreen)
+![Status](https://img.shields.io/badge/version-1.8.0-blue)
+![Skills](https://img.shields.io/badge/skills-30%20packages%20on%20main-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Arduino%20%7C%20embedded-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Marketplace](https://img.shields.io/badge/marketplace-claude%20%26%20gemini-orange)
 
 > Professional Arduino/embedded systems skills and maker tools for development, education, and prototyping.  
-> v1.7.0: toolchain-neutral,
+> v1.8.0: toolchain-neutral,
 > board-aware Arduino skills with plugin packaging,
 > physical-world evidence gates, and composable lifecycle workflows for OTA deployment, calibration,
 > field-power triage, and I2C bring-up.
@@ -245,6 +245,7 @@ mindmap
 | **Mermaid Generator** | `mermaid-diagram-generator/` | Visual documentation: state machines, timing, FreeRTOS |
 | **OTA Deployment** | `ota-deployment-guardian/` | OTA-safe deployment workflows, network port recovery, and remote update guardrails |
 | **Calibration Workbench** | `sensor-calibration-workbench/` | Calibration workflows, coefficient persistence, and drift checks for maker sensors |
+| **Sensor Signal Filtering** | `sensor-signal-filtering/` | ADC/sensor filter selection, analog front-end checks, and evidence-gated TDD |
 | **Field Power Triage** | `field-power-and-connectivity-triager/` | USB-vs-field-power diagnosis for WiFi and sensor-heavy maker projects |
 | **I2C Bringup** | `i2c-bringup-diagnostician/` | Fault isolation for I2C detection, library, pull-up, and board-quirk failures |
 | **Board Support** | `board-support/` | Exact-board profile lookup, capability/risk tags, source confidence, framework boundaries, and pin handoff |
@@ -447,11 +448,11 @@ UV_CACHE_DIR=/private/tmp/arduino-skills-uv-cache uv run --no-project --with pyy
   /Users/wed/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .
 ```
 
-For release `v1.7.0`, the tag and push commands are:
+For release `v1.8.0`, the tag and push commands are:
 
 ```bash
-git tag -a v1.7.0 -m "Release v1.7.0"
-git push origin main v1.7.0
+git tag -a v1.8.0 -m "Release v1.8.0"
+git push origin main v1.8.0
 ```
 
 Suggested repository topics for hosting platforms:
@@ -517,8 +518,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md#submitting-a-new-skill) for the complete p
 | [references/boards/index.json](references/boards/index.json) | Machine-readable board discovery inventory |
 | [references/boards/ai-reference-schema.md](references/boards/ai-reference-schema.md) | AI board lookup fields, evidence, and maintenance rules |
 | [docs/board-support/trigger-evaluation.md](docs/board-support/trigger-evaluation.md) | Held-out board-support activation evaluation contract |
-| [docs/releases/v1.7.0.md](docs/releases/v1.7.0.md) | Current release notes and verification boundary |
-| [docs/releases/v1.6.0.md](docs/releases/v1.6.0.md) | Previous release notes and verification boundary |
+| [docs/releases/v1.8.0.md](docs/releases/v1.8.0.md) | Current release notes and verification boundary |
+| [docs/releases/v1.7.0.md](docs/releases/v1.7.0.md) | Previous release notes and verification boundary |
 | [evals/evals.json](evals/evals.json) | Prompt-level routing and loop-engine evaluation cases |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and release notes |
 | [docs/research/](docs/research/) | Archived discovery notes and pain-point research |

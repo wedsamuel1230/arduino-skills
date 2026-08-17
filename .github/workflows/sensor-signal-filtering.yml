@@ -1,0 +1,68 @@
+name: Sensor signal filtering skill
+
+on:
+  push:
+    paths:
+      - "skills/sensor-signal-filtering/**"
+      - "skills/arduino-workflow-router/SKILL.md"
+      - "scripts/**"
+      - "tests/**"
+      - "evals/evals.json"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/workflows/sensor-signal-filtering/**"
+      - ".gitignore"
+      - ".github/workflows/sensor-signal-filtering.yml"
+  pull_request:
+    paths:
+      - "skills/sensor-signal-filtering/**"
+      - "skills/arduino-workflow-router/SKILL.md"
+      - "scripts/**"
+      - "tests/**"
+      - "evals/evals.json"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/workflows/sensor-signal-filtering/**"
+      - ".gitignore"
+      - ".github/workflows/sensor-signal-filtering.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run focused host tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Smoke-test filter helper
+        run: python skills/sensor-signal-filtering/scripts/filter_benchmark.py --samples "1,2,3" --filter ema --format json
+      - name: Validate skill frontmatter
+        run: python scripts/validate_agent_skills.py
+      - name: Validate shared Arduino contract
+        run: python scripts/validate_arduino_skill_contract.py
+      - name: Validate plugin and references
+        run: python scripts/validate_arduino_plugin.py
+      - name: Validate board references
+        run: python scripts/validate_board_references.py
+      - name: Run forward contract evaluations
+        run: python scripts/run_arduino_evals.py --output /tmp/arduino-skills-eval-results.json
+      - name: Check changed-file whitespace
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --check "${{ github.event.pull_request.base.sha }}...${{ github.sha }}"
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            git diff --check "${{ github.event.before }}...${{ github.sha }}"
+          else
+            git diff --check
+          fi

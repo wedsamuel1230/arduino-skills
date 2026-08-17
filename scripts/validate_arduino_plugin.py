@@ -50,6 +50,7 @@ NEW_SKILLS = {
     "memory-budgeting",
     "hardware-tdd",
     "embedded-project-loop",
+    "sensor-signal-filtering",
 }
 BOARD_FILES = {
     "arduino-uno-r3.md": ("docs.arduino.cc", "microchip.com"),

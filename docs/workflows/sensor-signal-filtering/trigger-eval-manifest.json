@@ -1,0 +1,13 @@
+{
+  "skill_name": "sensor-signal-filtering",
+  "query_file": "description-trigger-evals.json",
+  "evaluation_mode": "model-activation",
+  "runs_per_query": 3,
+  "splits": {
+    "train": 12,
+    "held_out": 8
+  },
+  "status": "not-run",
+  "reason": "The repository has deterministic routing/term checks, but the local description optimizer requires the claude CLI and the delegated model service returned HTTP 503 during this run.",
+  "acceptance_rule": "Report train and held-out activation rates separately; do not treat static term or route checks as model activation proof."
+}

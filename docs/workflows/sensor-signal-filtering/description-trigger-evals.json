@@ -1,0 +1,22 @@
+[
+  {"id": "train-01", "split": "train", "query": "My UNO R4 analog light sensor jumps by 30 counts. Help me capture raw data, choose an EMA, and test it before I change the wiring.", "should_trigger": true},
+  {"id": "train-02", "split": "train", "query": "Can you design an RC low-pass between this 5 V sensor and my ESP32 ADC and check the ADC input impedance and voltage limit?", "should_trigger": true},
+  {"id": "train-03", "split": "train", "query": "The filtered temperature looks stable but lags too much. Compare a median filter, moving average, and EMA with explicit latency.", "should_trigger": true},
+  {"id": "train-04", "split": "train", "query": "I need a host-side test vector for an ADC spike filter and a target-board measurement plan that does not call compile success hardware proof.", "should_trigger": true},
+  {"id": "train-05", "split": "train", "query": "My motor noise appears in a QRE analog edge sensor. Help separate grounding, supply, aliasing, and software smoothing one change at a time.", "should_trigger": true},
+  {"id": "train-06", "split": "train", "query": "Write a small Arduino sketch that reports raw and filtered ADC counts without assuming the board's voltage reference.", "should_trigger": true},
+  {"id": "train-07", "split": "train", "query": "My I2C sensor is not detected at address 0x76. Help me scan the bus and verify pull-ups.", "should_trigger": false},
+  {"id": "train-08", "split": "train", "query": "The ESP32 GPIO reads 5 V from a module. Tell me whether I need a divider and which pins are safe.", "should_trigger": false},
+  {"id": "train-09", "split": "train", "query": "Calibrate my CO2 sensor against fresh air and store the coefficients with drift checks.", "should_trigger": false},
+  {"id": "train-10", "split": "train", "query": "My Arduino sketch blocks on delay and misses watchdog deadlines. Replace it with a millis state machine.", "should_trigger": false},
+  {"id": "train-11", "split": "train", "query": "Pick between an Uno R4 WiFi and a Pico W for a battery-powered environmental monitor.", "should_trigger": false},
+  {"id": "train-12", "split": "train", "query": "The serial monitor shows random resets after upload. Capture structured logs without exposing WiFi secrets.", "should_trigger": false},
+  {"id": "heldout-01", "split": "held_out", "query": "Should I use a Kalman filter for a slowly changing load cell when I have no model or noise measurements?", "should_trigger": true},
+  {"id": "heldout-02", "split": "held_out", "query": "A thermistor conversion is nonlinear. Should I filter ADC counts before converting to degrees and how do I test startup and saturation?", "should_trigger": true},
+  {"id": "heldout-03", "split": "held_out", "query": "Create a BOM for a sensor board with connectors, passives, and a 3.3 V regulator.", "should_trigger": false},
+  {"id": "heldout-04", "split": "held_out", "query": "Make a 3D printable enclosure around my Arduino and leave openings for the sensor cable.", "should_trigger": false},
+  {"id": "heldout-05", "split": "held_out", "query": "Choose an I2C library version for an ESP32-S3 and check its license and maintenance history.", "should_trigger": false},
+  {"id": "heldout-06", "split": "held_out", "query": "My sensor value is wrong by a fixed offset after warm-up, but its raw readings are stable. Help calibrate it.", "should_trigger": false},
+  {"id": "heldout-07", "split": "held_out", "query": "Upload this firmware over OTA and give me a rollback plan if the network port disappears.", "should_trigger": false},
+  {"id": "heldout-08", "split": "held_out", "query": "Review this C++ sketch for buffer overflows, magic pins, and blocking serial output.", "should_trigger": false}
+]

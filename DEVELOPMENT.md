@@ -48,9 +48,9 @@ python3 scripts/run_arduino_evals.py
 git diff --check
 ```
 
-The forward suite includes `loop-engine-evidence-contract` and the board-support
-identity, resolver, routing, and trigger-corpus checks. It currently passes
-18/18 cases and validates a complete durable loop state and append-only ledger,
+The forward suite includes `loop-engine-evidence-contract`, the board-support
+identity/resolver checks, and sensor signal filtering scenarios. It currently
+passes 20/20 cases and validates a complete durable loop state and append-only ledger,
 while proving that an incomplete fixture is rejected. This is contract evidence
 only; it does not replace user-supplied measurements or target-board tests.
 

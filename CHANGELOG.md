@@ -8,6 +8,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 No unreleased changes.
 
+## [1.8.0] - 2026-08-17
+
+### Added
+
+- `sensor-signal-filtering` for ADC/sensor signal-chain diagnosis, software
+  filter selection, analog RC/input conditioning, host-side TDD, hardware
+  measurement gates, and progressive-disclosure references.
+- A standard-library filter benchmark helper, diagnostic ADC example, focused
+  host tests, trigger/evaluation cases, and a repository CI workflow.
+
+### Changed
+
+- Routed ADC/sensor filtering requests through board support, wiring safety, and
+  calibration only after signal detection is established; reusable filtering
+  snippets remain owned by `arduino-code-generator`.
+- Local Loop Engine snapshots are ignored by `.gitignore`; release evidence is
+  retained in the tracked research, plan, review, ledger, and final-report
+  artifacts.
+
+### Verification
+
+- 30 skills, 8/8 shared contract themes, 9 board profiles, and 20/20 forward
+  cases pass their deterministic validators.
+- 7/7 focused host tests and the official plugin validator pass.
+- Representative Arduino CLI build artifacts were produced for Uno, Uno R4
+  WiFi, ESP32, Pico W, and UNO Q.
+- Model activation and physical hardware validation remain unverified.
+
 ## [1.7.0] - 2026-08-11
 
 ### Added
@@ -676,5 +704,5 @@ No unreleased changes.
 
 ---
 
-**Last Updated:** 2026-08-11
-**Current Version:** 1.7.0
+**Last Updated:** 2026-08-17
+**Current Version:** 1.8.0

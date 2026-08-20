@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-No unreleased changes.
+### Fixed
+
+- The sensor-signal-filtering workflow now handles initial branch pushes,
+  where GitHub supplies an all-zero `before` SHA, without passing an invalid
+  symmetric-difference expression to Git.
 
 ## [1.8.0] - 2026-08-17
 
